@@ -1,0 +1,64 @@
+\documentclass[12pt,a4paper,oneside]{report}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,catalan,spanish]{babel}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[hidelinks]{hyperref}
+
+\geometry{margin=2.8cm}
+\onehalfspacing
+\graphicspath{{figures/}{assets/}}
+
+% Datos pendientes de confirmar. No sustituir TBD con suposiciones.
+\newcommand{\thesistitle}{TBD}
+\newcommand{\thesisauthor}{TBD}
+\newcommand{\thesisdirector}{TBD}
+\newcommand{\thesisdepartment}{TBD}
+\newcommand{\thesisdefencedate}{TBD}
+
+\hypersetup{
+  pdftitle={\thesistitle},
+  pdfauthor={\thesisauthor}
+}
+
+\begin{document}
+\pagenumbering{gobble}
+
+% Portada oficial proporcionada para esta memoria.
+\includepdf[pages=1,pagecommand={}]{assets/portada.pdf}
+
+\pagenumbering{roman}
+\input{frontmatter/resumen}
+\input{frontmatter/resum}
+\input{frontmatter/abstract}
+\tableofcontents
+
+\clearpage
+\pagenumbering{arabic}
+\input{chapters/01-introduccion}
+\input{chapters/02-estado-del-arte}
+\input{chapters/03-especificacion-diseno}
+\input{chapters/04-desarrollo}
+\input{chapters/05-experimentacion-evaluacion}
+\input{chapters/06-sostenibilidad-etica}
+\input{chapters/07-conclusiones}
+
+\IfFileExists{build/enable-bibliography.tex}{
+  \clearpage
+  \addcontentsline{toc}{chapter}{Referencias bibliográficas}
+  \bibliographystyle{plainnat}
+  % BIBINPUTS apunta a paper/references/ desde scripts/build-pdf.sh.
+  \bibliography{Tesis}
+}{}
+
+\appendix
+\input{chapters/anexo-a}
+
+\end{document}
