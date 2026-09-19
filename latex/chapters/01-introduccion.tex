@@ -1,4 +1,121 @@
-\chapter{Introducción, motivación y objetivos}
+\chapter{Introducción y contexto}
 \label{chap:introduccion}
 
-TBD
+\section{Marco del proyecto}
+
+Este Trabajo de Fin de Grado se desarrolla en el Grado en Ingeniería
+Informática de la Facultat d'Informàtica de Barcelona, dentro de la especialidad
+de Computación. El proyecto se sitúa en los ámbitos de la inteligencia
+artificial y la visión por computador. Su tema principal es la estimación de
+propiedades nutricionales a partir de imágenes de platos de comida.
+
+El trabajo se centrará en estudiar modelos capaces de estimar la masa, las
+calorías y los principales macronutrientes de un plato. Además de la calidad de
+las predicciones, se tendrá en cuenta el coste computacional de los modelos. De
+esta forma se podrá estudiar si un modelo ofrece un equilibrio adecuado entre
+precisión y eficiencia para su posible ejecución en un dispositivo con recursos
+limitados.
+
+El resultado del modelo debe interpretarse como una estimación experimental. El
+proyecto no pretende sustituir el trabajo de un profesional de la nutrición ni
+proporcionar consejo médico.
+
+\section{Motivación}
+
+Registrar de forma manual todos los alimentos y sus cantidades requiere tiempo
+y conocimiento por parte del usuario. Además, los métodos de autorregistro no
+siempre reflejan con precisión lo que se ha consumido. Una revisión sistemática
+de 29 estudios identificó las omisiones y los errores al estimar el tamaño de
+las porciones como dos de las fuentes de error más frecuentes. La revisión
+también observó tanto subestimaciones como sobreestimaciones, con diferencias
+importantes según el alimento y el estudio \citep{whittonSystematicReviewExamining2022}.
+
+Un estudio anterior analizó un grupo concreto de diez personas con obesidad que
+declaraban seguir dietas de baja energía sin perder peso. En ese grupo, la
+ingesta real se había subestimado de media un 47\%, mientras que la actividad
+física se había sobreestimado un 51\% \citep{lichtmanDiscrepancySelfReportedActual1992}.
+Estos resultados no deben generalizarse a toda la población, pero muestran que
+el autorregistro puede contener desviaciones relevantes.
+
+El uso de una imagen como entrada podría reducir parte de la carga del registro
+manual y aportar una estimación complementaria. Sin embargo, una fotografía
+tampoco muestra directamente toda la información necesaria. La cantidad de cada
+ingrediente, la forma del plato o la presencia de ingredientes poco visibles
+pueden producir errores importantes. Por tanto, el proyecto no parte de la
+suposición de que un modelo visual eliminará los errores de estimación.
+
+Este problema también plantea una decisión técnica relevante. Los modelos de
+mayor capacidad pueden obtener mejores predicciones, pero suelen necesitar más
+memoria y tiempo de cálculo. En cambio, los modelos eficientes son más fáciles
+de ejecutar de forma local, aunque pueden perder precisión. Estudiar este
+compromiso es la motivación principal del proyecto.
+
+\section{Conceptos básicos}
+
+\subsection{Estimación nutricional a partir de imágenes}
+
+La estimación nutricional consiste en predecir valores como la masa total, las
+calorías, las grasas, los carbohidratos y las proteínas de un plato. En este
+proyecto la entrada principal será una imagen RGB y la salida será un conjunto
+de valores numéricos. Por tanto, se trata principalmente de un problema de
+regresión multivariable.
+
+\subsection{Modelos eficientes y computación en el extremo}
+
+La computación en el extremo, o \emph{edge computing}, consiste en ejecutar el
+modelo cerca del lugar donde se generan los datos, por ejemplo en un teléfono o
+en otro dispositivo local. Esta ejecución puede reducir la dependencia de una
+conexión a Internet y evitar el envío continuo de imágenes. Sin embargo, obliga
+a trabajar con límites de memoria, tiempo de respuesta y capacidad de cálculo.
+
+En este documento, un modelo eficiente será un modelo que reduzca alguno de
+estos costes sin perder más precisión de la que resulte aceptable para el
+objetivo experimental. El dispositivo y los límites concretos todavía deben
+acordarse con el supervisor.
+
+\section{Identificación del problema}
+
+El problema principal es determinar qué modelos de visión por computador
+permiten estimar las propiedades nutricionales de un plato y qué coste requiere
+cada uno. No basta con seleccionar el modelo con menor error. También es
+necesario estudiar su tamaño, su tiempo de inferencia y los recursos que consume.
+
+El trabajo se dividirá en cuatro partes generales:
+
+\begin{itemize}
+  \item preparar un conjunto de datos con imágenes y etiquetas nutricionales;
+  \item establecer una línea base sencilla y reproducible;
+  \item entrenar y comparar varios modelos visuales;
+  \item analizar conjuntamente el error y el coste computacional.
+\end{itemize}
+
+La comparación exacta entre modelos y el dispositivo objetivo quedan pendientes
+de validación. También se decidirá más adelante si se incluye una ampliación
+limitada con profundidad estimada u otra fuente de información visual.
+
+\section{Estado actual del proyecto}
+
+En el momento de preparar esta entrega ya existe una primera infraestructura
+para trabajar con Nutrition5k. Se dispone de un proceso reproducible para
+comprobar y preparar sus datos, así como de una línea base que predice valores
+medios. Esta línea base no utiliza imágenes y sirve como referencia mínima para
+los modelos visuales posteriores. El entrenamiento y la comparación de los
+modelos de visión todavía están pendientes.
+
+\section{Actores implicados}
+
+Los principales actores del proyecto son los siguientes:
+
+\begin{description}
+  \item[Estudiante.] Desarrolla el proyecto, ejecuta los experimentos y analiza
+  los resultados.
+  \item[Director y codirector.] Orientan el alcance, revisan las decisiones y
+  supervisan el progreso.
+  \item[Comunidad académica.] Puede reutilizar el código, el protocolo y los
+  resultados para estudiar modelos de estimación nutricional.
+  \item[Usuarios potenciales.] En el futuro podrían utilizar sistemas de
+  registro alimentario basados en imágenes. En este TFG no participarán en una
+  validación clínica ni recibirán recomendaciones personales.
+  \item[Proveedores de datos.] Mantienen los conjuntos de datos de los que
+  dependen el entrenamiento y la evaluación.
+\end{description}

@@ -1,4 +1,75 @@
-\chapter{Estado del arte}
+\chapter{Estado del arte y justificación}
 \label{chap:estado-arte}
 
-TBD
+\section{Situación actual}
+
+La estimación nutricional mediante visión por computador reúne varios problemas.
+El sistema debe reconocer los alimentos, estimar sus cantidades y relacionar la
+información visual con valores nutricionales. Los platos compuestos son
+especialmente difíciles porque algunos ingredientes pueden estar mezclados,
+ocultos o presentes en cantidades que no se pueden deducir con exactitud desde
+una sola imagen.
+
+Nutrition5k es uno de los conjuntos de datos utilizados para estudiar este
+problema. Contiene platos reales con imágenes RGB, información de profundidad,
+pesos de los componentes y etiquetas de masa, calorías y macronutrientes
+\citep{thamesNutrition5kAutomaticNutritional2021}. Esta información permite
+comparar modelos que predicen directamente los valores nutricionales y modelos
+que incorporan información geométrica.
+
+Los trabajos posteriores muestran que la elección de la arquitectura y la
+calidad de los datos influyen en las predicciones. Se han comparado redes
+residuales, modelos Inception y transformadores visuales sobre Nutrition5k
+\citep{bianco2DPredictionNutritional2025}. También se han propuesto modelos que
+estiman profundidad a partir de una imagen y combinan ambas representaciones
+\citep{hanDPFNutritionFoodNutrition2023}. Estos resultados justifican estudiar
+varias familias de modelos, pero no demuestran por sí solos que sean adecuadas
+para un dispositivo limitado.
+
+Por otra parte, arquitecturas como MobileNetV2, MobileNetV3 y MobileNetV4 fueron
+diseñadas para ofrecer un mejor equilibrio entre precisión y coste en hardware
+móvil \citep{sandlerMobileNetV2InvertedResiduals2019,howardSearchingMobileNetV32019,qinMobileNetV4UniversalModels2024}.
+Sus resultados originales pertenecen a otras tareas visuales. Por ello, su
+utilidad para la estimación nutricional debe medirse de forma específica.
+
+\section{Alternativas de alcance consideradas}
+
+Antes de fijar el alcance se consideraron tres direcciones posibles.
+
+\subsection{Desarrollo de una plataforma completa}
+
+La primera alternativa consistía en crear una aplicación que integrase el
+modelo visual, datos biométricos y una interfaz para el usuario. Esta opción
+ofrecería una demostración completa, pero obligaría a dedicar una parte
+importante del proyecto al desarrollo de la aplicación, la base de datos y la
+integración. En consecuencia, quedaría menos tiempo para investigar los modelos.
+
+\subsection{Estimación nutricional y datos biométricos}
+
+La segunda alternativa consistía en combinar un modelo visual con algoritmos de
+salud basados en datos biométricos. Esta opción permitiría investigar un sistema
+multimodal, pero introduciría dos problemas diferentes: estimar los nutrientes y
+generar una salida personalizada. Además, exigiría datos adecuados y una
+validación más estricta por tratar información relacionada con la salud.
+
+\subsection{Estudio de modelos de estimación nutricional}
+
+La tercera alternativa consiste en centrar el trabajo en los modelos de visión
+por computador. Permite comparar más de una arquitectura, estudiar técnicas
+eficientes y analizar la diferencia entre modelos pequeños y modelos de mayor
+capacidad. También permite investigar la ejecución local frente a otros
+entornos de cálculo sin tener que desarrollar una plataforma completa.
+
+\section{Justificación de la alternativa elegida}
+
+Se ha elegido la tercera alternativa porque presenta un problema principal bien
+delimitado y permite realizar una evaluación experimental clara. El trabajo se
+centrará en el compromiso entre calidad de las predicciones y coste
+computacional. Esta decisión encaja con la especialidad de Computación y reduce
+el riesgo de repartir el esfuerzo entre demasiadas áreas.
+
+La aplicación completa, la integración de datos biométricos y la generación de
+recomendaciones personales no formarán parte del alcance principal. Si el
+trabajo experimental avanza según lo previsto, se podrá crear un demostrador
+mínimo para introducir una imagen y mostrar las predicciones. Este demostrador
+será una ampliación y no el resultado central del TFG.

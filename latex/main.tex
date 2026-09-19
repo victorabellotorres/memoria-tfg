@@ -16,12 +16,14 @@
 \onehalfspacing
 \graphicspath{{figures/}{assets/}}
 
-% Datos pendientes de confirmar. No sustituir TBD con suposiciones.
-\newcommand{\thesistitle}{TBD}
-\newcommand{\thesisauthor}{TBD}
-\newcommand{\thesisdirector}{TBD}
-\newcommand{\thesisdepartment}{TBD}
-\newcommand{\thesisdefencedate}{TBD}
+% Datos de la entrega. Los campos TBD deben confirmarse antes de presentar.
+\newcommand{\thesistitle}{Estimación de propiedades nutricionales mediante visión por computador}
+\newcommand{\thesisauthor}{Víctor Abelló Torres}
+\newcommand{\thesisdirector}{Sergi Ramírez Mitjans}
+\newcommand{\thesiscodirector}{Dante Conti}
+\newcommand{\thesisdepartment}{Departamento de Estadística e Investigación Operativa}
+\newcommand{\geptutor}{TBD}
+\newcommand{\deliverydate}{TBD}
 
 \hypersetup{
   pdftitle={\thesistitle},
@@ -31,13 +33,33 @@
 \begin{document}
 \pagenumbering{gobble}
 
-% Portada oficial proporcionada para esta memoria.
-\includepdf[pages=1,pagecommand={}]{assets/portada.pdf}
+% Portada específica de la primera entrega de GEP. La memoria final utilizará
+% la portada oficial de la FIB disponible en assets/portada.pdf.
+\begin{titlepage}
+  \centering
+  \includegraphics[width=0.32\textwidth]{upc-logo.pdf}\par
+  \vspace{1.5cm}
+  {\Large\bfseries \thesistitle\par}
+  \vspace{1.2cm}
+  {\large Trabajo de Fin de Grado\par}
+  {\large Entrega 1 de GEP: contextualización y alcance\par}
+  \vfill
+  {\large\thesisauthor\par}
+  \vspace{1cm}
+  \begin{tabular}{rl}
+    Titulación: & Grado en Ingeniería Informática (Computación) \\
+    Director: & \thesisdirector \\
+    Codirector: & \thesiscodirector \\
+    Departamento: & \thesisdepartment \\
+    Tutor de GEP: & \geptutor \\
+    Fecha: & \deliverydate
+  \end{tabular}
+  \vfill
+  Facultat d'Informàtica de Barcelona\\
+  Universitat Politècnica de Catalunya -- BarcelonaTech
+\end{titlepage}
 
 \pagenumbering{roman}
-\input{frontmatter/resumen}
-\input{frontmatter/resum}
-\input{frontmatter/abstract}
 \tableofcontents
 
 \clearpage
@@ -45,10 +67,10 @@
 \input{chapters/01-introduccion}
 \input{chapters/02-estado-del-arte}
 \input{chapters/03-especificacion-diseno}
-\input{chapters/04-desarrollo}
-\input{chapters/05-experimentacion-evaluacion}
-\input{chapters/06-sostenibilidad-etica}
-\input{chapters/07-conclusiones}
+\input{chapters/04-metodologia-rigor}
+
+% Los capítulos de desarrollo, evaluación, sostenibilidad y conclusiones se
+% incorporarán en las siguientes entregas y en la memoria final.
 
 \IfFileExists{build/enable-bibliography.tex}{
   \clearpage
@@ -57,8 +79,5 @@
   % BIBINPUTS apunta a paper/references/ desde scripts/build-pdf.sh.
   \bibliography{Tesis}
 }{}
-
-\appendix
-\input{chapters/anexo-a}
 
 \end{document}

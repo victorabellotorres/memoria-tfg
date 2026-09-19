@@ -1,0 +1,78 @@
+\chapter{Metodología y rigor}
+\label{chap:metodologia}
+
+\section{Metodología de trabajo}
+
+El proyecto seguirá una metodología iterativa. Cada iteración tendrá un objetivo
+pequeño: preparar datos, ejecutar un modelo, evaluar sus resultados y documentar
+las conclusiones. Este enfoque permite detectar pronto los problemas y evita
+dejar toda la evaluación para el final.
+
+El orden general de trabajo será el siguiente:
+
+\begin{enumerate}
+  \setlength{\itemsep}{0.25em}
+  \item revisar la bibliografía y concretar la comparación;
+  \item validar los datos y las particiones;
+  \item ejecutar la línea base;
+  \item entrenar un primer modelo visual sobre el conjunto piloto;
+  \item ampliar los experimentos al conjunto completo;
+  \item incorporar modelos adicionales de forma controlada;
+  \item medir precisión y coste computacional;
+  \item analizar los errores y redactar las conclusiones.
+\end{enumerate}
+
+Las tareas se registrarán en un tablero de seguimiento. El código y la memoria
+se mantendrán bajo control de versiones. La frecuencia de las reuniones con el
+director y el codirector queda \textbf{TBD}.
+
+\section{Método experimental}
+
+La primera fase utilizará Nutrition5k y sus particiones oficiales para imágenes
+RGB \citep{thamesNutrition5kAutomaticNutritional2021}. Se empezará con un
+subconjunto piloto fijo para comprobar el proceso completo con un coste bajo.
+Cuando el entrenamiento y la evaluación sean estables, se ejecutarán los
+experimentos principales sobre la partición completa disponible.
+
+Todos los modelos producirán, para cada plato, una predicción de masa, calorías,
+grasas, carbohidratos y proteínas en sus unidades originales. La evaluación
+principal informará del error absoluto medio para cada variable y del error
+porcentual definido por el protocolo de Nutrition5k. No se combinarán en una
+única media errores expresados en gramos y kilocalorías.
+
+Las métricas secundarias y el número de repeticiones de cada entrenamiento son
+\textbf{TBD}. También debe decidirse si el coste energético podrá medirse de
+forma fiable en el dispositivo elegido.
+
+\section{Seguimiento y validación}
+
+Para mantener el rigor del trabajo se utilizarán los siguientes mecanismos:
+
+\begin{itemize}
+  \setlength{\itemsep}{0.25em}
+  \item pruebas automáticas para proteger la selección de datos y el cálculo de
+  métricas;
+  \item una configuración común para comparar modelos;
+  \item almacenamiento de las predicciones y resultados de cada experimento;
+  \item separación clara entre datos de entrenamiento y de prueba;
+  \item revisión periódica del alcance y de los resultados con los supervisores;
+  \item registro de las decisiones que afecten al protocolo experimental.
+\end{itemize}
+
+No se elegirán modelos solo a partir de su resultado final sobre el conjunto de
+prueba. Las decisiones de diseño se tomarán con el conjunto de entrenamiento y,
+si se define, un conjunto de validación. De esta forma se reducirá el riesgo de
+adaptar el sistema de manera indirecta a los datos usados para informar del
+resultado final.
+
+\section{Criterios de cumplimiento}
+
+El objetivo se considerará cumplido si se obtiene una comparación reproducible
+entre una línea base y varios modelos visuales, usando el mismo protocolo, y si
+la comparación informa tanto del error nutricional como del coste de ejecución.
+No se fija todavía un valor mínimo de precisión, ya que debe acordarse con el
+supervisor y justificarse mediante la literatura y los primeros experimentos.
+
+El trabajo también deberá explicar los casos de fallo y los límites de los
+datos. Un resultado negativo seguirá siendo útil si el experimento está bien
+controlado y documentado.

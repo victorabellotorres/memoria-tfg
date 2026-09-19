@@ -1,4 +1,151 @@
-\chapter{Especificación y diseño de la solución}
-\label{chap:diseno}
+\chapter{Alcance}
+\label{chap:alcance}
 
-TBD
+\section{Objetivo general}
+
+El objetivo general del proyecto es estudiar y comparar modelos de visión por
+computador para estimar la masa, las calorías y los macronutrientes de un plato
+a partir de imágenes, prestando especial atención al equilibrio entre precisión
+y coste computacional.
+
+La pregunta de investigación provisional es la siguiente:
+
+\begin{quote}
+¿Qué compromiso entre error nutricional y coste computacional ofrecen distintos
+modelos visuales cuando se plantea su ejecución en dispositivos con recursos
+limitados?
+\end{quote}
+
+Esta formulación debe ser revisada y aprobada por el supervisor.
+
+\section{Objetivos específicos}
+
+\begin{enumerate}
+  \item Revisar los principales enfoques utilizados para estimar propiedades
+  nutricionales desde imágenes.
+  \item Preparar un conjunto de datos reproducible y verificar sus particiones
+  y etiquetas.
+  \item Implementar una línea base sencilla que sirva como referencia mínima.
+  \item Entrenar o adaptar una selección limitada de modelos visuales de
+  distinta capacidad.
+  \item Comparar sus predicciones mediante las mismas particiones y métricas.
+  \item Medir el tamaño de los modelos, el tiempo de inferencia y, cuando sea
+  posible, el uso de memoria y otros recursos.
+  \item Analizar errores, limitaciones y casos en los que las imágenes no
+  proporcionan información suficiente.
+\end{enumerate}
+
+\section{Resultados previstos}
+
+El proyecto deberá producir los siguientes resultados:
+
+\begin{itemize}
+  \item un proceso documentado para preparar los datos;
+  \item una línea base y varios modelos comparables;
+  \item un protocolo común de evaluación;
+  \item tablas y gráficos con los resultados de precisión y eficiencia;
+  \item un análisis de los errores y de las limitaciones del estudio;
+  \item código reproducible y la memoria del TFG.
+\end{itemize}
+
+Un demostrador visual sencillo será opcional. No se considera necesario para
+responder a la pregunta de investigación.
+
+\section{Requisitos funcionales}
+
+\begin{enumerate}
+  \item El sistema debe cargar y preparar las imágenes y etiquetas del conjunto
+  de datos seleccionado.
+  \item Debe generar para cada plato una predicción de masa, calorías, grasas,
+  carbohidratos y proteínas.
+  \item Debe permitir ejecutar una línea base y los modelos visuales elegidos
+  bajo un protocolo común.
+  \item Debe calcular y guardar las métricas de cada objetivo nutricional.
+  \item Debe conservar las predicciones necesarias para revisar errores y
+  comparar experimentos.
+\end{enumerate}
+
+\section{Requisitos no funcionales}
+
+\begin{description}
+  \item[Reproducibilidad.] Las particiones, configuraciones y métricas deben
+  quedar registradas para poder repetir los experimentos.
+  \item[Eficiencia.] Los modelos deben evaluarse también por su tamaño y su
+  tiempo de inferencia, no solo por el error de predicción.
+  \item[Claridad.] El código debe separar la preparación de datos, la definición
+  de modelos, el entrenamiento y la evaluación.
+  \item[Comparabilidad.] Todos los modelos deben usar, siempre que sea posible,
+  las mismas entradas, particiones y métricas.
+  \item[Uso responsable.] Las salidas deben presentarse como estimaciones
+  experimentales y no como recomendaciones médicas o nutricionales validadas.
+\end{description}
+
+\section{Límites del alcance}
+
+El alcance principal incluye:
+
+\begin{itemize}
+  \item predicción de masa, calorías, grasas, carbohidratos y proteínas;
+  \item uso inicial de imágenes RGB de platos;
+  \item comparación entre una línea base y una selección reducida de modelos;
+  \item evaluación conjunta del error y del coste computacional;
+  \item estudio de ejecución en un dispositivo limitado o en un entorno que lo
+  represente, pendiente de concretar.
+\end{itemize}
+
+Quedan fuera del alcance principal:
+
+\begin{itemize}
+  \item una aplicación móvil o plataforma preparada para producción;
+  \item la gestión de usuarios, historiales y bases de datos personales;
+  \item el uso de datos biométricos;
+  \item la generación de dietas o recomendaciones de salud;
+  \item la validación clínica del sistema;
+  \item el reconocimiento de todos los tipos de comida y contextos reales.
+\end{itemize}
+
+La profundidad estimada, la información textual u otras modalidades solo se
+añadirán si responden a una pregunta concreta y no ponen en riesgo los objetivos
+principales.
+
+\section{Obstáculos y restricciones}
+
+Los principales obstáculos previstos son la disponibilidad de cómputo, el
+tamaño del conjunto de imágenes y la dificultad de estimar cantidades a partir
+de información visual incompleta. Los resultados también dependerán de la
+calidad y representatividad de Nutrition5k, que contiene un contexto de captura
+concreto y no representa todas las comidas posibles.
+
+El dispositivo objetivo, el presupuesto de memoria y el límite de latencia son
+todavía \textbf{TBD}. Estos valores deberán concretarse antes de cerrar la
+selección de modelos.
+
+\section{Riesgos}
+
+\begin{description}
+  \item[Entrenamiento demasiado costoso.] Se comenzará con un piloto pequeño y
+  se ampliará solo cuando el proceso sea estable.
+  \item[Resultados poco precisos.] Se mantendrá una línea base común y se
+  analizarán los errores en lugar de ocultar los casos difíciles.
+  \item[Modelos demasiado grandes para el dispositivo.] Se incluirá al menos
+  una arquitectura eficiente y se medirá el coste antes de intentar el
+  despliegue final.
+  \item[Problemas o sesgos en los datos.] Se comprobarán las particiones y se
+  documentarán ejemplos problemáticos y límites de generalización.
+  \item[Crecimiento del alcance.] Las extensiones multimodales y el demostrador
+  solo se abordarán después de completar la comparación principal.
+\end{description}
+
+\section{Decisiones pendientes}
+
+Antes de cerrar el alcance con el supervisor se deben decidir los siguientes
+puntos:
+
+\begin{itemize}
+  \item dispositivo o entorno de ejecución objetivo;
+  \item familias y número final de modelos;
+  \item métricas secundarias además del error absoluto;
+  \item límites de memoria y latencia que se considerarán aceptables;
+  \item inclusión o exclusión de una extensión con información de profundidad;
+  \item criterios concretos para considerar cumplido cada objetivo.
+\end{itemize}
