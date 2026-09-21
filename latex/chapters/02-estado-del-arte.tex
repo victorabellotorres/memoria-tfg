@@ -33,6 +33,26 @@ profundidad es una estrategia de fusión de modalidades, no una arquitectura por
 sí misma, y su ventaja debe comprobarse con el mismo protocolo que los modelos
 basados solo en RGB.
 
+La profundidad también puede capturarse directamente en un dispositivo móvil.
+DepthCalorieCam usa una imagen RGB-D de un iPhone para segmentar alimentos,
+estimar su volumen y convertirlo en calorías mediante densidades registradas
+para cada categoría \citep{andoDepthCalorieCamMobileApplication2019}. Es una
+alternativa de sistema útil para entender el papel de la geometría, pero sus
+resultados no constituyen una comparación directa con la predicción multitarea
+de masa y macronutrientes de este trabajo. En Nutrition5k, Vinod et al.
+combinaron un mapa de densidad energética derivado de RGB con profundidad y
+reportaron un MAPE energético de 13,57\% en su protocolo \citep{vinodImageBasedFood2022}.
+
+Otras propuestas separan la localización de comida de la regresión nutricional.
+Zhao et al. anotaron regiones de comida en Nutrition5k y emplearon una etapa de
+segmentación seguida de una de regresión; informan un PMAE medio de 17,06\% para
+los cinco objetivos \citep{zhaoVisualNutritionAnalysis2024}. Esta descomposición
+puede facilitar la inspección de las regiones usadas por el modelo, pero requiere
+anotaciones de segmentación adicionales. RDINet combina RGB, profundidad e
+ingredientes conocidos mediante mecanismos de atención \citep{kuangRDINetDeepLearning2026}.
+El último tipo de información aborda componentes poco visibles, pero no debe
+tratarse como disponible a partir de una imagen RGB aislada.
+
 \subsection{Familias de modelos}
 
 Las redes neuronales convolucionales (CNN, por sus siglas en inglés) son una
@@ -43,14 +63,44 @@ Por otra parte, los transformadores visuales modelan relaciones entre distintas
 regiones de la imagen mediante mecanismos de atención; Bianco et al.
 compararon un transformador visual con CNN para predecir masa, energía y
 macronutrientes en Nutrition5k \citep{bianco2DPredictionNutritional2025}.
-También existen modelos híbridos que combinan convoluciones y atención, aunque
-su inclusión concreta en este TFG sigue pendiente de decisión.
+También existen modelos híbridos que combinan convoluciones y atención; CoAtNet,
+por ejemplo, organiza capas convolucionales y de autoatención en una misma
+arquitectura \citep{daiCoAtNetMarryingConvolution2021}. Su inclusión concreta
+en este TFG sigue pendiente de decisión.
+
+La revisión reciente de Teng et al. organiza estos avances como fusión visual y
+geométrica, aumento semántico y razonamiento composicional
+\citep{tengMultimodalInformationFusion2027}. Los modelos multimodales grandes
+forman parte de esa tendencia, pero su tamaño, dependencia de modelos externos y
+protocolos heterogéneos impiden considerarlos aquí como líneas base comparables.
+Las extensiones con segmentación, profundidad o ingredientes se mantienen fuera
+del núcleo RGB inicial mientras no se defina un protocolo que controle sus
+entradas adicionales.
 
 Por otra parte, arquitecturas como MobileNetV2, MobileNetV3 y MobileNetV4 fueron
 diseñadas para ofrecer un mejor equilibrio entre precisión y coste en hardware
 móvil \citep{sandlerMobileNetV2InvertedResiduals2019,howardSearchingMobileNetV32019,qinMobileNetV4UniversalModels2024}.
 Sus resultados originales pertenecen a otras tareas visuales. Por ello, su
 utilidad para la estimación nutricional debe medirse de forma específica.
+
+\subsection{Despliegue en el extremo y eficiencia}
+
+La eficiencia no depende únicamente del número de parámetros. Liu et al.
+propusieron una infraestructura de servicios en el extremo para reconocimiento
+de alimentos y evaluaron conjuntamente precisión de reconocimiento, tiempo de
+respuesta y consumo energético \citep{liuNewDeepLearningBased2018}. El trabajo
+trata reconocimiento, no regresión nutricional; por ello aporta evidencia sobre
+la arquitectura de despliegue, no sobre el error de masa o macronutrientes.
+
+La captura RGB-D de DepthCalorieCam muestra que cierta geometría puede obtenerse
+en el propio teléfono \citep{andoDepthCalorieCamMobileApplication2019}. De forma
+complementaria, Tahir y Loo usaron MobileNetV3 y un conjunto de instantáneas para
+reconocimiento y detección de ingredientes en dispositivos de borde, junto con
+explicaciones visuales \citep{tahirExplainableDeepLearning2021}. Los resultados de 
+estos estudios no son directamente transferibles al modelo y al protocolo de este trabajo.
+ Por tanto, la latencia, la memoria y, si es posible, el consumo energético se medirán 
+ con la arquitectura, el formato de inferencia y el entorno de ejecución seleccionados 
+ para el experimento.
 
 En conjunto, los trabajos revisados muestran que la elección de la arquitectura
 y la calidad de los datos influyen en las predicciones. Justifican comparar

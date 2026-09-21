@@ -1,21 +1,46 @@
 \chapter{Alcance y justificación}
 \label{chap:alcance}
 
-\section{Justificación}
+\section{Objetivo general}
 
-El trabajo se centra en la estimación de masa, calorías, grasas,
-carbohidratos y proteínas a partir de imágenes de platos. La finalidad es
-producir una comparación experimental reproducible que responda a una cuestión
-de ingeniería concreta:
+El objetivo general del proyecto es estudiar y comparar modelos de visión por
+computador para estimar la masa, las calorías y los macronutrientes de un plato
+a partir de imágenes, prestando especial atención al equilibrio entre precisión
+y coste computacional.
+
+La pregunta de investigación es la siguiente:
 
 \begin{quote}
-\textbf{\emph{¿Qué compromiso existe entre el error de estimación y los
-recursos necesarios para ejecutar modelos visuales?}}
+¿Qué compromiso entre error nutricional y coste computacional ofrecen distintos
+modelos visuales cuando se plantea su ejecución en dispositivos con recursos
+limitados?
 \end{quote}
 
-Esta delimitación permite evaluar el sistema con objetivos numéricos, particiones y métricas
-comunes, y sitúa la contribución en el diseño, la implementación y la
-evaluación de modelos de computación.
+La incorporación de profundidad, texto u
+otras modalidades queda fuera del núcleo y solo se abordará como
+extensión si los objetivos principales ya están cumplidos.
+
+\section{Objetivos específicos}
+
+\begin{enumerate}
+  \item Revisar los principales enfoques utilizados para estimar propiedades
+  nutricionales desde imágenes.
+  \item Preparar un conjunto de datos reproducible y verificar sus particiones
+  y etiquetas.
+  \item Implementar una línea base sencilla que sirva como referencia mínima.
+  \item Entrenar o adaptar una selección limitada de modelos visuales de
+  distinta capacidad.
+  \item Comparar sus predicciones mediante las mismas particiones y métricas.
+  \item Medir el tamaño de los modelos, el tiempo de inferencia y, cuando sea
+  posible, el uso de memoria y otros recursos.
+  \item Ejecutar y evaluar al menos un modelo seleccionado en el entorno de
+  computación en el extremo definido para el proyecto, midiendo el coste de
+  inferencia bajo las condiciones documentadas. 
+  \item Analizar errores, limitaciones y casos en los que las imágenes no
+  proporcionan información suficiente.
+\end{enumerate}
+
+\section{Justificación}
 
 \subsection{Modelos visuales de aprendizaje profundo}
 
@@ -68,51 +93,14 @@ pretende desplegar ni operar un servicio; comparará el coste de los modelos en
 un dispositivo limitado o en un entorno que lo represente y documentará qué
 condiciones harían viable cada opción.
 
-\subsection{Diferencia entre entrenamiento e ingferencia}
+\subsection{Diferencia entre entrenamiento e inferencia}
 
 También se distinguirá
 entre entrenar localmente y ejecutar la inferencia localmente: el entrenamiento
 puede requerir recursos de servidor o aceleradores sin que ello determine dónde
 se despliega el modelo resultante.
-\section{Objetivo general}
 
-El objetivo general del proyecto es estudiar y comparar modelos de visión por
-computador para estimar la masa, las calorías y los macronutrientes de un plato
-a partir de imágenes, prestando especial atención al equilibrio entre precisión
-y coste computacional.
 
-La pregunta de investigación es la siguiente:
-
-\begin{quote}
-¿Qué compromiso entre error nutricional y coste computacional ofrecen distintos
-modelos visuales cuando se plantea su ejecución en dispositivos con recursos
-limitados?
-\end{quote}
-
-La incorporación de profundidad, texto u
-otras modalidades queda fuera del núcleo inicial porque cambiaría las entradas
-y requeriría una comparación adicional controlada; solo se abordará como
-extensión si los objetivos principales ya están cumplidos.
-
-\section{Objetivos específicos}
-
-\begin{enumerate}
-  \item Revisar los principales enfoques utilizados para estimar propiedades
-  nutricionales desde imágenes.
-  \item Preparar un conjunto de datos reproducible y verificar sus particiones
-  y etiquetas.
-  \item Implementar una línea base sencilla que sirva como referencia mínima.
-  \item Entrenar o adaptar una selección limitada de modelos visuales de
-  distinta capacidad.
-  \item Comparar sus predicciones mediante las mismas particiones y métricas.
-  \item Medir el tamaño de los modelos, el tiempo de inferencia y, cuando sea
-  posible, el uso de memoria y otros recursos.
-  \item Ejecutar y evaluar al menos un modelo seleccionado en el entorno de
-  computación en el extremo definido para el proyecto, midiendo el coste de
-  inferencia bajo las condiciones documentadas. 
-  \item Analizar errores, limitaciones y casos en los que las imágenes no
-  proporcionan información suficiente.
-\end{enumerate}
 
 \section{Resultados previstos}
 
@@ -167,19 +155,3 @@ tamaño del conjunto de imágenes y la dificultad de estimar cantidades a partir
 de información visual incompleta. Los resultados también dependerán de la
 calidad y representatividad de Nutrition5k o los datasets utilizados, que contiene un contexto de captura
 concreto y no representa todas las comidas posibles.
-
-\section{Riesgos}
-
-\begin{description}
-  \item[Entrenamiento demasiado costoso.] Se comenzará con un piloto pequeño y
-  se ampliará solo cuando el proceso sea estable.
-  \item[Resultados poco precisos.] Se mantendrá una línea base común y se
-  analizarán los errores en lugar de ocultar los casos difíciles.
-  \item[Modelos demasiado grandes para el dispositivo.] Se incluirá al menos
-  una arquitectura eficiente y se medirá el coste antes de intentar el
-  despliegue final.
-  \item[Problemas o sesgos en los datos.] Se comprobarán las particiones y se
-  documentarán ejemplos problemáticos y límites de generalización.
-  \item[Crecimiento del alcance.] Las extensiones multimodales y el demostrador
-  solo se abordarán después de completar la comparación principal.
-\end{description}
