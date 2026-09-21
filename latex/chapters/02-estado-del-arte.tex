@@ -1,4 +1,4 @@
-\chapter{Estado del arte y justificación}
+\chapter{Estado del arte}
 \label{chap:estado-arte}
 
 \section{Situación actual}
@@ -10,6 +10,15 @@ especialmente difíciles porque algunos ingredientes pueden estar mezclados,
 ocultos o presentes en cantidades que no se pueden deducir con exactitud desde
 una sola imagen.
 
+Los avances en aprendizaje profundo han permitido comparar estos sistemas con
+protocolos experimentales sobre conjuntos de datos anotados. La literatura
+abarca tanto modelos que usan únicamente imágenes como modelos que incorporan
+información geométrica u otras modalidades. La elección de los datos, de la
+representación visual y de la arquitectura condiciona los resultados y debe
+analizarse junto con el coste computacional.
+
+\subsection{Datos y modalidades}
+
 Nutrition5k es uno de los conjuntos de datos utilizados para estudiar este
 problema. Contiene platos reales con imágenes RGB, información de profundidad,
 pesos de los componentes y etiquetas de masa, calorías y macronutrientes
@@ -17,14 +26,25 @@ pesos de los componentes y etiquetas de masa, calorías y macronutrientes
 comparar modelos que predicen directamente los valores nutricionales y modelos
 que incorporan información geométrica.
 
-Los trabajos posteriores muestran que la elección de la arquitectura y la
-calidad de los datos influyen en las predicciones. Se han comparado redes
-residuales, modelos Inception y transformadores visuales sobre Nutrition5k
-\citep{bianco2DPredictionNutritional2025}. También se han propuesto modelos que
-estiman profundidad a partir de una imagen y combinan ambas representaciones
-\citep{hanDPFNutritionFoodNutrition2023}. Estos resultados justifican estudiar
-varias familias de modelos, pero no demuestran por sí solos que sean adecuadas
-para un dispositivo limitado.
+Una línea de trabajo complementaria estima profundidad a partir de una imagen y
+combina ambas representaciones para abordar la incertidumbre sobre la cantidad
+de comida \citep{hanDPFNutritionFoodNutrition2023}. La incorporación de
+profundidad es una estrategia de fusión de modalidades, no una arquitectura por
+sí misma, y su ventaja debe comprobarse con el mismo protocolo que los modelos
+basados solo en RGB.
+
+\subsection{Familias de modelos}
+
+Las redes neuronales convolucionales (CNN, por sus siglas en inglés) son una
+familia habitual de \emph{backbones} visuales. En este problema se han comparado
+redes residuales e Inception, y también se han considerado modelos eficientes
+como EfficientNet \citep{bianco2DPredictionNutritional2025,yanuartantiDeepLearningModel2025a}.
+Por otra parte, los transformadores visuales modelan relaciones entre distintas
+regiones de la imagen mediante mecanismos de atención; Bianco et al.
+compararon un transformador visual con CNN para predecir masa, energía y
+macronutrientes en Nutrition5k \citep{bianco2DPredictionNutritional2025}.
+También existen modelos híbridos que combinan convoluciones y atención, aunque
+su inclusión concreta en este TFG sigue pendiente de decisión.
 
 Por otra parte, arquitecturas como MobileNetV2, MobileNetV3 y MobileNetV4 fueron
 diseñadas para ofrecer un mejor equilibrio entre precisión y coste en hardware
@@ -32,44 +52,8 @@ móvil \citep{sandlerMobileNetV2InvertedResiduals2019,howardSearchingMobileNetV3
 Sus resultados originales pertenecen a otras tareas visuales. Por ello, su
 utilidad para la estimación nutricional debe medirse de forma específica.
 
-\section{Alternativas de alcance consideradas}
-
-Antes de fijar el alcance se consideraron tres direcciones posibles.
-
-\subsection{Desarrollo de una plataforma completa}
-
-La primera alternativa consistía en crear una aplicación que integrase el
-modelo visual, datos biométricos y una interfaz para el usuario. Esta opción
-ofrecería una demostración completa, pero obligaría a dedicar una parte
-importante del proyecto al desarrollo de la aplicación, la base de datos y la
-integración. En consecuencia, quedaría menos tiempo para investigar los modelos.
-
-\subsection{Estimación nutricional y datos biométricos}
-
-La segunda alternativa consistía en combinar un modelo visual con algoritmos de
-salud basados en datos biométricos. Esta opción permitiría investigar un sistema
-multimodal, pero introduciría dos problemas diferentes: estimar los nutrientes y
-generar una salida personalizada. Además, exigiría datos adecuados y una
-validación más estricta por tratar información relacionada con la salud.
-
-\subsection{Estudio de modelos de estimación nutricional}
-
-La tercera alternativa consiste en centrar el trabajo en los modelos de visión
-por computador. Permite comparar más de una arquitectura, estudiar técnicas
-eficientes y analizar la diferencia entre modelos pequeños y modelos de mayor
-capacidad. También permite investigar la ejecución local frente a otros
-entornos de cálculo sin tener que desarrollar una plataforma completa.
-
-\section{Justificación de la alternativa elegida}
-
-Se ha elegido la tercera alternativa porque presenta un problema principal bien
-delimitado y permite realizar una evaluación experimental clara. El trabajo se
-centrará en el compromiso entre calidad de las predicciones y coste
-computacional. Esta decisión encaja con la especialidad de Computación y reduce
-el riesgo de repartir el esfuerzo entre demasiadas áreas.
-
-La aplicación completa, la integración de datos biométricos y la generación de
-recomendaciones personales no formarán parte del alcance principal. Si el
-trabajo experimental avanza según lo previsto, se podrá crear un demostrador
-mínimo para introducir una imagen y mostrar las predicciones. Este demostrador
-será una ampliación y no el resultado central del TFG.
+En conjunto, los trabajos revisados muestran que la elección de la arquitectura
+y la calidad de los datos influyen en las predicciones. Justifican comparar
+varias familias de modelos, pero no demuestran por sí solos que alguna sea
+adecuada para un dispositivo limitado; ese compromiso se evaluará dentro del
+protocolo del proyecto.

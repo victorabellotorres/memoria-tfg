@@ -6,59 +6,80 @@
 Este Trabajo de Fin de Grado se desarrolla en el Grado en Ingeniería
 Informática de la Facultat d'Informàtica de Barcelona, dentro de la especialidad
 de Computación. El proyecto se sitúa en los ámbitos de la inteligencia
-artificial y la visión por computador. Su tema principal es la estimación de
-propiedades nutricionales a partir de imágenes de platos de comida.
+artificial y la visión por computador.
 
-El trabajo se centrará en estudiar modelos capaces de estimar la masa, las
-calorías y los principales macronutrientes de un plato. Además de la calidad de
-las predicciones, se tendrá en cuenta el coste computacional de los modelos. De
-esta forma se podrá estudiar si un modelo ofrece un equilibrio adecuado entre
-precisión y eficiencia para su posible ejecución en un dispositivo con recursos
-limitados.
+Su tema principal es el estudio de modelos de visión por computador
+capaces de estimar las propiedades nutricionales a partir de imágenes de platos de comida, evaluando el error, la complejidad,
+latencia y diversos factores.
 
-El resultado del modelo debe interpretarse como una estimación experimental. El
-proyecto no pretende sustituir el trabajo de un profesional de la nutrición ni
-proporcionar consejo médico.
+El resultado del modelo debe interpretarse como una estimación experimental, no como un consejo médico.
 
 \section{Motivación}
 
-Registrar de forma manual todos los alimentos y sus cantidades requiere tiempo
-y conocimiento por parte del usuario. Además, los métodos de autorregistro no
-siempre reflejan con precisión lo que se ha consumido. Una revisión sistemática
-de 29 estudios identificó las omisiones y los errores al estimar el tamaño de
-las porciones como dos de las fuentes de error más frecuentes. La revisión
-también observó tanto subestimaciones como sobreestimaciones, con diferencias
-importantes según el alimento y el estudio \citep{whittonSystematicReviewExamining2022}.
+Registrar manualmente los alimentos y sus cantidades requiere tiempo y puede
+introducir errores. Una revisión sistemática identificó las omisiones y la
+estimación imprecisa del tamaño de las porciones entre las fuentes de error más
+frecuentes del autorregistro \citep{whittonSystematicReviewExamining2022}. Un
+estudio realizado en una muestra clínica concreta también observó desviaciones
+relevantes; sus resultados no son generalizables, pero ilustran esta limitación
+\citep{lichtmanDiscrepancySelfReportedActual1992}.
 
-Un estudio anterior analizó un grupo concreto de diez personas con obesidad que
-declaraban seguir dietas de baja energía sin perder peso. En ese grupo, la
-ingesta real se había subestimado de media un 47\%, mientras que la actividad
-física se había sobreestimado un 51\% \citep{lichtmanDiscrepancySelfReportedActual1992}.
-Estos resultados no deben generalizarse a toda la población, pero muestran que
-el autorregistro puede contener desviaciones relevantes.
+El uso de una imagen como entrada puede reducir parte de la carga del registro
+manual y proporcionar una estimación complementaria. Sin embargo, esta
+estimación debe evaluarse con rigor antes de utilizarse fuera de un contexto
+experimental.
 
-El uso de una imagen como entrada podría reducir parte de la carga del registro
-manual y aportar una estimación complementaria. Sin embargo, una fotografía
-tampoco muestra directamente toda la información necesaria. La cantidad de cada
+Este problema plantea una decisión técnica relevante. Los modelos de
+mayor capacidad pueden obtener mejores predicciones, pero suelen necesitar más
+memoria y tiempo de cálculo. En cambio, los modelos eficientes son más fáciles
+de ejecutar de forma local, aunque pueden perder precisión. Estudiar este compromiso 
+es también una de las motivaciones del proyecto.
+
+\section{Contexto}
+
+Los avances del aprendizaje profundo, la disponibilidad de conjuntos de datos
+anotados y el desarrollo de modelos visuales han hecho posible investigar tareas
+que relacionan el contenido de una imagen con las propiedades nutricionales de
+un plato. Entre estas familias de modelos se encuentran las redes neuronales
+convolucionales (CNN, por sus siglas en inglés) y los transformadores visuales.
+En lugar de definir manualmente qué rasgos visuales son relevantes, estos
+métodos aprenden patrones a partir de ejemplos anotados. Esto permite investigar
+sistemas que reciben una fotografía como entrada y producen una estimación
+nutricional, aunque la utilidad de esa estimación depende de sus errores, de los
+datos disponibles y del contexto de uso. El estado del arte presenta los
+conjuntos de datos y las arquitecturas concretas utilizados en la literatura.
+
+El interés práctico reciente por registrar la ingesta a partir de fotografías
+también se refleja en aplicaciones comerciales. MyFitnessPal ofrece la función
+\emph{Meal Scan}, Healthify la función \emph{HealthifySnap} y Cal AI anuncia un
+registro nutricional a partir de fotografías de comidas
+\citep{myfitnesspalMealScan2026,healthifyHealthifySnap2026,calAiFoodCalorieTracker2026}.
+Estas descripciones muestran la existencia de este tipo de funcionalidades,
+pero no permiten cuantificar su adopción, no constituyen evidencia de precisión,
+no permiten comparar las aplicaciones entre sí y no validan un uso clínico. El
+TFG no evaluará dichas aplicaciones ni propondrá recomendaciones nutricionales
+personalizadas.
+
+\section{Identificación del problema}
+
+El problema que se aborda es estimar a partir de una imagen RGB de un plato de comida, las propiedades
+nutricionales de ese plato. Como propiedades nutricionales se consideran la masa total, las calorías y 
+los principales macronutrientes (grasas, carbohidratos y proteínas).
+
+Sin embargo, una fotografía tampoco muestra directamente toda la información necesaria. La cantidad de cada
 ingrediente, la forma del plato o la presencia de ingredientes poco visibles
 pueden producir errores importantes. Por tanto, el proyecto no parte de la
 suposición de que un modelo visual eliminará los errores de estimación.
 
-Este problema también plantea una decisión técnica relevante. Los modelos de
-mayor capacidad pueden obtener mejores predicciones, pero suelen necesitar más
-memoria y tiempo de cálculo. En cambio, los modelos eficientes son más fáciles
-de ejecutar de forma local, aunque pueden perder precisión. Estudiar este
-compromiso es la motivación principal del proyecto.
+Otra dificultad presente es el sesgo de los datos de entrenamiento. Los datasets utilizados para entrenar
+estos modelos de visión se centran en comida de una cultura o región concreta, restringiendose a un conjunto limitado de ingredientes y
+tipos de platos concretos, por lo que el rendimiento puede variar significativamente dependiendo del plato que se evalue.
+
+El resultado no solo se valorará con el error de predicción, sino también considerando el coste computacional,
+la latencia, la complejidad del modelo, la arquitectura, el potencial de ejecución en un dispositivo con recursos
+limitados y la relación entre estos factores.
 
 \section{Conceptos básicos}
-
-\subsection{Estimación nutricional a partir de imágenes}
-
-La estimación nutricional consiste en predecir valores como la masa total, las
-calorías, las grasas, los carbohidratos y las proteínas de un plato. En este
-proyecto la entrada principal será una imagen RGB y la salida será un conjunto
-de valores numéricos. Por tanto, se trata principalmente de un problema de
-regresión multivariable.
 
 \subsection{Modelos eficientes y computación en el extremo}
 
@@ -68,54 +89,19 @@ en otro dispositivo local. Esta ejecución puede reducir la dependencia de una
 conexión a Internet y evitar el envío continuo de imágenes. Sin embargo, obliga
 a trabajar con límites de memoria, tiempo de respuesta y capacidad de cálculo.
 
-En este documento, un modelo eficiente será un modelo que reduzca alguno de
-estos costes sin perder más precisión de la que resulte aceptable para el
-objetivo experimental. El dispositivo y los límites concretos todavía deben
-acordarse con el supervisor.
+\section{Actores implicados y usuarios potenciales}
 
-\section{Identificación del problema}
-
-El problema principal es determinar qué modelos de visión por computador
-permiten estimar las propiedades nutricionales de un plato y qué coste requiere
-cada uno. No basta con seleccionar el modelo con menor error. También es
-necesario estudiar su tamaño, su tiempo de inferencia y los recursos que consume.
-
-El trabajo se dividirá en cuatro partes generales:
-
-\begin{itemize}
-  \item preparar un conjunto de datos con imágenes y etiquetas nutricionales;
-  \item establecer una línea base sencilla y reproducible;
-  \item entrenar y comparar varios modelos visuales;
-  \item analizar conjuntamente el error y el coste computacional.
-\end{itemize}
-
-La comparación exacta entre modelos y el dispositivo objetivo quedan pendientes
-de validación. También se decidirá más adelante si se incluye una ampliación
-limitada con profundidad estimada u otra fuente de información visual.
-
-\section{Estado actual del proyecto}
-
-En el momento de preparar esta entrega ya existe una primera infraestructura
-para trabajar con Nutrition5k. Se dispone de un proceso reproducible para
-comprobar y preparar sus datos, así como de una línea base que predice valores
-medios. Esta línea base no utiliza imágenes y sirve como referencia mínima para
-los modelos visuales posteriores. El entrenamiento y la comparación de los
-modelos de visión todavía están pendientes.
-
-\section{Actores implicados}
-
-Los principales actores del proyecto son los siguientes:
+En esta sección se distinguen los actores que pueden verse afectados y beneficiados 
+por el proyecto:
 
 \begin{description}
-  \item[Estudiante.] Desarrolla el proyecto, ejecuta los experimentos y analiza
-  los resultados.
-  \item[Director y codirector.] Orientan el alcance, revisan las decisiones y
-  supervisan el progreso.
   \item[Comunidad académica.] Puede reutilizar el código, el protocolo y los
-  resultados para estudiar modelos de estimación nutricional.
-  \item[Usuarios potenciales.] En el futuro podrían utilizar sistemas de
-  registro alimentario basados en imágenes. En este TFG no participarán en una
-  validación clínica ni recibirán recomendaciones personales.
+  resultados para estudiar modelos de estimación nutricional y ampliar el conocimiento en el área.
+  \item[Servicios/Aplicaciones de registro alimentario.] Pueden integrar el modelo en sus sistemas,
+  mejorando la precisión, el coste, o alguna otra métrica de interés. Traduciendose en una mejor experiencia
+  o abaratamiento de costes para ofrecer esta funcionalidad.
+  \item[Usuarios potenciales.] Personas que quieran utilizar sistemas de registro alimentario
+  para llevar un control de su ingesta por temas deportivos y de salud.
   \item[Proveedores de datos.] Mantienen los conjuntos de datos de los que
   dependen el entrenamiento y la evaluación.
 \end{description}

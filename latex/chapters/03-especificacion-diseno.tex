@@ -1,6 +1,79 @@
-\chapter{Alcance}
+\chapter{Alcance y justificación}
 \label{chap:alcance}
 
+\section{Justificación}
+
+El trabajo se centra en la estimación de masa, calorías, grasas,
+carbohidratos y proteínas a partir de imágenes de platos. La finalidad es
+producir una comparación experimental reproducible que responda a una cuestión
+de ingeniería concreta:
+
+\begin{quote}
+\textbf{\emph{¿Qué compromiso existe entre el error de estimación y los
+recursos necesarios para ejecutar modelos visuales?}}
+\end{quote}
+
+Esta delimitación permite evaluar el sistema con objetivos numéricos, particiones y métricas
+comunes, y sitúa la contribución en el diseño, la implementación y la
+evaluación de modelos de computación.
+
+\subsection{Modelos visuales de aprendizaje profundo}
+
+Se emplearán arquitecturas de aprendizaje profundo porque la entrada principal
+es una imagen y la tarea requiere extraer automáticamente características de
+ingredientes, textura, forma, contexto y proporciones visuales, y relacionarlas
+con cinco variables continuas. Las redes convolucionales, los transformadores
+visuales y las arquitecturas eficientes ofrecen familias con mecanismos de
+representación y costes distintos; por ello permiten estudiar el compromiso que
+plantea el proyecto. En particular, las familias MobileNet se diseñaron para
+reducir el coste de inferencia en hardware móvil, mientras que las CNN y los
+transformadores permiten representar distintos grados de capacidad visual
+\citep{sandlerMobileNetV2InvertedResiduals2019,howardSearchingMobileNetV32019,qinMobileNetV4UniversalModels2024,bianco2DPredictionNutritional2025}.
+
+No se plantea como enfoque principal una técnica clásica de visión seguida de
+aprendizaje automático convencional. Un flujo de ese tipo exigiría diseñar y
+seleccionar manualmente descriptores visuales y, probablemente, segmentaciones
+o reglas específicas para los platos. Puede ser útil como referencia sencilla
+si se define un protocolo que lo haga comparable, pero limita el objetivo de
+evaluar representaciones visuales aprendidas de forma automática.
+
+\subsection{Modelo especializado frente a una API de un modelo general}
+
+El proyecto no delegará la estimación en una API de un modelo multimodal de
+propósito general, como las ofrecidas por OpenAI o Gemini u otros provedores.
+Utilizar un provedor externo de un modelo multimodal no permite controlar ni entrenar el
+modelo con las mismas particiones y etiquetas que el resto de candidatos, no permite medir el coste de inferencia,
+el coste aumenta al utilizar modelos de gran tamaño y propósito general.
+
+Un modelo especializado permite fijar la arquitectura, los datos, las
+configuraciones y la versión de inferencia, y medir de manera repetible su
+error, tamaño, memoria y latencia. Al ser modelos especializados con un menor tamaño,
+también permite ejecutar la inferencia en un dispositivo limitado, lo que es relevante para
+la pregunta de investigación.
+
+\subsection{Ejecución local y en servidor}
+
+La ejecución en el extremo (\emph{edge}) se considera porque puede evitar el
+envío de imágenes a un servidor, reducir la dependencia de la conexión y dar
+una respuesta con una latencia más predecible una vez el modelo está instalado.
+Sus límites son la memoria, la potencia de cálculo, el consumo energético y la
+posible necesidad de reducir, cuantizar o seleccionar arquitecturas más
+pequeñas. 
+
+La ejecución en servidor permite usar modelos de mayor tamaño y hardware más
+potente, y simplifica la actualización centralizada de los modelos. A cambio,
+introduce transmisión de imágenes, dependencia de red, latencia variable,
+coste operativo y requisitos adicionales de protección de datos. El trabajo no
+pretende desplegar ni operar un servicio; comparará el coste de los modelos en
+un dispositivo limitado o en un entorno que lo represente y documentará qué
+condiciones harían viable cada opción.
+
+\subsection{Diferencia entre entrenamiento e ingferencia}
+
+También se distinguirá
+entre entrenar localmente y ejecutar la inferencia localmente: el entrenamiento
+puede requerir recursos de servidor o aceleradores sin que ello determine dónde
+se despliega el modelo resultante.
 \section{Objetivo general}
 
 El objetivo general del proyecto es estudiar y comparar modelos de visión por
@@ -8,7 +81,7 @@ computador para estimar la masa, las calorías y los macronutrientes de un plato
 a partir de imágenes, prestando especial atención al equilibrio entre precisión
 y coste computacional.
 
-La pregunta de investigación provisional es la siguiente:
+La pregunta de investigación es la siguiente:
 
 \begin{quote}
 ¿Qué compromiso entre error nutricional y coste computacional ofrecen distintos
@@ -16,7 +89,10 @@ modelos visuales cuando se plantea su ejecución en dispositivos con recursos
 limitados?
 \end{quote}
 
-Esta formulación debe ser revisada y aprobada por el supervisor.
+La incorporación de profundidad, texto u
+otras modalidades queda fuera del núcleo inicial porque cambiaría las entradas
+y requeriría una comparación adicional controlada; solo se abordará como
+extensión si los objetivos principales ya están cumplidos.
 
 \section{Objetivos específicos}
 
@@ -31,6 +107,9 @@ Esta formulación debe ser revisada y aprobada por el supervisor.
   \item Comparar sus predicciones mediante las mismas particiones y métricas.
   \item Medir el tamaño de los modelos, el tiempo de inferencia y, cuando sea
   posible, el uso de memoria y otros recursos.
+  \item Ejecutar y evaluar al menos un modelo seleccionado en el entorno de
+  computación en el extremo definido para el proyecto, midiendo el coste de
+  inferencia bajo las condiciones documentadas. 
   \item Analizar errores, limitaciones y casos en los que las imágenes no
   proporcionan información suficiente.
 \end{enumerate}
@@ -49,7 +128,7 @@ El proyecto deberá producir los siguientes resultados:
 \end{itemize}
 
 Un demostrador visual sencillo será opcional. No se considera necesario para
-responder a la pregunta de investigación.
+responder a la pregunta de investigación, pero será útil para ilustrar los resultados.
 
 \section{Requisitos funcionales}
 
@@ -80,45 +159,14 @@ responder a la pregunta de investigación.
   experimentales y no como recomendaciones médicas o nutricionales validadas.
 \end{description}
 
-\section{Límites del alcance}
-
-El alcance principal incluye:
-
-\begin{itemize}
-  \item predicción de masa, calorías, grasas, carbohidratos y proteínas;
-  \item uso inicial de imágenes RGB de platos;
-  \item comparación entre una línea base y una selección reducida de modelos;
-  \item evaluación conjunta del error y del coste computacional;
-  \item estudio de ejecución en un dispositivo limitado o en un entorno que lo
-  represente, pendiente de concretar.
-\end{itemize}
-
-Quedan fuera del alcance principal:
-
-\begin{itemize}
-  \item una aplicación móvil o plataforma preparada para producción;
-  \item la gestión de usuarios, historiales y bases de datos personales;
-  \item el uso de datos biométricos;
-  \item la generación de dietas o recomendaciones de salud;
-  \item la validación clínica del sistema;
-  \item el reconocimiento de todos los tipos de comida y contextos reales.
-\end{itemize}
-
-La profundidad estimada, la información textual u otras modalidades solo se
-añadirán si responden a una pregunta concreta y no ponen en riesgo los objetivos
-principales.
 
 \section{Obstáculos y restricciones}
 
 Los principales obstáculos previstos son la disponibilidad de cómputo, el
 tamaño del conjunto de imágenes y la dificultad de estimar cantidades a partir
 de información visual incompleta. Los resultados también dependerán de la
-calidad y representatividad de Nutrition5k, que contiene un contexto de captura
+calidad y representatividad de Nutrition5k o los datasets utilizados, que contiene un contexto de captura
 concreto y no representa todas las comidas posibles.
-
-El dispositivo objetivo, el presupuesto de memoria y el límite de latencia son
-todavía \textbf{TBD}. Estos valores deberán concretarse antes de cerrar la
-selección de modelos.
 
 \section{Riesgos}
 
@@ -135,17 +183,3 @@ selección de modelos.
   \item[Crecimiento del alcance.] Las extensiones multimodales y el demostrador
   solo se abordarán después de completar la comparación principal.
 \end{description}
-
-\section{Decisiones pendientes}
-
-Antes de cerrar el alcance con el supervisor se deben decidir los siguientes
-puntos:
-
-\begin{itemize}
-  \item dispositivo o entorno de ejecución objetivo;
-  \item familias y número final de modelos;
-  \item métricas secundarias además del error absoluto;
-  \item límites de memoria y latencia que se considerarán aceptables;
-  \item inclusión o exclusión de una extensión con información de profundidad;
-  \item criterios concretos para considerar cumplido cada objetivo.
-\end{itemize}
