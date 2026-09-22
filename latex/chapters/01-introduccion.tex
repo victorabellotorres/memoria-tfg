@@ -17,10 +17,10 @@ El resultado del modelo debe interpretarse como una estimación experimental, no
 \section{Motivación}
 
 La prevalencia mundial de obesidad en adultos se ha más que duplicado desde
-1990 \citep{omsObesidadSobrepeso2025}. Paradójicamente, esta tendencia convive
+1990 \citep{ObesityOverweight}. Paradójicamente, esta tendencia convive
 con una mayor preocupación declarada por llevar una dieta saludable y con una
 mayor familiaridad con temas alimentarios en encuestas recientes de la Unión
-Europea \citep{efsaEurobarometroSeguridadAlimentaria2025}.
+Europea \citep{2025EurobarometerFood2025}.
 
 Registrar manualmente los alimentos y sus cantidades requiere tiempo y puede
 introducir errores. Una revisión sistemática identificó las omisiones y la
@@ -61,7 +61,7 @@ El interés práctico reciente por registrar la ingesta a partir de fotografías
 también se refleja en aplicaciones comerciales. MyFitnessPal ofrece la función
 \emph{Meal Scan}, Healthify la función \emph{HealthifySnap} y Cal AI anuncia un
 registro nutricional a partir de fotografías de comidas
-\citep{myfitnesspalMealScan2026,healthifyHealthifySnap2026,calAiFoodCalorieTracker2026}.
+\citep{HowUseMeal2026,Healthify,CalAIFood}.
 Estas descripciones muestran la existencia de este tipo de funcionalidades,
 pero no permiten cuantificar su adopción, no constituyen evidencia de precisión,
 no permiten comparar las aplicaciones entre sí y no validan un uso clínico. El
@@ -89,7 +89,57 @@ limitados y la relación entre estos factores.
 
 \section{Conceptos básicos}
 
+\subsection{Estimación nutricional como regresión multisalida}
+
+En este trabajo, la entrada principal es una imagen RGB de un plato y la salida
+son cinco valores continuos: masa, calorías, grasas, carbohidratos y proteínas.
+Se trata, por tanto, de una tarea de regresión multisalida. Reconocer la
+categoría de un alimento es una tarea distinta: identificar qué aparece en la
+imagen no determina por sí solo cuánto pesa el plato ni cuál es su composición
+nutricional \citep{thamesNutrition5kAutomaticNutritional2021}.
+
+\subsection{Redes convolucionales y extractores visuales}
+
+Una CNN aplica filtros
+aprendidos a regiones locales de la imagen y combina progresivamente las
+características obtenidas. La parte del modelo que transforma la imagen en una
+representación visual se denomina \emph{backbone} o extractor de características.
+Sobre esa representación se coloca una parte de predicción que produce los
+valores nutricionales. Un \emph{backbone} puede ser una CNN, pero el término
+designa su función dentro del modelo y no una familia de arquitecturas
+\citep{bianco2DPredictionNutritional2025}.
+
+\subsection{Transformadores visuales}
+
+Un transformador visual es otra posible arquitectura para el extractor de
+características. En un modelo como \emph{Vision Transformer} (ViT), la imagen se
+divide en fragmentos o \emph{parches}, que se convierten en una secuencia de
+representaciones. Las posiciones de los parches se incorporan a esa secuencia
+para conservar información espacial. Mediante autoatención, cada representación
+puede relacionarse con otras regiones de la imagen al construir las
+características utilizadas para la predicción. Esta diferencia de mecanismo no
+garantiza por sí sola menor error ni menor coste de ejecución en la tarea
+nutricional; ambos deben medirse con el mismo protocolo
+\citep{daiCoAtNetMarryingConvolution2021,bianco2DPredictionNutritional2025}.
+
+\subsection{Entrenamiento, adaptación e inferencia}
+
+Durante el entrenamiento se ajustan los parámetros del modelo a partir de
+ejemplos con etiquetas. Adaptar un modelo preentrenado significa reutilizar
+parámetros aprendidos en otra tarea y ajustar, según el método elegido, la
+parte de predicción o también el extractor visual. La inferencia es el uso del
+modelo ya entrenado para obtener predicciones de imágenes nuevas. El lugar y
+los recursos necesarios para entrenarlo no determinan dónde podrá ejecutarse
+la inferencia \citep{bianco2DPredictionNutritional2025}.
+
 \subsection{Modelos eficientes y computación en el extremo}
+
+La comparación entre modelos considera tanto el error de sus predicciones como
+el coste de obtenerlas. Este coste puede describirse mediante el tamaño del
+modelo, el tiempo de inferencia y la memoria utilizada, siempre bajo condiciones
+de medida documentadas. Un menor número de parámetros no asegura por sí solo
+una menor latencia en todos los dispositivos
+\citep{sandlerMobileNetV2InvertedResiduals2019}.
 
 La computación en el extremo, o \emph{edge computing}, consiste en ejecutar el
 modelo cerca del lugar donde se generan los datos, por ejemplo en un teléfono o

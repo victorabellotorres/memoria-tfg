@@ -19,21 +19,17 @@ mkdir -p "$build_dir" "$pdf_dir"
 cd "$latex_dir"
 export BIBINPUTS="$paper_dir/references:"
 
-# Limpia el estado de compilaciones fallidas. Latexmk conserva los .bbl porque
+# Limpia el estado de compilaciones anteriores. Latexmk conserva los .bbl porque
 # pueden ser fuentes versionadas, así que eliminamos únicamente el generado aquí.
 latexmk -C -outdir="$build_dir" main.tex
-rm -f "$build_dir/main.bbl" "$build_dir/enable-bibliography.tex"
+rm -f "$build_dir/main.bbl"
 
-# La plantilla debe compilar incluso antes de que exista la primera cita.
-# La primera pasada genera el .aux sin invocar BibTeX; si contiene citas, una
-# segunda llamada activa BibTeX y completa las referencias automáticamente.
-latexmk -pdf -bibtex- -interaction=nonstopmode -halt-on-error \
+latexmk -pdf -interaction=nonstopmode -halt-on-error \
   -outdir="$build_dir" main.tex
 
-if grep -Fq '\citation{' "$build_dir/main.aux"; then
-  touch "$build_dir/enable-bibliography.tex"
-  latexmk -g -pdf -interaction=nonstopmode -halt-on-error \
-    -outdir="$build_dir" main.tex
+if grep -Fq 'There were undefined citations' "$build_dir/main.log"; then
+  echo "Error: hay citas sin resolver; revisa Tesis.bib y el registro de BibTeX." >&2
+  exit 1
 fi
 
 cp "$build_dir/main.pdf" "$pdf_dir/memoria-tfg.pdf"

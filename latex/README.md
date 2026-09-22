@@ -34,5 +34,12 @@ Alternativamente, desde esta carpeta se puede ejecutar directamente:
 latexmk -pdf -outdir=build main.tex
 ```
 
-Los ejecutables LaTeX aún no están instalados en este entorno. Las dependencias
-y el comando de instalación están documentados en `../README.md`.
+`latexmkrc` configura automáticamente la ruta de `../references/Tesis.bib`
+para que BibTeX encuentre la bibliografía también al compilar desde un editor.
+
+Las dependencias están documentadas en `../README.md`. Better BibTeX tiene
+configurada una exportación automática de la colección «Tesis» de Zotero a
+`Tesis.bib`. Los cambios bibliográficos deben hacerse en Zotero, ya que una
+nueva exportación puede sobrescribir cualquier edición manual del archivo.
+Las claves citadas y las entradas exportadas se han conciliado; los datos de
+autor y fecha que faltan en algunas páginas web deben completarse en Zotero.

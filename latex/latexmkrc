@@ -1,0 +1,7 @@
+use Cwd qw(abs_path);
+use File::Basename qw(dirname);
+
+# Better BibTeX exporta en paper/references; BibTeX también debe encontrarlo
+# cuando se compila directamente desde un editor de LaTeX.
+my $bibliography_dir = abs_path(dirname(__FILE__) . '/../references');
+$ENV{BIBINPUTS} = $bibliography_dir . ':' . ($ENV{BIBINPUTS} // '');

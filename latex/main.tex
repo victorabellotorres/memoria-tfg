@@ -5,6 +5,7 @@
 \usepackage[english,catalan,spanish]{babel}
 \usepackage{geometry}
 \usepackage{setspace}
+\usepackage{titlesec}
 \usepackage{graphicx}
 \usepackage{pdfpages}
 \usepackage{booktabs}
@@ -14,8 +15,11 @@
 
 \geometry{margin=2.8cm}
 \onehalfspacing
-% Separa visualmente los párrafos sin eliminar su sangría inicial.
-\setlength{\parskip}{0.5\baselineskip}
+% Espacio entre bloques de texto y títulos; no modifica el interlineado.
+\setlength{\parskip}{0.25\baselineskip}
+\titlespacing*{\chapter}{0pt}{28pt}{16pt}
+\titlespacing*{\section}{0pt}{12pt}{6pt}
+\titlespacing*{\subsection}{0pt}{9pt}{4pt}
 \graphicspath{{figures/}{assets/}}
 
 % Datos de la entrega. Los campos TBD deben confirmarse antes de presentar.
@@ -74,12 +78,11 @@
 % Los capítulos de desarrollo, evaluación, sostenibilidad y conclusiones se
 % incorporarán en las siguientes entregas y en la memoria final.
 
-\IfFileExists{build/enable-bibliography.tex}{
-  \clearpage
-  \addcontentsline{toc}{chapter}{Referencias bibliográficas}
-  \bibliographystyle{plainnat}
-  % BIBINPUTS apunta a paper/references/ desde scripts/build-pdf.sh.
-  \bibliography{Tesis}
-}{}
+\clearpage
+\renewcommand{\bibname}{Referencias bibliográficas}
+\addcontentsline{toc}{chapter}{\bibname}
+\bibliographystyle{plainnat}
+% BIBINPUTS apunta a paper/references/ desde scripts/build-pdf.sh.
+\bibliography{Tesis}
 
 \end{document}

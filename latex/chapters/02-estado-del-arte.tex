@@ -41,7 +41,7 @@ alternativa de sistema útil para entender el papel de la geometría, pero sus
 resultados no constituyen una comparación directa con la predicción multitarea
 de masa y macronutrientes de este trabajo. En Nutrition5k, Vinod et al.
 combinaron un mapa de densidad energética derivado de RGB con profundidad y
-reportaron un MAPE energético de 13,57\% en su protocolo \citep{vinodImageBasedFood2022}.
+reportaron un MAPE energético de 13,57\% en su protocolo \citep{vinodImageBasedFood2022a}.
 
 Otras propuestas separan la localización de comida de la regresión nutricional.
 Zhao et al. anotaron regiones de comida en Nutrition5k y emplearon una etapa de
@@ -93,14 +93,11 @@ trata reconocimiento, no regresión nutricional; por ello aporta evidencia sobre
 la arquitectura de despliegue, no sobre el error de masa o macronutrientes.
 
 La captura RGB-D de DepthCalorieCam muestra que cierta geometría puede obtenerse
-en el propio teléfono \citep{andoDepthCalorieCamMobileApplication2019}. De forma
-complementaria, Tahir y Loo usaron MobileNetV3 y un conjunto de instantáneas para
-reconocimiento y detección de ingredientes en dispositivos de borde, junto con
-explicaciones visuales \citep{tahirExplainableDeepLearning2021}. Los resultados de 
-estos estudios no son directamente transferibles al modelo y al protocolo de este trabajo.
- Por tanto, la latencia, la memoria y, si es posible, el consumo energético se medirán 
- con la arquitectura, el formato de inferencia y el entorno de ejecución seleccionados 
- para el experimento.
+en el propio teléfono \citep{andoDepthCalorieCamMobileApplication2019}. Ese
+resultado no es directamente transferible al modelo ni al protocolo de este
+trabajo. Por tanto, la latencia, la memoria y, si es posible, el consumo
+energético se medirán con la arquitectura, el formato de inferencia y el
+entorno de ejecución seleccionados para el experimento.
 
 En conjunto, los trabajos revisados muestran que la elección de la arquitectura
 y la calidad de los datos influyen en las predicciones. Justifican comparar
