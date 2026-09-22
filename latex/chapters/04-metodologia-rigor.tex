@@ -3,20 +3,19 @@
 
 \section{Metodología de trabajo}
 
-El proyecto se dividirá en tareas pendientes, en curso y terminadas. Se
-avanzará desde la preparación de datos y la línea base hasta el entrenamiento
-y la comparación de modelos. Git permitirá registrar los cambios en el código
-y la memoria.
+Se aplicará el enfoque ágil e incremental del módulo de gestión ágil de
+proyectos de GEP, adaptado al TFG individual mediante entregas experimentales.
+Las tareas se registrarán en
+Notion con objetivo, criterio de finalización y estado (pendiente, en
+curso o terminada). Git trazará los cambios de código y memoria.
 
-Se seguirá un enfoque ágil, iterativo e incremental. Primero se construirá un
-producto mínimo viable (MVP) del flujo experimental, capaz de preparar una
-muestra de datos, ejecutar una línea base y obtener predicciones y métricas.
-Después, cada iteración incorporará o ajustará modelos, comprobará su
-funcionamiento y medirá la calidad de las predicciones y el coste de inferencia
-con un protocolo común. Al final de cada ciclo se revisarán los resultados y
-se priorizarán las tareas siguientes según los problemas detectados.
+La primera entrega será un producto mínimo viable (MVP): preparar una muestra,
+ejecutar una línea base y obtener predicciones y métricas. Cada ciclo posterior
+incorporará o ajustará un modelo y medirá error y coste de inferencia. Al
+cerrarlo, se contrastará la entrega con sus criterios y los objetivos, y se
+priorizarán las tareas pendientes.
 
-\section{Método experimental}
+\section{Protocolo experimental}
 
 Se usarán las imágenes RGB y las particiones oficiales de Nutrition5k
 \citep{thamesNutrition5kAutomaticNutritional2021}. Tras la prueba piloto, la
@@ -32,8 +31,10 @@ repeticiones se determinarán durante la realización del proyecto.
 
 \section{Seguimiento y rigor}
 
-Se probarán la preparación de datos y el cálculo de métricas, y se guardarán
-las configuraciones, predicciones y resultados. Las decisiones sobre los
-modelos se tomarán sin consultar el conjunto final de prueba. El avance se
-revisará con la dirección del TFG según su disponibilidad. La comparación
-explicará también los casos de fallo y las limitaciones de los datos.
+Se probarán la preparación de datos y las métricas, se conservarán
+configuraciones, predicciones y resultados por experimento. Estos registros y
+las tareas permitirán verificar las entregas y el cumplimiento de cada
+objetivo: predicción de las cinco variables, comparación con la línea base y
+medición del coste en el entorno definido. El progreso se revisará con la
+dirección según su disponibilidad. Los modelos se elegirán sin consultar la
+prueba final; se documentarán fallos y límites de los datos.

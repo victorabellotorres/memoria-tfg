@@ -36,29 +36,18 @@ profundidad junto con sus valores nutricionales.
   \label{fig:nutrition5k-datos}
 \end{figure}
 
-Una línea complementaria estima profundidad a partir de una imagen y fusiona
-ambas representaciones para abordar la incertidumbre sobre la cantidad de
-comida \citep{hanDPFNutritionFoodNutrition2023}. La profundidad añade una
-modalidad, no una arquitectura, y su ventaja debe comprobarse frente a modelos
-basados solo en RGB con el mismo protocolo.
-
-DepthCalorieCam captura imágenes RGB-D con un iPhone para segmentar alimentos,
-estimar su volumen y convertirlo en calorías mediante densidades registradas
-por categoría \citep{andoDepthCalorieCamMobileApplication2019}. Muestra el
-papel de la geometría en un dispositivo móvil, pero sus resultados no son
-directamente comparables con la predicción multitarea de masa y macronutrientes
-de este trabajo. En Nutrition5k, Vinod et al. combinaron un mapa de densidad
-energética derivado de RGB con profundidad y reportaron un MAPE energético de
-13,57\% en su protocolo \citep{vinodImageBasedFood2022a}.
-
-Otras propuestas separan la localización de comida de la regresión nutricional.
-Zhao et al. anotaron regiones de comida en Nutrition5k y emplearon segmentación
-seguida de regresión; informan un PMAE medio de 17,06\% para los cinco objetivos
-\citep{zhaoVisualNutritionAnalysis2024}. Esta separación facilita inspeccionar
-las regiones usadas, pero requiere anotaciones adicionales. RDINet combina
-RGB, profundidad e ingredientes conocidos mediante atención
-\citep{kuangRDINetDeepLearning2026}. Los ingredientes aportan información sobre
-componentes poco visibles, pero no se obtienen de una imagen RGB aislada.
+Entre las líneas complementarias, DPF-Nutrition predijo profundidad a partir de
+RGB y la fusionó con la imagen; obtuvo un PMAE medio del 17,8\% en Nutrition5k
+\citep{hanDPFNutritionFoodNutrition2023}. DepthCalorieCam estimó volumen y
+calorías con RGB-D móvil y redujo el error frente a la estimación basada en área
+en su ensayo de tres categorías \citep{andoDepthCalorieCamMobileApplication2019}.
+Vinod et al. combinaron profundidad y densidad energética derivada de RGB y
+reportaron un MAPE energético del 13,57\% \citep{vinodImageBasedFood2022a}.
+Zhao et al. aplicaron segmentación y regresión, con un PMAE medio del 17,06\%
+para cinco objetivos \citep{zhaoVisualNutritionAnalysis2024}. RDINet fusionó
+RGB, profundidad e ingredientes conocidos y obtuvo un PMAE medio del 16,8\%
+\citep{kuangRDINetDeepLearning2026}. Estas cifras proceden de protocolos y
+entradas distintos y no son directamente comparables.
 
 \subsection{Familias de modelos}
 

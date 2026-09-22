@@ -14,7 +14,7 @@ latencia y diversos factores.
 
 El resultado del modelo debe interpretarse como una estimación experimental, no como un consejo médico.
 
-\section{Motivación}
+\section{Contexto}
 
 La prevalencia mundial de obesidad en adultos se ha más que duplicado desde
 1990 \citep{ObesityOverweight}. Paradójicamente, esta tendencia convive
@@ -32,42 +32,22 @@ sobreestimación media del 51\% de la actividad física declarada. Sus resultado
 no son generalizables, pero ilustran esta limitación
 \citep{lichtmanDiscrepancySelfReportedActual1992}.
 
-El uso de una imagen como entrada y la estimación nutricional automática
-pueden reducir parte de la carga del registro
-manual y proporcionar una estimación complementaria, facilitando a los usuarios 
-el seguimiento de su ingesta, mejorando la experiencia de usuario y la adherencia
-a un registro más completo. Sin embargo, esta
-estimación debe evaluarse con rigor antes de utilizarse fuera de un contexto
-experimental.
+Los avances del aprendizaje profundo, la disponibilidad de conjuntos de datos
+anotados y el desarrollo de modelos visuales han hecho posible automatizar la
+estimación nutricional a partir de imágenes, facilitando a los usuarios el
+seguimiento de su ingesta.
 
 Desarrollar modelos capaces de realizar esta tarea plantea una decisión técnica relevante. 
 El error, la latencia y la complejidad de los modelos de visión por computador suelen estar en conflicto, 
 por lo que estudiar este compromiso es una motivación adicional del proyecto.
-
-\section{Contexto}
-
-Los avances del aprendizaje profundo, la disponibilidad de conjuntos de datos
-anotados y el desarrollo de modelos visuales han hecho posible investigar tareas
-que relacionan el contenido de una imagen con las propiedades nutricionales de
-un plato. Entre estas familias de modelos se encuentran las redes neuronales
-convolucionales (CNN, por sus siglas en inglés) y los transformadores visuales.
-En lugar de definir manualmente qué rasgos visuales son relevantes, estos
-métodos aprenden patrones a partir de ejemplos anotados. Esto permite investigar
-sistemas que reciben una fotografía como entrada y producen una estimación
-nutricional, aunque la utilidad de esa estimación depende de sus errores, de los
-datos disponibles y del contexto de uso. El estado del arte presenta los
-conjuntos de datos y las arquitecturas concretas utilizados en la literatura.
 
 El interés práctico reciente por registrar la ingesta a partir de fotografías
 también se refleja en aplicaciones comerciales. MyFitnessPal ofrece la función
 \emph{Meal Scan}, Healthify la función \emph{HealthifySnap} y Cal AI anuncia un
 registro nutricional a partir de fotografías de comidas
 \citep{HowUseMeal2026,Healthify,CalAIFood}.
-Estas descripciones muestran la existencia de este tipo de funcionalidades,
-pero no permiten cuantificar su adopción, no constituyen evidencia de precisión,
-no permiten comparar las aplicaciones entre sí y no validan un uso clínico. El
-TFG no evaluará dichas aplicaciones ni propondrá recomendaciones nutricionales
-personalizadas.
+Estas descripciones muestran la existencia de este tipo de funcionalidades, su viabilidad y la 
+existente demanda de usuarios, pero no permiten evaluar la precisión de sus estimaciones ni su coste de ejecución.
 
 \section{Identificación del problema}
 
@@ -139,19 +119,9 @@ autoatención entre ventanas normales y desplazadas.
   \includegraphics[width=\textwidth]{swin-transformer-architecture.png}
   \caption[Arquitectura de Swin Transformer]{Arquitectura de Swin Transformer y
   dos bloques sucesivos de autoatención por ventanas. Imagen reproducida en
-  Reyes-Delgado et al. (2024), figura 1 \citep{PDFEarlyDetection}.}
+  Díaz et al. (2024), figura 1 \citep{diazEarlyDetectionAgerelated2024}.}
   \label{fig:arquitectura-swin}
 \end{figure}
-
-\subsection{Entrenamiento, adaptación e inferencia}
-
-Durante el entrenamiento se ajustan los parámetros del modelo a partir de
-ejemplos con etiquetas. Adaptar un modelo preentrenado significa reutilizar
-parámetros aprendidos en otra tarea y ajustar, según el método elegido, la
-parte de predicción o también el extractor visual. La inferencia es el uso del
-modelo ya entrenado para obtener predicciones de imágenes nuevas. El lugar y
-los recursos necesarios para entrenarlo no determinan dónde podrá ejecutarse
-la inferencia.
 
 \subsection{Modelos eficientes y computación en el extremo}
 
@@ -166,7 +136,10 @@ La computación en el extremo, o \emph{edge computing}, consiste en ejecutar el
 modelo cerca del lugar donde se generan los datos, por ejemplo en un teléfono o
 en otro dispositivo local. Esta ejecución puede reducir la dependencia de una
 conexión a Internet y evitar el envío continuo de imágenes. Sin embargo, obliga
-a trabajar con límites de memoria, tiempo de respuesta y capacidad de cálculo.
+a trabajar con límites de memoria, tiempo de respuesta y capacidad de cálculo;
+por ello, aunque el entrenamiento y la adaptación pueden requerir recursos
+adicionales, es la inferencia del modelo ya entrenado la que se ejecuta en el
+dispositivo local.
 
 \section{Actores implicados y usuarios potenciales}
 
