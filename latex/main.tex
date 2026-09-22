@@ -9,6 +9,8 @@
 \usepackage{graphicx}
 \usepackage{pdfpages}
 \usepackage{booktabs}
+\usepackage{array}
+\usepackage{float}
 \usepackage{amsmath,amssymb}
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage[hidelinks]{hyperref}
@@ -16,20 +18,21 @@
 \geometry{margin=2.8cm}
 \onehalfspacing
 % Espacio entre bloques de texto y títulos; no modifica el interlineado.
-\setlength{\parskip}{0.25\baselineskip}
-\titlespacing*{\chapter}{0pt}{28pt}{16pt}
-\titlespacing*{\section}{0pt}{12pt}{6pt}
-\titlespacing*{\subsection}{0pt}{9pt}{4pt}
+\setlength{\parskip}{0.5\baselineskip}
+\titleformat{\chapter}[hang]{\normalfont\huge\bfseries}{\thechapter.}{0.6em}{}
+\titlespacing*{\chapter}{0pt}{26pt}{14pt}
+\titlespacing*{\section}{0pt}{10pt}{5pt}
+\titlespacing*{\subsection}{0pt}{7pt}{3pt}
+\titlespacing*{\subsubsection}{0pt}{6pt}{2.5pt}
 \graphicspath{{figures/}{assets/}}
 
 % Datos de la entrega. Los campos TBD deben confirmarse antes de presentar.
-\newcommand{\thesistitle}{Estimación de propiedades nutricionales mediante visión por computador}
+\newcommand{\thesistitle}{Estimación nutricional de platos a partir de imágenes mediante modelos de aprendizaje profundo: evaluación para su ejecución en dispositivos edge}
 \newcommand{\thesisauthor}{Víctor Abelló Torres}
 \newcommand{\thesisdirector}{Sergi Ramírez Mitjans}
 \newcommand{\thesiscodirector}{Dante Conti}
-\newcommand{\thesisdepartment}{Departamento de Estadística e Investigación Operativa}
-\newcommand{\geptutor}{TBD}
-\newcommand{\deliverydate}{TBD}
+\newcommand{\geptutor}{Yadira Alejandra Salazar}
+\newcommand{\deliverydate}{22/09/2026}
 
 \hypersetup{
   pdftitle={\thesistitle},
@@ -56,7 +59,6 @@
     Titulación: & Grado en Ingeniería Informática (Computación) \\
     Director: & \thesisdirector \\
     Codirector: & \thesiscodirector \\
-    Departamento: & \thesisdepartment \\
     Tutor de GEP: & \geptutor \\
     Fecha: & \deliverydate
   \end{tabular}
@@ -67,6 +69,15 @@
 
 \pagenumbering{roman}
 \tableofcontents
+\clearpage
+\renewcommand{\listfigurename}{Índice de figuras}
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+\clearpage
+\renewcommand{\listtablename}{Índice de tablas}
+\renewcommand{\tablename}{Tabla}
+\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
 
 \clearpage
 \pagenumbering{arabic}

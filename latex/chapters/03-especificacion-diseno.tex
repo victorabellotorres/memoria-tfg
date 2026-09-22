@@ -6,7 +6,7 @@
 El objetivo general del proyecto es estudiar y comparar modelos de visión por
 computador para estimar la masa, las calorías y los macronutrientes de un plato
 a partir de imágenes, prestando especial atención al equilibrio entre precisión
-y coste computacional.
+y coste computacional, valorando también la arquitectura y la latencia.
 
 La pregunta de investigación es la siguiente:
 
@@ -19,6 +19,7 @@ limitados?
 La incorporación de profundidad, texto u
 otras modalidades queda fuera del núcleo y solo se abordará como
 extensión si los objetivos principales ya están cumplidos.
+
 
 \section{Objetivos específicos}
 
@@ -44,6 +45,8 @@ extensión si los objetivos principales ya están cumplidos.
 
 \subsection{Modelos visuales de aprendizaje profundo}
 
+\subsubsection{Enfoque elegido}
+
 Se emplearán arquitecturas de aprendizaje profundo porque la entrada principal
 es una imagen y la tarea requiere extraer automáticamente características de
 ingredientes, textura, forma, contexto y proporciones visuales, y relacionarlas
@@ -55,6 +58,8 @@ reducir el coste de inferencia en hardware móvil, mientras que las CNN y los
 transformadores permiten representar distintos grados de capacidad visual
 \citep{sandlerMobileNetV2InvertedResiduals2019,howardSearchingMobileNetV32019,qinMobileNetV4UniversalModels2024,bianco2DPredictionNutritional2025}.
 
+\subsubsection{Alternativas descartadas}
+
 No se plantea como enfoque principal una técnica clásica de visión seguida de
 aprendizaje automático convencional. Un flujo de ese tipo exigiría diseñar y
 seleccionar manualmente descriptores visuales y, probablemente, segmentaciones
@@ -64,41 +69,56 @@ evaluar representaciones visuales aprendidas de forma automática.
 
 \subsection{Modelo especializado frente a una API de un modelo general}
 
-El proyecto no delegará la estimación en una API de un modelo multimodal de
-propósito general, como las ofrecidas por OpenAI o Gemini u otros provedores.
-Utilizar un provedor externo de un modelo multimodal no permite controlar ni entrenar el
-modelo con las mismas particiones y etiquetas que el resto de candidatos, no permite medir el coste de inferencia,
-el coste aumenta al utilizar modelos de gran tamaño y propósito general.
+\subsubsection{Enfoque elegido}
 
 Un modelo especializado permite fijar la arquitectura, los datos, las
 configuraciones y la versión de inferencia, y medir de manera repetible su
-error, tamaño, memoria y latencia. Al ser modelos especializados con un menor tamaño,
+error, tamaño, memoria y latencia. Al ser un modelo especializado de menor tamaño,
 también permite ejecutar la inferencia en un dispositivo limitado, lo que es relevante para
 la pregunta de investigación.
 
+\subsubsection{Alternativas descartadas}
+
+El proyecto no delegará la estimación en una API de un modelo multimodal de
+propósito general, como las ofrecidas por OpenAI, Gemini u otros proveedores.
+Utilizar un proveedor externo no permite controlar ni entrenar el modelo con
+las mismas particiones y etiquetas que el resto de candidatos ni medir su coste
+de inferencia bajo las mismas condiciones. Además, el coste puede aumentar al
+utilizar modelos de gran tamaño y propósito general.
+
 \subsection{Ejecución local y en servidor}
+
+\subsubsection{Enfoque elegido}
 
 La ejecución en el extremo (\emph{edge}) se considera porque puede evitar el
 envío de imágenes a un servidor, reducir la dependencia de la conexión y dar
-una respuesta con una latencia más predecible una vez el modelo está instalado.
+una respuesta con una latencia más predecible una vez que el modelo esté instalado.
 Sus límites son la memoria, la potencia de cálculo, el consumo energético y la
 posible necesidad de reducir, cuantizar o seleccionar arquitecturas más
-pequeñas. 
+pequeñas. El trabajo comparará el coste de los modelos en un dispositivo
+limitado o en un entorno que lo represente y documentará qué condiciones
+harían viable cada opción.
+
+\subsubsection{Alternativas descartadas}
 
 La ejecución en servidor permite usar modelos de mayor tamaño y hardware más
 potente, y simplifica la actualización centralizada de los modelos. A cambio,
 introduce transmisión de imágenes, dependencia de red, latencia variable,
-coste operativo y requisitos adicionales de protección de datos. El trabajo no
-pretende desplegar ni operar un servicio; comparará el coste de los modelos en
-un dispositivo limitado o en un entorno que lo represente y documentará qué
-condiciones harían viable cada opción.
+coste operativo y requisitos adicionales de protección de datos. Por ello, se
+descarta desplegar u operar un servicio en este TFG.
 
 \subsection{Diferencia entre entrenamiento e inferencia}
 
-También se distinguirá
-entre entrenar localmente y ejecutar la inferencia localmente: el entrenamiento
-puede requerir recursos de servidor o aceleradores sin que ello determine dónde
-se despliega el modelo resultante.
+\subsubsection{Enfoque elegido}
+
+Se distinguirá entre el lugar donde se entrena el modelo y aquel donde se
+ejecuta la inferencia.
+
+\subsubsection{Alternativas descartadas}
+
+No se exigirá que ambas fases se realicen en el mismo dispositivo: el
+entrenamiento puede requerir recursos de servidor o aceleradores sin que ello
+determine dónde se despliega el modelo resultante.
 
 
 
@@ -106,14 +126,14 @@ se despliega el modelo resultante.
 
 El proyecto deberá producir los siguientes resultados:
 
-\begin{itemize}
+\begin{enumerate}
   \item un proceso documentado para preparar los datos;
   \item una línea base y varios modelos comparables;
   \item un protocolo común de evaluación;
   \item tablas y gráficos con los resultados de precisión y eficiencia;
   \item un análisis de los errores y de las limitaciones del estudio;
   \item código reproducible y la memoria del TFG.
-\end{itemize}
+\end{enumerate}
 
 Un demostrador visual sencillo será opcional. No se considera necesario para
 responder a la pregunta de investigación, pero será útil para ilustrar los resultados.
@@ -134,18 +154,18 @@ responder a la pregunta de investigación, pero será útil para ilustrar los re
 
 \section{Requisitos no funcionales}
 
-\begin{description}
-  \item[Reproducibilidad.] Las particiones, configuraciones y métricas deben
+\begin{enumerate}
+  \item \textbf{Reproducibilidad.} Las particiones, configuraciones y métricas deben
   quedar registradas para poder repetir los experimentos.
-  \item[Eficiencia.] Los modelos deben evaluarse también por su tamaño y su
+  \item \textbf{Eficiencia.} Los modelos deben evaluarse también por su tamaño y su
   tiempo de inferencia, no solo por el error de predicción.
-  \item[Claridad.] El código debe separar la preparación de datos, la definición
+  \item \textbf{Claridad.} El código debe separar la preparación de datos, la definición
   de modelos, el entrenamiento y la evaluación.
-  \item[Comparabilidad.] Todos los modelos deben usar, siempre que sea posible,
+  \item \textbf{Comparabilidad.} Todos los modelos deben usar, siempre que sea posible,
   las mismas entradas, particiones y métricas.
-  \item[Uso responsable.] Las salidas deben presentarse como estimaciones
+  \item \textbf{Uso responsable.} Las salidas deben presentarse como estimaciones
   experimentales y no como recomendaciones médicas o nutricionales validadas.
-\end{description}
+\end{enumerate}
 
 
 \section{Obstáculos y restricciones}
@@ -153,5 +173,30 @@ responder a la pregunta de investigación, pero será útil para ilustrar los re
 Los principales obstáculos previstos son la disponibilidad de cómputo, el
 tamaño del conjunto de imágenes y la dificultad de estimar cantidades a partir
 de información visual incompleta. Los resultados también dependerán de la
-calidad y representatividad de Nutrition5k o los datasets utilizados, que contiene un contexto de captura
-concreto y no representa todas las comidas posibles.
+calidad y representatividad de Nutrition5k o de los conjuntos de datos utilizados. Estos
+proceden de un contexto de captura concreto y no representan todas las comidas posibles.
+
+\section{Stack tecnológico previsto}
+
+El desarrollo se realizará en \textbf{Python}, para mantener en un mismo
+lenguaje la preparación de datos, los experimentos y la evaluación. Se prevén
+las siguientes herramientas, cuya incorporación se ajustará a los modelos y al
+dispositivo finalmente seleccionados:
+
+\begin{itemize}
+  \item \textbf{TensorFlow y Keras} para implementar, adaptar y entrenar los
+  modelos visuales. Keras simplifica la definición de arquitecturas y el uso de
+  rutinas de entrenamiento sobre TensorFlow.
+  \item \textbf{pandas y Matplotlib} para organizar predicciones y métricas en
+  tablas, analizar errores y generar los gráficos comparativos de la memoria.
+  \item \textbf{TensorBoard} para seguir las pérdidas y métricas durante el
+  entrenamiento. El evaluador común del proyecto calculará las métricas
+  nutricionales finales.
+  \item \textbf{LiteRT} para convertir los modelos compatibles y ensayar
+  cuantización posterior al entrenamiento. Se compararán el tamaño, el error y
+  la latencia antes y después de la conversión en el entorno \emph{edge}
+  definido para el proyecto.
+  \item \textbf{Streamlit} para un demostrador local sencillo, si el tiempo
+  lo permite tras los experimentos. Permite cargar una imagen y
+  mostrar la predicción sin construir una aplicación o un servicio completos.
+\end{itemize}

@@ -19,39 +19,46 @@ analizarse junto con el coste computacional.
 
 \subsection{Datos y modalidades}
 
-Nutrition5k es uno de los conjuntos de datos utilizados para estudiar este
-problema. Contiene platos reales con imágenes RGB, información de profundidad,
-pesos de los componentes y etiquetas de masa, calorías y macronutrientes
-\citep{thamesNutrition5kAutomaticNutritional2021}. Esta información permite
-comparar modelos que predicen directamente los valores nutricionales y modelos
-que incorporan información geométrica.
+Nutrition5k reúne platos reales con imágenes RGB, profundidad, pesos de los
+componentes y etiquetas de masa, calorías y macronutrientes
+\citep{thamesNutrition5kAutomaticNutritional2021}. Permite comparar la
+predicción nutricional directa con modelos que incorporan geometría. La
+figura~\ref{fig:nutrition5k-datos} muestra un ejemplo de las imágenes RGB y de
+profundidad junto con sus valores nutricionales.
 
-Una línea de trabajo complementaria estima profundidad a partir de una imagen y
-combina ambas representaciones para abordar la incertidumbre sobre la cantidad
-de comida \citep{hanDPFNutritionFoodNutrition2023}. La incorporación de
-profundidad es una estrategia de fusión de modalidades, no una arquitectura por
-sí misma, y su ventaja debe comprobarse con el mismo protocolo que los modelos
-basados solo en RGB.
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.45\textwidth]{nutrition5k-data-example.png}
+  \caption[Ejemplo de datos de Nutrition5k]{Ejemplo de datos de Nutrition5k:
+  imagen RGB, mapa de profundidad y valores nutricionales de un plato. Imagen
+  reproducida de Thames et al. (2021), figura 1
+  \citep{thamesNutrition5kAutomaticNutritional2021}.}
+  \label{fig:nutrition5k-datos}
+\end{figure}
 
-La profundidad también puede capturarse directamente en un dispositivo móvil.
-DepthCalorieCam usa una imagen RGB-D de un iPhone para segmentar alimentos,
+Una línea complementaria estima profundidad a partir de una imagen y fusiona
+ambas representaciones para abordar la incertidumbre sobre la cantidad de
+comida \citep{hanDPFNutritionFoodNutrition2023}. La profundidad añade una
+modalidad, no una arquitectura, y su ventaja debe comprobarse frente a modelos
+basados solo en RGB con el mismo protocolo.
+
+DepthCalorieCam captura imágenes RGB-D con un iPhone para segmentar alimentos,
 estimar su volumen y convertirlo en calorías mediante densidades registradas
-para cada categoría \citep{andoDepthCalorieCamMobileApplication2019}. Es una
-alternativa de sistema útil para entender el papel de la geometría, pero sus
-resultados no constituyen una comparación directa con la predicción multitarea
-de masa y macronutrientes de este trabajo. En Nutrition5k, Vinod et al.
-combinaron un mapa de densidad energética derivado de RGB con profundidad y
-reportaron un MAPE energético de 13,57\% en su protocolo \citep{vinodImageBasedFood2022a}.
+por categoría \citep{andoDepthCalorieCamMobileApplication2019}. Muestra el
+papel de la geometría en un dispositivo móvil, pero sus resultados no son
+directamente comparables con la predicción multitarea de masa y macronutrientes
+de este trabajo. En Nutrition5k, Vinod et al. combinaron un mapa de densidad
+energética derivado de RGB con profundidad y reportaron un MAPE energético de
+13,57\% en su protocolo \citep{vinodImageBasedFood2022a}.
 
 Otras propuestas separan la localización de comida de la regresión nutricional.
-Zhao et al. anotaron regiones de comida en Nutrition5k y emplearon una etapa de
-segmentación seguida de una de regresión; informan un PMAE medio de 17,06\% para
-los cinco objetivos \citep{zhaoVisualNutritionAnalysis2024}. Esta descomposición
-puede facilitar la inspección de las regiones usadas por el modelo, pero requiere
-anotaciones de segmentación adicionales. RDINet combina RGB, profundidad e
-ingredientes conocidos mediante mecanismos de atención \citep{kuangRDINetDeepLearning2026}.
-El último tipo de información aborda componentes poco visibles, pero no debe
-tratarse como disponible a partir de una imagen RGB aislada.
+Zhao et al. anotaron regiones de comida en Nutrition5k y emplearon segmentación
+seguida de regresión; informan un PMAE medio de 17,06\% para los cinco objetivos
+\citep{zhaoVisualNutritionAnalysis2024}. Esta separación facilita inspeccionar
+las regiones usadas, pero requiere anotaciones adicionales. RDINet combina
+RGB, profundidad e ingredientes conocidos mediante atención
+\citep{kuangRDINetDeepLearning2026}. Los ingredientes aportan información sobre
+componentes poco visibles, pero no se obtienen de una imagen RGB aislada.
 
 \subsection{Familias de modelos}
 
@@ -65,8 +72,7 @@ compararon un transformador visual con CNN para predecir masa, energía y
 macronutrientes en Nutrition5k \citep{bianco2DPredictionNutritional2025}.
 También existen modelos híbridos que combinan convoluciones y atención; CoAtNet,
 por ejemplo, organiza capas convolucionales y de autoatención en una misma
-arquitectura \citep{daiCoAtNetMarryingConvolution2021}. Su inclusión concreta
-en este TFG sigue pendiente de decisión.
+arquitectura \citep{daiCoAtNetMarryingConvolution2021}.
 
 La revisión reciente de Teng et al. organiza estos avances como fusión visual y
 geométrica, aumento semántico y razonamiento composicional
@@ -82,6 +88,37 @@ diseñadas para ofrecer un mejor equilibrio entre precisión y coste en hardware
 móvil \citep{sandlerMobileNetV2InvertedResiduals2019,howardSearchingMobileNetV32019,qinMobileNetV4UniversalModels2024}.
 Sus resultados originales pertenecen a otras tareas visuales. Por ello, su
 utilidad para la estimación nutricional debe medirse de forma específica.
+
+\begin{table}[H]
+  \centering
+  \small
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.29\textwidth}
+                    >{\raggedright\arraybackslash}p{0.29\textwidth}
+                    >{\raggedright\arraybackslash}p{0.32\textwidth}@{}}
+    \toprule
+    Familia y ejemplos & Rasgo principal & Interés para este TFG \\
+    \midrule
+    CNN: ResNet, Inception, EfficientNet & Extraen características mediante
+    convoluciones. & Referencia para comparar el error nutricional. \\
+    \addlinespace
+    Transformadores: ViT & Relacionan regiones de la imagen mediante
+    autoatención. & Comparar la autoatención con las CNN. \\
+    \addlinespace
+    Híbridos: CoAtNet & Combinan capas convolucionales y de autoatención. &
+    Explorar la combinación de ambos mecanismos. \\
+    \addlinespace
+    CNN móviles: MobileNetV2--V4 & Priorizan la eficiencia en hardware móvil. &
+    Examinar el equilibrio entre error y latencia. \\
+    \bottomrule
+  \end{tabular}
+  \caption[Comparación de familias de modelos visuales]{Comparación de familias
+  de modelos visuales. Elaboración propia a partir de las referencias citadas
+  en esta subsección.}
+  \label{tab:familias-modelos}
+\end{table}
+
+Esta comparación orienta la selección de modelos para medir el error
+nutricional y el coste de inferencia con un protocolo común.
 
 \subsection{Despliegue en el extremo y eficiencia}
 

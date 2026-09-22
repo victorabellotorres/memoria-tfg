@@ -32,16 +32,17 @@ sobreestimación media del 51\% de la actividad física declarada. Sus resultado
 no son generalizables, pero ilustran esta limitación
 \citep{lichtmanDiscrepancySelfReportedActual1992}.
 
-El uso de una imagen como entrada puede reducir parte de la carga del registro
-manual y proporcionar una estimación complementaria. Sin embargo, esta
+El uso de una imagen como entrada y la estimación nutricional automática
+pueden reducir parte de la carga del registro
+manual y proporcionar una estimación complementaria, facilitando a los usuarios 
+el seguimiento de su ingesta, mejorando la experiencia de usuario y la adherencia
+a un registro más completo. Sin embargo, esta
 estimación debe evaluarse con rigor antes de utilizarse fuera de un contexto
 experimental.
 
-Este problema plantea una decisión técnica relevante. Los modelos de
-mayor capacidad pueden obtener mejores predicciones, pero suelen necesitar más
-memoria y tiempo de cálculo. En cambio, los modelos eficientes son más fáciles
-de ejecutar de forma local, aunque pueden perder precisión. Estudiar este compromiso 
-es también una de las motivaciones del proyecto.
+Desarrollar modelos capaces de realizar esta tarea plantea una decisión técnica relevante. 
+El error, la latencia y la complejidad de los modelos de visión por computador suelen estar en conflicto, 
+por lo que estudiar este compromiso es una motivación adicional del proyecto.
 
 \section{Contexto}
 
@@ -70,22 +71,16 @@ personalizadas.
 
 \section{Identificación del problema}
 
-El problema que se aborda es estimar a partir de una imagen RGB de un plato de comida, las propiedades
+El problema que se aborda es estimar a partir de una imagen RGB de un plato de comida las propiedades
 nutricionales de ese plato. Como propiedades nutricionales se consideran la masa total, las calorías y 
 los principales macronutrientes (grasas, carbohidratos y proteínas).
 
 Sin embargo, una fotografía tampoco muestra directamente toda la información necesaria. La cantidad de cada
 ingrediente, la forma del plato o la presencia de ingredientes poco visibles
-pueden producir errores importantes. Por tanto, el proyecto no parte de la
+pueden producir errores importantes. Además, otra dificultad presente es el sesgo, tanto cultural como geográfico, de los datos de entrenamiento.
+Por tanto, el proyecto no parte de la
 suposición de que un modelo visual eliminará los errores de estimación.
 
-Otra dificultad presente es el sesgo de los datos de entrenamiento. Los datasets utilizados para entrenar
-estos modelos de visión se centran en comida de una cultura o región concreta, restringiendose a un conjunto limitado de ingredientes y
-tipos de platos concretos, por lo que el rendimiento puede variar significativamente dependiendo del plato que se evalue.
-
-El resultado no solo se valorará con el error de predicción, sino también considerando el coste computacional,
-la latencia, la complejidad del modelo, la arquitectura, el potencial de ejecución en un dispositivo con recursos
-limitados y la relación entre estos factores.
 
 \section{Conceptos básicos}
 
@@ -106,8 +101,22 @@ características obtenidas. La parte del modelo que transforma la imagen en una
 representación visual se denomina \emph{backbone} o extractor de características.
 Sobre esa representación se coloca una parte de predicción que produce los
 valores nutricionales. Un \emph{backbone} puede ser una CNN, pero el término
-designa su función dentro del modelo y no una familia de arquitecturas
-\citep{bianco2DPredictionNutritional2025}.
+designa su función dentro del modelo y no una familia de arquitecturas.
+
+La figura~\ref{fig:ejemplo-cnn-regresion} ilustra esta secuencia con una CNN
+diseñada para otra tarea de regresión: las capas convolucionales extraen
+características de la imagen y las capas finales producen una predicción. Su
+salida original es el grosor de un tejido, no una propiedad nutricional.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{Proposed-CNN-architecture-it-consists-of-six-convolution-layers-and-three-fully.png}
+  \caption[Ejemplo de arquitectura CNN para regresión]{Ejemplo de arquitectura
+  CNN para regresión. En el trabajo original, la salida corresponde al grosor
+  de un tejido. Fuente: Manit, Schweikard y Ernst (2017), figura 2,
+  \url{https://doi.org/10.1515/cdbme-2017-0022}.}
+  \label{fig:ejemplo-cnn-regresion}
+\end{figure}
 
 \subsection{Transformadores visuales}
 
@@ -119,8 +128,20 @@ para conservar información espacial. Mediante autoatención, cada representaci�
 puede relacionarse con otras regiones de la imagen al construir las
 características utilizadas para la predicción. Esta diferencia de mecanismo no
 garantiza por sí sola menor error ni menor coste de ejecución en la tarea
-nutricional; ambos deben medirse con el mismo protocolo
-\citep{daiCoAtNetMarryingConvolution2021,bianco2DPredictionNutritional2025}.
+nutricional; ambos deben medirse con el mismo protocolo.
+
+La figura~\ref{fig:arquitectura-swin} muestra Swin Transformer como ejemplo de
+una variante jerárquica: agrupa progresivamente los parches y alterna la
+autoatención entre ventanas normales y desplazadas.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{swin-transformer-architecture.png}
+  \caption[Arquitectura de Swin Transformer]{Arquitectura de Swin Transformer y
+  dos bloques sucesivos de autoatención por ventanas. Imagen reproducida en
+  Reyes-Delgado et al. (2024), figura 1 \citep{PDFEarlyDetection}.}
+  \label{fig:arquitectura-swin}
+\end{figure}
 
 \subsection{Entrenamiento, adaptación e inferencia}
 
@@ -130,7 +151,7 @@ parámetros aprendidos en otra tarea y ajustar, según el método elegido, la
 parte de predicción o también el extractor visual. La inferencia es el uso del
 modelo ya entrenado para obtener predicciones de imágenes nuevas. El lugar y
 los recursos necesarios para entrenarlo no determinan dónde podrá ejecutarse
-la inferencia \citep{bianco2DPredictionNutritional2025}.
+la inferencia.
 
 \subsection{Modelos eficientes y computación en el extremo}
 
@@ -155,9 +176,9 @@ por el proyecto:
 \begin{description}
   \item[Comunidad académica.] Puede reutilizar el código, el protocolo y los
   resultados para estudiar modelos de estimación nutricional y ampliar el conocimiento en el área.
-  \item[Servicios/Aplicaciones de registro alimentario.] Pueden integrar el modelo en sus sistemas,
-  mejorando la precisión, el coste, o alguna otra métrica de interés. Traduciendose en una mejor experiencia
-  o abaratamiento de costes para ofrecer esta funcionalidad.
+  \item[Servicios/aplicaciones de registro alimentario.] Pueden integrar el modelo en sus sistemas,
+  mejorando la precisión, el coste o alguna otra métrica de interés. Esto se traduce en una mejor experiencia
+  de usuario o en una reducción de costes al ofrecer esta funcionalidad.
   \item[Usuarios potenciales.] Personas que quieran utilizar sistemas de registro alimentario
   para llevar un control de su ingesta por temas deportivos y de salud.
   \item[Proveedores de datos.] Mantienen los conjuntos de datos de los que
