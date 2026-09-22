@@ -18,7 +18,7 @@ latex/main.synctex.gz
 latex/main.toc
 
 # Generated final manuscript
-pdf/*.pdf
+pdf/**/*.pdf
 
 # Local snapshot before reconciling the Zotero export
 references/Tesis-before-zotero-sync-*.bib

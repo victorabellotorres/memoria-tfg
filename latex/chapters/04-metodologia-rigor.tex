@@ -3,31 +3,27 @@
 
 \section{Metodología de trabajo}
 
-Se aplicará el enfoque ágil e incremental del módulo de gestión ágil de
-proyectos de GEP, adaptado al TFG individual mediante entregas experimentales.
-Las tareas se registrarán en
-Notion con objetivo, criterio de finalización y estado (pendiente, en
-curso o terminada). Git trazará los cambios de código y memoria.
+Se aplicará un enfoque ágil, iterativo e incremental, adaptado al desarrollo
+individual de este TFG. El primer ciclo establecerá las bases del proyecto y
+producirá un producto mínimo viable (MVP) del flujo experimental: preparación
+de los datos, ejecución de una línea base y obtención de predicciones y
+métricas. Los ciclos posteriores incorporarán o ajustarán modelos a partir de
+los resultados y las conclusiones de la iteración anterior. Cada incremento se
+contrastará con los objetivos definidos y el proceso se repetirá hasta cubrir
+satisfactoriamente el alcance. Este enfoque encaja con el carácter experimental
+del trabajo, pues la evaluación de los modelos orientará las decisiones
+posteriores.
 
-La primera entrega será un producto mínimo viable (MVP): preparar una muestra,
-ejecutar una línea base y obtener predicciones y métricas. Cada ciclo posterior
-incorporará o ajustará un modelo y medirá error y coste de inferencia. Al
-cerrarlo, se contrastará la entrega con sus criterios y los objetivos, y se
-priorizarán las tareas pendientes.
+La planificación se gestionará mediante un tablero Kanban en Notion. Cada tarea
+indicará su objetivo, prioridad y criterio de finalización, y avanzará por los
+estados pendiente, en curso y terminada. Al cerrar cada iteración se revisará el
+trabajo completado y se priorizarán las tareas siguientes. Git mantendrá la
+trazabilidad de los cambios en el código y en la memoria.
 
-\section{Protocolo experimental}
-
-Se usarán las imágenes RGB y las particiones oficiales de Nutrition5k
-\citep{thamesNutrition5kAutomaticNutritional2021}. Tras la prueba piloto, la
-línea base y los modelos visuales se evaluarán con la partición completa
-disponible y un protocolo común.
-
-Para cada modelo se informará por separado del error absoluto medio y del error
-porcentual definido por Nutrition5k para masa, calorías, grasas,
-carbohidratos y proteínas. También se medirán el tamaño y el tiempo de
-inferencia. Al menos un modelo se ejecutará en el entorno de recursos limitados
-que se defina. El dispositivo, las métricas adicionales y el número de
-repeticiones se determinarán durante la realización del proyecto.
+El código se desarrollará de forma modular, separando las responsabilidades de
+preparación de datos, definición de modelos, ejecución de experimentos y
+evaluación. Se seguirán principios de arquitectura limpia para facilitar la
+incorporación y comparación de componentes durante las iteraciones.
 
 \section{Seguimiento y rigor}
 
