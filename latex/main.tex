@@ -11,8 +11,12 @@
 \usepackage{pdfpages}
 \usepackage{booktabs}
 \usepackage{array}
+\usepackage{tabularx}
 \usepackage{float}
 \usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{pdflscape}
+\usepackage{pgfgantt}
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage[hidelinks]{hyperref}
 
@@ -34,7 +38,7 @@
 \newcommand{\thesisdirector}{Sergi Ramírez Mitjans}
 \newcommand{\thesiscodirector}{Dante Conti}
 \newcommand{\geptutor}{Yadira Alejandra Salazar}
-\newcommand{\deliverydate}{22/09/2026}
+\newcommand{\deliverydate}{28/09/2026}
 
 \hypersetup{
   pdftitle={\thesistitle},
@@ -44,7 +48,7 @@
 \begin{document}
 \pagenumbering{gobble}
 
-% Portada específica de la primera entrega de GEP. La memoria final utilizará
+% Portada específica de la segunda entrega de GEP. La memoria final utilizará
 % la portada oficial de la FIB disponible en assets/portada.pdf.
 \begin{titlepage}
   \centering
@@ -53,7 +57,7 @@
   {\Large\bfseries \thesistitle\par}
   \vspace{1.2cm}
   {\large Trabajo de Fin de Grado\par}
-  {\large Entrega 1 de GEP: contextualización y alcance\par}
+  {\large Entrega 2 de GEP: planificación temporal\par}
   \vfill
   {\large\thesisauthor\par}
   \vspace{1cm}
@@ -83,20 +87,8 @@
 
 \clearpage
 \pagenumbering{arabic}
-\input{chapters/01-introduccion}
-\input{chapters/02-estado-del-arte}
-\input{chapters/03-especificacion-diseno}
-\input{chapters/04-metodologia-rigor}
-
-% Los capítulos de desarrollo, evaluación, sostenibilidad y conclusiones se
-% incorporarán en las siguientes entregas y en la memoria final.
-
-\clearpage
-\renewcommand{\bibname}{Referencias bibliográficas}
-\addcontentsline{toc}{chapter}{\bibname}
-% Numeración de las referencias según su primera aparición en el texto.
-\bibliographystyle{unsrtnat}
-% BIBINPUTS apunta a paper/references/ desde scripts/build-pdf.sh.
-\bibliography{Tesis}
+% Los capítulos de la primera entrega se conservan en chapters/, pero esta
+% compilación carga únicamente el contenido correspondiente a la entrega 2.
+\input{chapters/05-planificacion-temporal}
 
 \end{document}

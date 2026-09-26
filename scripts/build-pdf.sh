@@ -7,6 +7,7 @@ paper_dir=$(CDPATH= cd -- "$script_dir/.." && pwd)
 latex_dir="$paper_dir/latex"
 build_dir="$latex_dir/build"
 pdf_dir="$paper_dir/pdf"
+gep_pdf_dir="$pdf_dir/GEP/segunda-entrega"
 
 if ! command -v latexmk >/dev/null 2>&1; then
   echo "Error: latexmk no está instalado." >&2
@@ -14,7 +15,7 @@ if ! command -v latexmk >/dev/null 2>&1; then
   exit 1
 fi
 
-mkdir -p "$build_dir" "$pdf_dir"
+mkdir -p "$build_dir" "$pdf_dir" "$gep_pdf_dir"
 
 cd "$latex_dir"
 export BIBINPUTS="$paper_dir/references:"
@@ -33,5 +34,6 @@ if grep -Fq 'There were undefined citations' "$build_dir/main.log"; then
 fi
 
 cp "$build_dir/main.pdf" "$pdf_dir/memoria-tfg.pdf"
+cp "$build_dir/main.pdf" "$gep_pdf_dir/segunda-entrega-GEP-VictorAbello.pdf"
 
-echo "PDF generado en: $pdf_dir/memoria-tfg.pdf"
+echo "PDF generado en: $gep_pdf_dir/segunda-entrega-GEP-VictorAbello.pdf"

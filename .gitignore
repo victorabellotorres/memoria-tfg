@@ -16,8 +16,6 @@ latex/main.out
 latex/main.pdf
 latex/main.synctex.gz
 latex/main.toc
-gep/segunda-entrega/build/
-
 # Generated final manuscript
 pdf/**/*.pdf
 
