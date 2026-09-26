@@ -51,10 +51,9 @@ revisan los resultados, los riesgos y el trabajo pendiente en el tablero Kanban.
 El Gantt fija el marco global y el tablero permite reordenar tareas sin perder
 los hitos ni la fecha final.
 
-Los recursos se codifican así: R1, estudiante; R2, director y codirector; R3,
-portátil, Python, TensorFlow/Keras y Git; R4, Nutrition5k, almacenamiento y
-entorno de cómputo; R5, LiteRT y dispositivo \emph{edge} concreto (TBD); y R6,
-Notion, LaTeX y herramientas FIB.
+Para mantener legibles las tablas, los recursos se codifican como R1--R7 y se
+describen en la sección~\ref{sec:planificacion-recursos}. La asignación distingue
+el trabajo del estudiante, la supervisión y los distintos entornos de cómputo.
 
 \clearpage
 \section{Tareas, estimaciones y recursos}
@@ -72,17 +71,17 @@ terminada cada actividad; ``Pred.'' identifica sus predecesoras.
     \textbf{Cód.} & \textbf{Tarea y resultado de cierre} & \textbf{h} &
     \textbf{Pred.} & \textbf{Recursos} \\
     \midrule
-    T01 & \textbf{Fijar alcance y protocolo.} Objetivos, variables, métricas y criterios de comparación aprobados. & 14 & -- & R1, R2, R6 \\
-    T02 & \textbf{Revisar bibliografía dirigida.} Matriz de trabajos, modelos, datos, métricas y límites relevantes. & 24 & -- & R1, R3, R6 \\
+    T01 & \textbf{Fijar alcance y protocolo.} Objetivos, variables, métricas y criterios de comparación aprobados. & 14 & -- & R1, R2, R7 \\
+    T02 & \textbf{Revisar bibliografía dirigida.} Matriz de trabajos, modelos, datos, métricas y límites relevantes. & 24 & -- & R1, R3, R7 \\
     T03 & \textbf{Preparar el entorno reproducible.} Repositorios, dependencias, pruebas y estructura experimental operativos. & 10 & T01 & R1, R3 \\
     T04 & \textbf{Adquirir y validar Nutrition5k.} Descarga controlada, inventario, integridad y muestra inspeccionada. & 18 & T01 & R1, R3, R4 \\
     T05 & \textbf{Construir el flujo de datos.} Extracción de fotogramas, carga, transformación y caché reproducibles. & 28 & T03, T04 & R1, R3, R4 \\
     T06 & \textbf{Definir particiones y controles de fuga.} División fijada por plato y comprobaciones automatizadas. & 14 & T05 & R1, R3, R4 \\
     T07 & \textbf{Implementar y evaluar la línea base.} Predictor medio, métricas y artefactos de referencia guardados. & 14 & T06 & R1, R3, R4 \\
     T08 & \textbf{Implementar la CNN de regresión.} Arquitectura y cinco salidas integradas en el flujo común. & 24 & T06, T07 & R1, R3, R4 \\
-    T09 & \textbf{Entrenar y ajustar la CNN.} Configuración acotada, mejor punto de control y resultados registrados. & 34 & T08 & R1, R3, R4 \\
+    T09 & \textbf{Entrenar y ajustar la CNN.} Configuración acotada, mejor punto de control y resultados registrados. & 34 & T08 & R1, R3--R5 \\
     T10 & \textbf{Adaptar MobileNet.} Backbone eficiente, cabeza de regresión y estrategia de ajuste definidos. & 24 & T06, T07 & R1, R3, R4 \\
-    T11 & \textbf{Entrenar y ajustar MobileNet.} Experimentos comparables, punto de control y resultados registrados. & 34 & T10 & R1, R3, R4 \\
+    T11 & \textbf{Entrenar y ajustar MobileNet.} Experimentos comparables, punto de control y resultados registrados. & 34 & T10 & R1, R3--R5 \\
     T12 & \textbf{Adaptar un transformador visual.} Modelo, cabeza de regresión y configuración compatibles con el protocolo. & 26 & T06, T07 & R1, R3, R4 \\
     \bottomrule
   \end{tabularx}
@@ -106,17 +105,17 @@ T12--T13. Esta separación permite avanzar en una familia mientras otra entrena.
     \textbf{Cód.} & \textbf{Tarea y resultado de cierre} & \textbf{h} &
     \textbf{Pred.} & \textbf{Recursos} \\
     \midrule
-    T13 & \textbf{Entrenar y ajustar el transformador.} Experimentos comparables, punto de control y registro completo. & 36 & T12 & R1, R3, R4 \\
+    T13 & \textbf{Entrenar y ajustar el transformador.} Experimentos comparables, punto de control y registro completo. & 36 & T12 & R1, R3--R5 \\
     T14 & \textbf{Aplicar la evaluación común.} Predicciones, métricas por objetivo y análisis de errores incorporados al terminar cada modelo. & 28 & T07; cierre tras T09, T11, T13 & R1, R3, R4 \\
     T15 & \textbf{Medir el coste de inferencia.} Tamaño, latencia y, cuando sea posible, memoria bajo condiciones documentadas. & 24 & T14 & R1, R3, R4 \\
-    T16 & \textbf{Convertir y cuantizar el candidato.} Modelo LiteRT válido y comparación antes y después de la conversión. & 24 & T15 & R1, R3, R5 \\
-    T17 & \textbf{Validar la ejecución edge.} Inferencia, latencia y limitaciones medidas en el entorno seleccionado. & 20 & T16 & R1, R3, R5 \\
-    T18 & \textbf{Sintetizar la comparación.} Tablas de precisión--coste, interpretación y respuesta a la pregunta de investigación. & 20 & T14, T15, T17 & R1, R3, R6 \\
-    T19 & \textbf{Analizar sostenibilidad y ética.} Privacidad, sesgo, seguridad, energía y uso indebido. & 12 & T15 & R1, R2, R6 \\
-    T20 & \textbf{Redactar y revisar la memoria.} Texto, figuras y trazabilidad actualizados durante el proyecto. & 60 & T01; cierre tras T18, T19 & R1, R2, R6 \\
-    T21 & \textbf{Control y seguimiento.} Revisión semanal de horas, avance, riesgos, acuerdos y replanificación. & 24 & T01 & R1, R2, R6 \\
-    T22 & \textbf{Cerrar la entrega académica.} Revisión final, portada, anexos, depósito y trámites FIB aplicables. & 10 & T18, T19, T20 & R1, R2, R6 \\
-    T23 & \textbf{Preparar la defensa.} Diapositivas, demostración opcional, ensayos y reserva de aula si procede. & 18 & T22 & R1, R2, R3, R6 \\
+    T16 & \textbf{Convertir y cuantizar el candidato.} Modelo LiteRT válido y comparación antes y después de la conversión. & 24 & T15 & R1, R3, R6 \\
+    T17 & \textbf{Validar la ejecución edge.} Inferencia, latencia y limitaciones medidas en el entorno seleccionado. & 20 & T16 & R1, R3, R6 \\
+    T18 & \textbf{Sintetizar la comparación.} Tablas de precisión--coste, interpretación y respuesta a la pregunta de investigación. & 20 & T14, T15, T17 & R1, R3, R7 \\
+    T19 & \textbf{Analizar sostenibilidad y ética.} Privacidad, sesgo, seguridad, energía y uso indebido. & 12 & T15 & R1, R2, R7 \\
+    T20 & \textbf{Redactar y revisar la memoria.} Texto, figuras y trazabilidad actualizados durante el proyecto. & 60 & T01; cierre tras T18, T19 & R1, R2, R7 \\
+    T21 & \textbf{Control y seguimiento.} Revisión semanal de horas, avance, riesgos, acuerdos y replanificación. & 24 & T01 & R1, R2, R7 \\
+    T22 & \textbf{Cerrar la entrega académica.} Revisión final, portada, anexos, depósito y trámites FIB aplicables. & 10 & T18, T19, T20 & R1, R2, R7 \\
+    T23 & \textbf{Preparar la defensa.} Diapositivas, demostración opcional, ensayos y reserva de aula si procede. & 18 & T22 & R1--R3, R7 \\
     \midrule
     & \textbf{Total} & \textbf{540} & & \\
     \bottomrule
@@ -225,59 +224,63 @@ y a la defensa provisional.
 \end{landscape}
 
 \clearpage
-\section{Seguimiento, obstáculos y planes alternativos}
+\section{Recursos}
+\label{sec:planificacion-recursos}
 
-Cada viernes se compararán horas reales y planificadas, tareas terminadas y
-riesgos. Una desviación superior al 15\,\% en horas o a una semana en una tarea
-de la cadena de cierre activa una revisión con la dirección. Se reestima primero
-el trabajo pendiente; las tareas opcionales nunca desplazan el alcance mínimo.
+\textbf{Recursos humanos.} El estudiante (R1) asume los roles de jefe de
+proyecto, investigador, desarrollador y analista: planifica, implementa,
+documenta y evalúa. El director y el codirector (R2) supervisan el alcance,
+revisan los hitos y orientan las decisiones; no sustituyen el trabajo asignado
+al estudiante.
 
 \begin{table}[H]
   \centering
   \scriptsize
-  \begin{tabularx}{\textwidth}{L{2.1cm}Y L{2.55cm} L{2.25cm}}
+  \renewcommand{\arraystretch}{0.92}
+  \begin{tabularx}{\textwidth}{C{0.9cm}L{3.0cm}Y}
     \toprule
-    \textbf{Obstáculo / señal} & \textbf{Tareas alternativas} &
-    \textbf{Efecto temporal} & \textbf{Recursos adicionales} \\
+    \textbf{Cód.} & \textbf{Recurso} & \textbf{Uso previsto} \\
     \midrule
-    \textbf{R1. Cómputo insuficiente.} Entrenamientos que exceden una iteración. &
-    \textbf{B1:} congelar capas, limitar la búsqueda y reducir resolución o lote,
-    conservando la prueba común. & Hasta 18 h de margen; no cambia M3. &
-    Acelerador externo; coste, si existe, TBD. \\
-    \textbf{R2. Datos o almacenamiento.} Descarga incompleta o falta de espacio. &
-    \textbf{B2:} continuar con el piloto y la caché mientras se recupera la copia
-    completa; verificar integridad antes de reanudar. & Hasta 12 h; T09, T11 y T13
-    no se cierran con el piloto. & Almacenamiento temporal R4. \\
-    \textbf{R3. Entorno edge incompatible.} T16 no genera un modelo ejecutable. &
-    \textbf{B3:} probar operadores alternativos, seleccionar el siguiente modelo
-    compatible y medir LiteRT en CPU, documentando la limitación. & Hasta 16 h;
-    puede reducir T17, no la comparación principal. & Equipo alternativo o
-    préstamo, TBD. \\
-    \textbf{R4. Error superior al esperado.} Ninguna familia mejora claramente
-    la línea base. & \textbf{B4:} auditar etiquetas, escalas y pérdidas; ejecutar
-    un ajuste acotado y, si persiste, analizar el resultado negativo. & Hasta 14 h;
-    no altera la fecha final. & R1, R2 y registros R4. \\
-    \textbf{R5. Retraso acumulado.} Se agota el margen o fallan dos hitos. &
-    \textbf{B5:} eliminar demostrador y extensiones; conservar línea base, CNN,
-    MobileNet, transformer, evaluación común y un candidato edge. & Recupera
-    hasta 60 h y protege M3/M4. & No requiere recursos nuevos. \\
+    R3 & Ordenador portátil & Gestión, programación, documentación, control de versiones y pruebas ligeras con Python y TensorFlow/Keras. \\
+    R4 & PC de sobremesa y almacenamiento local & Preparación de Nutrition5k y entrenamientos que excedan la capacidad práctica del portátil. \\
+    R5 & Cómputo externo opcional & Google Colab como primera alternativa y alquiler puntual de GPU si el cómputo local resulta insuficiente; coste y proveedor, TBD. \\
+    R6 & Entorno \emph{edge} y LiteRT & Conversión, cuantización y medición en el dispositivo final, todavía por concretar (TBD). \\
+    R7 & Git, LaTeX, Notion y herramientas FIB & Reproducibilidad, memoria, seguimiento, depósito y preparación de la defensa. \\
     \bottomrule
   \end{tabularx}
-  \caption[Planes alternativos]{Obstáculos, señales de activación y planes
-  alternativos. Estas tareas no forman parte del Gantt base. Elaboración propia.}
-  \label{tab:planificacion-riesgos}
+  \caption[Recursos materiales y digitales]{Recursos materiales y digitales
+  previstos. Elaboración propia.}
+  \label{tab:planificacion-recursos}
 \end{table}
 
-El calendario ofrece aproximadamente 60 horas de capacidad no asignada respecto
-al ritmo ordinario de 20 semanas. No aumenta el presupuesto de 540 horas: absorbe
-festivos, esperas y la activación de B1--B4. Si la desviación supera esa reserva,
-se aplica B5. La profundidad, el texto, el demostrador y una búsqueda extensa de
-hiperparámetros siguen siendo opcionales.
+\section{Seguimiento, obstáculos y planes alternativos}
 
-M3 marca el final técnico: la pregunta de investigación queda respondida con
-resultados trazables. M4 marca el final académico: depósito, trámites y defensa.
-Si Racó asigna otra fecha, T22 y T23 se desplazarán manteniendo M3 y el trabajo
-técnico ya cerrado. Cada hito exige artefactos reproducibles, coherencia entre
-memoria y resultados y actualización del registro de decisiones.
+Cada viernes se compararán horas, tareas terminadas y riesgos. Una desviación
+superior al 15\,\% en horas o a una semana activa una revisión con la dirección;
+las tareas opcionales nunca desplazan el alcance mínimo.
+
+\begin{description}[leftmargin=0.45cm,labelindent=0cm,style=nextline]
+  \footnotesize
+  \item[\textbf{Riesgo 1. Cómputo insuficiente.}]
+  Si un entrenamiento excede una iteración, B1 reduce búsqueda, resolución o
+  lote; después usa Google Colab y, solo si hace falta, una GPU alquilada (R5,
+  coste TBD). Consume hasta 18 h de margen sin mover M3.
+  \item[\textbf{Riesgo 2. Datos o espacio.}]
+  Ante una descarga incompleta, B2 avanza con el piloto y la caché mientras se
+  recupera y verifica la copia en R4. Consume hasta 12 h; no cierra los modelos.
+  \item[\textbf{Riesgo 3. Incompatibilidad \emph{edge}.}]
+  Si T16 falla, B3 prueba operadores o el siguiente modelo compatible y mide
+  LiteRT en CPU. Consume hasta 16 h y puede reducir T17; equipo alternativo, TBD.
+  \item[\textbf{Riesgo 4. Retraso o error elevado.}]
+  Al agotarse el margen o fallar dos hitos, B4 audita datos y pérdidas y elimina
+  extensiones. Recupera hasta 60 h y conserva la comparación y un candidato
+  \emph{edge}, protegiendo M3 y M4.
+\end{description}
+
+Las 60 horas aproximadas de capacidad no asignada absorben festivos, esperas y
+planes alternativos; no aumentan las 540 horas. M3 marca el cierre técnico y M4
+el académico. Si Racó cambia la fecha, solo se desplazan T22 y T23. El demostrador,
+la multimodalidad y una búsqueda extensa de hiperparámetros siguen siendo
+opcionales y se eliminan antes de afectar a la comparación principal.
 
 \endgroup
