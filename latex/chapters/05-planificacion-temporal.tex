@@ -2,7 +2,7 @@
 \label{chap:planificacion-temporal}
 
 \begingroup
-\small
+\normalsize
 \setstretch{1.05}
 \setlength{\parskip}{0.3\baselineskip}
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
@@ -12,26 +12,31 @@
 \definecolor{deepblue}{HTML}{174A6E}
 \definecolor{green}{HTML}{5D8A66}
 \definecolor{amber}{HTML}{D98E04}
+\definecolor{purple}{HTML}{76558C}
 
 La planificación cubre el proyecto completo, desde la definición del protocolo
 experimental hasta la defensa. Se adopta un enfoque iterativo e incremental:
-primero se obtiene un producto mínimo viable (MVP) con datos, línea base y
-evaluación; después se incorporan tres familias visuales; finalmente se comparan
-precisión y coste, se selecciona un modelo y se valida su inferencia en un
-entorno limitado. La documentación y el seguimiento se realizan en paralelo.
+el trabajo se divide en tareas verificables, cada una con un objetivo,
+predecesoras, recursos y una estimación de horas. El progreso se revisará
+semanalmente mediante el diagrama de Gantt y el tablero Kanban. En cada revisión
+se actualizará el esfuerzo restante y, cuando un imprevisto o riesgo afecte a la planificación
+o al cumplimiento de un hito, se revisará el plan y se valorarán cambios.
+
+A continuación, se especifican los datos globales de la planificación temporal:
 
 \begin{table}[H]
   \centering
+  \small
   \begin{tabularx}{\textwidth}{>{\bfseries}L{4.2cm}Y}
     \toprule
-    Inicio planificado & 14/09/2026 \\
+    Inicio del trabajo & 14/09/2026 \\
     Fin técnico del proyecto & 15/01/2027 \\
-    Fin desde el punto de vista de la FIB & 29/01/2027 (objetivo provisional) \\
-    Lectura prevista del TFG & 29/01/2027, pendiente de confirmación en Racó (TBD) \\
-    Esfuerzo total & 540 horas, equivalentes a 90 jornadas de 6 horas \\
-    Ritmo ordinario & 6 h/día, de lunes a viernes; 30 h/semana \\
-    Horizonte temporal & 20 semanas naturales; la diferencia entre capacidad y
-    esfuerzo absorbe festivos, indisponibilidad y riesgo \\
+    Hito de seguimiento & 17/12/2026 (Fecha límite) \\
+    Lectura prevista del TFG & 19/01/2027-25/01/2027 \\
+    Entrega de la memoria & Una semana antes de la defensa \\
+    Esfuerzo total & 540 horas (90h GEP / 450h proyecto técnico) \\
+    Ritmo aproximado & 4 h/día, de lunes a viernes; dedicación variable los fines de semana \\
+    Horizonte temporal & 20 semanas naturales, 18 antes del cierre técnico \\
     Responsable & Estudiante, con supervisión del director y codirector \\
     \bottomrule
   \end{tabularx}
@@ -40,112 +45,261 @@ entorno limitado. La documentación y el seguimiento se realizan en paralelo.
   \label{tab:planificacion-datos-globales}
 \end{table}
 
-Las horas incluyen implementación, comprobación, registro y cierre de cada
-tarea. Los entrenamientos se estiman por tiempo de trabajo activo: el cómputo
-desatendido no cuenta como dedicación, aunque condiciona el calendario. Ninguna
-tarea técnica alcanza 50 horas. La memoria se mantiene como una tarea
-transversal de 60 horas porque su actividad es homogénea y recurrente.
 
-El trabajo se divide en iteraciones de dos semanas. Al final de cada una se
-revisan los resultados, los riesgos y el trabajo pendiente en el tablero Kanban.
-El Gantt fija el marco global y el tablero permite reordenar tareas sin perder
-los hitos ni la fecha final.
+\section{Tareas}
 
-Para mantener legibles las tablas, los recursos se codifican como R1--R7 y se
-describen en la sección~\ref{sec:planificacion-recursos}. La asignación distingue
-el trabajo del estudiante, la supervisión y los distintos entornos de cómputo.
+Las tareas se describen primero para concretar el trabajo que comprende cada
+una. Después, la tabla~\ref{tab:tareas-proyecto} resume únicamente su título,
+las horas, las predecesoras y los recursos asignados.
 
-\clearpage
-\section{Tareas, estimaciones y recursos}
+El código de cada tarea indica su tipo:
+\begin{itemize}
+  \item \textbf{EP} Estudio Previo
+  \item \textbf{GEP} Gestión del Proyecto
+  \item \textbf{DT} Desarrollo Técnico
+  \item \textbf{AR} Análisis de Resultados
+\end{itemize}
 
-Las tablas~\ref{tab:planificacion-tareas-1} y
-\ref{tab:planificacion-tareas-2} describen tareas verificables, no simples
-fases. El resultado de cierre concreta qué debe existir para considerar
-terminada cada actividad; ``Pred.'' identifica sus predecesoras.
+\subsection{Descripción de las tareas}
 
-\begin{table}[H]
-  \centering
-  \scriptsize
-  \begin{tabularx}{\textwidth}{C{0.75cm}Y C{0.55cm} L{1.35cm} L{1.75cm}}
+% En las descripciones se prioriza el nombre legible de la tarea; el código
+% queda como identificador secundario y la tabla posterior lo usa para resumir.
+\newcommand{\taskdescription}[3]{%
+  \item \textbf{#2}\hfill{\small\texttt{#1}}\par\smallskip
+  #3%
+}
+
+\medskip
+\noindent\textbf{Estudio previo}\par\nobreak\smallskip
+\begin{description}[leftmargin=0pt,labelwidth=0pt,labelsep=0pt,
+  itemsep=0.35\baselineskip]
+  \taskdescription{EP01}{Revisar el estado del arte}{Revisar la bibliografía relevante sobre estimación nutricional a
+  partir de imágenes y comparar los modelos, conjuntos de datos, métricas y
+  limitaciones descritos en trabajos anteriores.}
+  \taskdescription{EP02}{Analizar los datos y requisitos}{Examinar Nutrition5k y las demás fuentes consideradas para conocer
+  su estructura, calidad, variables objetivo, restricciones de uso y adecuación
+  a los objetivos del proyecto.}
+  \taskdescription{EP03}{Definir el protocolo experimental}{Definir antes de los experimentos las particiones, las métricas,
+  las comparaciones y los controles necesarios para evaluar todos los modelos
+  bajo las mismas condiciones.}
+  \taskdescription{EP04}{Estudiar alternativas de despliegue}{Estudiar las opciones de conversión y ejecución en un entorno
+  \emph{edge}, incluidas las restricciones de LiteRT, los operadores compatibles
+  y los límites del dispositivo final.}
+\end{description}
+
+\medskip
+\noindent\textbf{Gestión del proyecto}\par\nobreak\smallskip
+\begin{description}[leftmargin=0pt,labelwidth=0pt,labelsep=0pt,
+  itemsep=0.35\baselineskip]
+  \taskdescription{GEP01}{Preparar la entrega 1}{Preparar la primera entrega de GEP, centrada en el contexto, el
+  alcance, los objetivos y la justificación del proyecto, e incorporar las
+  observaciones recibidas.}
+  \taskdescription{GEP02}{Preparar la entrega 2}{Elaborar la segunda entrega de GEP con la planificación temporal,
+  la estimación del esfuerzo, las dependencias, los recursos, el Gantt y la
+  gestión de riesgos.}
+  \taskdescription{GEP03}{Preparar la entrega 3}{Preparar la tercera entrega de GEP mediante un presupuesto y un
+  análisis económico coherentes con los recursos realmente previstos.
+  }
+  \taskdescription{GEP04}{Realizar el seguimiento y control}{Revisar periódicamente el avance, las horas empleadas, los riesgos
+  y los acuerdos con la dirección, y actualizar la planificación cuando aparezca
+  una desviación relevante.}
+  \taskdescription{GEP05}{Redactar la memoria}{Redactar la memoria de forma continua, manteniendo alineados el
+  texto, las figuras, las tablas, las referencias y la trazabilidad de las
+  decisiones y los experimentos.}
+  \taskdescription{GEP06}{Preparar y realizar la defensa}{Preparar el material de la defensa, ensayar la presentación,
+  completar los trámites académicos y realizar la exposición final; el
+  demostrador solo se incluirá si el alcance principal ya está cubierto.}
+\end{description}
+
+\medskip
+\noindent\textbf{Desarrollo técnico}\par\nobreak\smallskip
+\begin{description}[leftmargin=0pt,labelwidth=0pt,labelsep=0pt,
+  itemsep=0.35\baselineskip]
+  \taskdescription{DT01}{Preparar el entorno reproducible}{Configurar en el portátil los repositorios, las dependencias, las
+  pruebas y la estructura de experimentos necesarios para reproducir el trabajo.
+  }
+  \taskdescription{DT02}{Adquirir y validar los datos}{Descargar los datos de forma controlada y comprobar su integridad,
+  su organización y una muestra representativa antes de procesarlos.
+  }
+  \taskdescription{DT03}{Construir el flujo de datos}{Construir un flujo reproducible que extraiga los fotogramas,
+  cargue los ejemplos, aplique las transformaciones y gestione la caché.
+  }
+  \taskdescription{DT04}{Implementar particiones y controles de fuga}{Implementar las particiones por plato y controles automáticos que
+  eviten que información del mismo plato aparezca en conjuntos distintos.
+  }
+  \taskdescription{DT05}{Implementar y ejecutar la línea base}{Implementar y ejecutar el predictor basado en la media del conjunto
+  de entrenamiento para obtener una referencia sencilla con el protocolo común.
+  }
+  \taskdescription{DT06}{Implementar la CNN}{Implementar una CNN con una salida conjunta para masa, calorías,
+  grasas, carbohidratos y proteínas, integrada en el flujo experimental común.
+  }
+  \taskdescription{DT07}{Entrenar y ajustar la CNN}{Entrenar la CNN, ajustar un conjunto acotado de configuraciones y
+  conservar los registros y el punto de control necesarios para evaluarla.
+  }
+  \taskdescription{DT08}{Adaptar MobileNet}{Adaptar MobileNet mediante una cabeza de regresión multisalida y
+  definir una estrategia de ajuste comparable con el resto de modelos.
+  }
+  \taskdescription{DT09}{Entrenar y ajustar MobileNet}{Entrenar y ajustar MobileNet con el protocolo común, registrando
+  las configuraciones, los puntos de control y el coste del proceso.
+  }
+  \taskdescription{DT10}{Adaptar un transformador visual}{Adaptar un transformador visual a la regresión de las cinco
+  variables nutricionales sin alterar las condiciones comunes de evaluación.
+  }
+  \taskdescription{DT11}{Entrenar y ajustar el transformador}{Entrenar y ajustar el transformador con una búsqueda acotada y
+  conservar los artefactos necesarios para reproducir el modelo seleccionado.
+  }
+  \taskdescription{DT12}{Convertir y cuantizar los modelos}{Convertir a LiteRT los modelos candidatos y estudiar una
+  cuantización compatible, comprobando que la salida se mantiene dentro de la
+  tolerancia que se defina en el protocolo.}
+  \newpage
+  \taskdescription{DT13}{Validar la ejecución \emph{edge}}{Ejecutar al menos un modelo en el entorno \emph{edge} seleccionado
+  y medir su latencia, memoria disponible y limitaciones prácticas.
+  }
+\end{description}
+
+\medskip
+\noindent\textbf{Análisis de resultados}\par\nobreak\smallskip
+\begin{description}[leftmargin=0pt,labelwidth=0pt,labelsep=0pt,
+  itemsep=0.35\baselineskip]
+  \taskdescription{AR01}{Aplicar la evaluación común}{Aplicar a la línea base y a todos los modelos las mismas
+  particiones y métricas, conservando las predicciones por variable objetivo.
+  }
+  \taskdescription{AR02}{Analizar errores y robustez}{Examinar los errores, los casos difíciles y los posibles sesgos
+  observables para identificar límites de generalización y causas plausibles.
+  }
+  \taskdescription{AR03}{Sintetizar la comparación}{Comparar precisión y coste computacional, sintetizar los resultados
+  en tablas y gráficos y responder a la pregunta de investigación con la
+  evidencia obtenida.}
+  \taskdescription{AR04}{Analizar sostenibilidad y ética}{Analizar las implicaciones de privacidad, sesgo, seguridad,
+  consumo de recursos, explicabilidad y posible uso indebido del sistema.
+  }
+\end{description}
+
+\subsection{Resumen de horas, dependencias y recursos}
+
+En la tabla, ``Pred.'' identifica las tareas predecesoras. Los recursos
+R1-A--R1-D y R2--R6 se describen en la
+sección~\ref{sec:planificacion-recursos}.
+
+\newpage
+\begingroup
+  \small
+  \setlength{\tabcolsep}{3pt}
+  \renewcommand{\arraystretch}{0.96}
+  \setlength{\LTleft}{0pt}
+  \setlength{\LTright}{0pt}
+  \begin{longtable}{C{1.0cm}L{6.35cm}C{0.5cm}L{3.4cm}L{2.85cm}}
     \toprule
-    \textbf{Cód.} & \textbf{Tarea y resultado de cierre} & \textbf{h} &
+    \textbf{Cód.} & \textbf{Tarea} & \textbf{h} &
     \textbf{Pred.} & \textbf{Recursos} \\
     \midrule
-    T01 & \textbf{Fijar alcance y protocolo.} Objetivos, variables, métricas y criterios de comparación aprobados. & 14 & -- & R1, R2, R7 \\
-    T02 & \textbf{Revisar bibliografía dirigida.} Matriz de trabajos, modelos, datos, métricas y límites relevantes. & 24 & -- & R1, R3, R7 \\
-    T03 & \textbf{Preparar el entorno reproducible.} Repositorios, dependencias, pruebas y estructura experimental operativos. & 10 & T01 & R1, R3 \\
-    T04 & \textbf{Adquirir y validar Nutrition5k.} Descarga controlada, inventario, integridad y muestra inspeccionada. & 18 & T01 & R1, R3, R4 \\
-    T05 & \textbf{Construir el flujo de datos.} Extracción de fotogramas, carga, transformación y caché reproducibles. & 28 & T03, T04 & R1, R3, R4 \\
-    T06 & \textbf{Definir particiones y controles de fuga.} División fijada por plato y comprobaciones automatizadas. & 14 & T05 & R1, R3, R4 \\
-    T07 & \textbf{Implementar y evaluar la línea base.} Predictor medio, métricas y artefactos de referencia guardados. & 14 & T06 & R1, R3, R4 \\
-    T08 & \textbf{Implementar la CNN de regresión.} Arquitectura y cinco salidas integradas en el flujo común. & 24 & T06, T07 & R1, R3, R4 \\
-    T09 & \textbf{Entrenar y ajustar la CNN.} Configuración acotada, mejor punto de control y resultados registrados. & 34 & T08 & R1, R3--R5 \\
-    T10 & \textbf{Adaptar MobileNet.} Backbone eficiente, cabeza de regresión y estrategia de ajuste definidos. & 24 & T06, T07 & R1, R3, R4 \\
-    T11 & \textbf{Entrenar y ajustar MobileNet.} Experimentos comparables, punto de control y resultados registrados. & 34 & T10 & R1, R3--R5 \\
-    T12 & \textbf{Adaptar un transformador visual.} Modelo, cabeza de regresión y configuración compatibles con el protocolo. & 26 & T06, T07 & R1, R3, R4 \\
-    \bottomrule
-  \end{tabularx}
-  \caption[Tareas T01--T12]{Tareas T01--T12, con estimación, dependencias y
-  recursos. Elaboración propia.}
-  \label{tab:planificacion-tareas-1}
-\end{table}
-
-La secuencia inicial es
-\(\mathrm{T01}\rightarrow\{\mathrm{T03,T04}\}\rightarrow\mathrm{T05}
-\rightarrow\mathrm{T06}\rightarrow\mathrm{T07}\). Después, las tres
-familias se desarrollan en ramas independientes: T08--T09, T10--T11 y
-T12--T13. Esta separación permite avanzar en una familia mientras otra entrena.
-
-\clearpage
-\begin{table}[H]
-  \centering
-  \scriptsize
-  \begin{tabularx}{\textwidth}{C{0.75cm}Y C{0.55cm} L{1.55cm} L{1.65cm}}
+    \endfirsthead
+    \multicolumn{5}{c}{\tablename\ \thetable\ (continuación)} \\
     \toprule
-    \textbf{Cód.} & \textbf{Tarea y resultado de cierre} & \textbf{h} &
+    \textbf{Cód.} & \textbf{Tarea} & \textbf{h} &
     \textbf{Pred.} & \textbf{Recursos} \\
     \midrule
-    T13 & \textbf{Entrenar y ajustar el transformador.} Experimentos comparables, punto de control y registro completo. & 36 & T12 & R1, R3--R5 \\
-    T14 & \textbf{Aplicar la evaluación común.} Predicciones, métricas por objetivo y análisis de errores incorporados al terminar cada modelo. & 28 & T07; cierre tras T09, T11, T13 & R1, R3, R4 \\
-    T15 & \textbf{Medir el coste de inferencia.} Tamaño, latencia y, cuando sea posible, memoria bajo condiciones documentadas. & 24 & T14 & R1, R3, R4 \\
-    T16 & \textbf{Convertir y cuantizar el candidato.} Modelo LiteRT válido y comparación antes y después de la conversión. & 24 & T15 & R1, R3, R6 \\
-    T17 & \textbf{Validar la ejecución edge.} Inferencia, latencia y limitaciones medidas en el entorno seleccionado. & 20 & T16 & R1, R3, R6 \\
-    T18 & \textbf{Sintetizar la comparación.} Tablas de precisión--coste, interpretación y respuesta a la pregunta de investigación. & 20 & T14, T15, T17 & R1, R3, R7 \\
-    T19 & \textbf{Analizar sostenibilidad y ética.} Privacidad, sesgo, seguridad, energía y uso indebido. & 12 & T15 & R1, R2, R7 \\
-    T20 & \textbf{Redactar y revisar la memoria.} Texto, figuras y trazabilidad actualizados durante el proyecto. & 60 & T01; cierre tras T18, T19 & R1, R2, R7 \\
-    T21 & \textbf{Control y seguimiento.} Revisión semanal de horas, avance, riesgos, acuerdos y replanificación. & 24 & T01 & R1, R2, R7 \\
-    T22 & \textbf{Cerrar la entrega académica.} Revisión final, portada, anexos, depósito y trámites FIB aplicables. & 10 & T18, T19, T20 & R1, R2, R7 \\
-    T23 & \textbf{Preparar la defensa.} Diapositivas, demostración opcional, ensayos y reserva de aula si procede. & 18 & T22 & R1--R3, R7 \\
+    \endhead
     \midrule
-    & \textbf{Total} & \textbf{540} & & \\
+    \multicolumn{5}{r}{\small Continúa en la página siguiente} \\
+    \endfoot
     \bottomrule
-  \end{tabularx}
-  \caption[Tareas T13--T23]{Tareas T13--T23, con estimación, dependencias y
-  recursos. Elaboración propia.}
-  \label{tab:planificacion-tareas-2}
-\end{table}
+    \endlastfoot
+    EP01 & Revisar el estado del arte & 28 & -- & R1-B, R3, R6 \\
+    EP02 & Analizar los datos y requisitos & 20 & EP01 & R1-B, R3 \\
+    EP03 & Definir el protocolo experimental & 14 & EP01, EP02 & R1-A, R1-B, R1-D, R2, R6 \\
+    EP04 & Estudiar alternativas de despliegue & 10 & EP03 & R1-B, R1-C, R3, R5 \\
+    \midrule
+    & \textbf{Subtotal Estudio Previo} & \textbf{72} & & \\
+    \midrule
+    GEP01 & Preparar la entrega 1 & 6 & -- & R1-A, R2, R6 \\
+    GEP02 & Preparar la entrega 2 & 6 & GEP01 & R1-A, R2, R6 \\
+    GEP03 & Preparar la entrega 3 & 5 & GEP02 & R1-A, R2, R6 \\
+    GEP04 & Realizar el seguimiento y control & 7 & GEP01 & R1-A, R2, R6 \\
+    GEP05 & Redactar la memoria & 60 & EP03; cierre tras AR04 & R1-A--R1-D, R2, R6 \\
+    GEP06 & Preparar y realizar la defensa & 6 & GEP05, AR04 & R1-A, R1-D, R2, R3, R6 \\
+    \midrule
+    & \textbf{Subtotal Gestión del Proyecto} & \textbf{90} & & \\
+    \midrule
+    DT01 & Preparar el entorno reproducible & 12 & EP03 & R1-C, R3, R6 \\
+    DT02 & Adquirir y validar los datos & 18 & EP02, DT01 & R1-B, R1-C, R3 \\
+    DT03 & Construir el flujo de datos & 28 & DT02 & R1-C, R3 \\
+    DT04 & Implementar particiones y controles de fuga & 14 & DT03, EP03 & R1-B, R1-C, R3 \\
+    DT05 & Implementar y ejecutar la línea base & 14 & DT04 & R1-C, R3 \\
+    DT06 & Implementar la CNN & 24 & DT05 & R1-C, R3 \\
+    DT07 & Entrenar y ajustar la CNN & 34 & DT06 & R1-C, R3, R4 \\
+    DT08 & Adaptar MobileNet & 24 & DT05 & R1-C, R3 \\
+    DT09 & Entrenar y ajustar MobileNet & 34 & DT08 & R1-C, R3, R4 \\
+    DT10 & Adaptar un transformador visual & 26 & DT05 & R1-C, R3 \\
+    DT11 & Entrenar y ajustar el transformador & 36 & DT10 & R1-C, R3, R4 \\
+    DT12 & Convertir y cuantizar los modelos & 20 & AR01, EP04 & R1-C, R3, R5 \\
+    DT13 & Validar la ejecución \emph{edge} & 16 & DT12 & R1-C, R1-D, R3, R5 \\
+    \midrule
+    & \textbf{Subtotal Desarrollo Técnico} & \textbf{300} & & \\
+    \midrule
+    AR01 & Aplicar la evaluación común & 28 & DT05; cierre tras DT07, DT09, DT11 & R1-C, R1-D, R3 \\
+    AR02 & Analizar errores y robustez & 18 & AR01 & R1-D, R3, R6 \\
+    AR03 & Sintetizar la comparación & 20 & AR02, DT13 & R1-D, R3, R6 \\
+    AR04 & Analizar sostenibilidad y ética & 12 & EP04, AR01; cierre tras AR03 & R1-A, R1-D, R2, R6 \\
+    \midrule
+    & \textbf{Subtotal Análisis de Resultados} & \textbf{78} & & \\
+    \midrule
+    & \textbf{Total del proyecto} & \textbf{540} & & \\
+    \caption[Tareas del proyecto]{Tareas del proyecto con horas, dependencias y
+    recursos. Elaboración propia.}\label{tab:tareas-proyecto}\\
+  \end{longtable}
+\endgroup
 
-Las mediciones se cierran después de evaluar los modelos:
-\(\{\mathrm{T09,T11,T13}\}\rightarrow\mathrm{T14}\rightarrow
-\mathrm{T15}\rightarrow\mathrm{T16}\rightarrow\mathrm{T17}\).
-La conclusión experimental necesita T14, T15 y T17. El cierre técnico reúne
-T18, T19 y la versión final de T20; después se realizan T22 y T23.
+
+
+Todas las tareas técnicas tienen una duración inferior a 50 horas. GEP05
+alcanza 60 horas porque la redacción de la memoria es una actividad continua y
+transversal. GEP04 también se mantiene activa durante todo el proyecto, pero
+sus 7 horas corresponden exclusivamente a revisiones breves de seguimiento y
+gestión de riesgos.
+
+\subsection{Criterio de estimación y contingencia}
+
+Las horas de la tabla~\ref{tab:tareas-proyecto} ya incluyen un pequeño margen
+para resolver imprevistos. Ese margen es mayor en las tareas menos previsibles,
+como el entrenamiento, la conversión y la validación \emph{edge}, y menor en las
+tareas rutinarias o ya realizadas. No se añade una bolsa separada por encima de
+las 540 horas.
+
+Las 540 horas ya están completamente distribuidas, por lo que no existe margen
+adicional fuera de la tabla. Si una tarea supera su estimación, el exceso se
+compensará reduciendo primero trabajo opcional, como el demostrador o una
+búsqueda extensa de hiperparámetros. Si esta reducción no basta, se acordará con
+la dirección qué parte del alcance debe recortarse y se actualizará la
+planificación.
+
+\section{Control de seguimiento}
+\label{sec:control-seguimiento}
+
+Los hitos M1--M4 se utilizarán como puntos formales de control del seguimiento.
+En cada fecha objetivo se comparará el criterio observable con el estado real,
+las horas consumidas y los riesgos abiertos. Si un criterio no se cumple, se
+registrará la desviación y se activará una replanificación o el plan alternativo
+correspondiente antes de continuar con el siguiente hito.
+
+Además, cada semana se registrarán para cada actividad las horas planificadas,
+las horas reales y una nueva estimación del trabajo restante.
 
 \begin{table}[H]
   \centering
-  \footnotesize
+  \small
   \begin{tabularx}{\textwidth}{L{1.2cm}L{2.4cm}Y}
     \toprule
     \textbf{Hito} & \textbf{Fecha objetivo} & \textbf{Criterio observable} \\
     \midrule
     M1 & 02/10/2026 & MVP reproducible: datos, particiones, línea base y métricas. \\
     M2 & 11/12/2026 & Tres familias entrenadas y evaluadas con el mismo protocolo. \\
-    M3 & 15/01/2027 & Comparación final, validación edge y memoria técnicamente cerrada. \\
+    M3 & 15/01/2027 & Comparación final, validación \emph{edge} y memoria técnicamente cerrada. \\
     M4 & 29/01/2027 & Depósito y defensa completados; fecha oficial pendiente de Racó. \\
     \bottomrule
   \end{tabularx}
-  \caption[Hitos de control]{Hitos y criterios de control de la planificación.
-  Elaboración propia.}
+  \caption[Hitos de control]{Hitos y criterios utilizados para controlar el
+  seguimiento del proyecto. Elaboración propia.}
   \label{tab:planificacion-hitos}
 \end{table}
 
@@ -155,22 +309,21 @@ T18, T19 y la versión final de T20; después se realizan T22 y T23.
 \section{Diagrama de Gantt}
 
 Cada columna de la figura~\ref{fig:gantt-planificacion} representa una semana.
-Las barras largas muestran la concurrencia de documentación y seguimiento, no
-una dedicación diaria continua. La semana 20 corresponde al cierre institucional
-y a la defensa provisional.
+Los códigos y colores muestran el tipo de tarea. Las barras largas de GEP04 y
+GEP05 representan actividad periódica, no una dedicación diaria continua.
 
 \begin{figure}[H]
   \centering
   \begin{ganttchart}[
     hgrid,
     vgrid,
-    x unit=0.77cm,
-    y unit chart=0.32cm,
-    y unit title=0.42cm,
+    x unit=0.72cm,
+    y unit chart=0.24cm,
+    y unit title=0.36cm,
     title height=1,
-    bar height=0.56,
-    group height=0.56,
-    milestone height=0.50,
+    bar height=0.52,
+    group height=0.52,
+    milestone height=0.48,
     title/.style={fill=deepblue,draw=white},
     title label font=\color{white}\bfseries\tiny,
     bar label font=\tiny,
@@ -179,73 +332,100 @@ y a la defensa provisional.
     bar/.append style={fill=upcblue!72,draw=upcblue},
     group/.append style={fill=deepblue!82,draw=deepblue},
     milestone/.append style={fill=amber,draw=amber},
-    bar label node/.append style={align=right,text width=5.2cm},
-    group label node/.append style={align=right,text width=5.2cm},
-    milestone label node/.append style={align=right,text width=5.2cm}
+    bar label node/.append style={align=right,text width=5.7cm},
+    group label node/.append style={align=right,text width=5.7cm},
+    milestone label node/.append style={align=right,text width=5.7cm}
   ]{1}{20}
     \gantttitle{Sep.}{3}\gantttitle{Oct.}{4}\gantttitle{Nov.}{4}\gantttitle{Dic.}{5}\gantttitle{Ene.}{4}\\
     \gantttitlelist{1,...,20}{1}\\
-    \ganttgroup{Preparación y MVP}{1}{3}\\
-    \ganttbar{T01 Alcance y protocolo}{1}{2}\\
-    \ganttbar{T02 Revisión bibliográfica}{1}{5}\\
-    \ganttbar{T03 Entorno reproducible}{1}{1}\\
-    \ganttbar{T04 Adquisición y validación}{1}{2}\\
-    \ganttbar{T05 Flujo de datos}{1}{3}\\
-    \ganttbar{T06 Particiones y fugas}{3}{3}\\
-    \ganttbar{T07 Línea base}{3}{3}\\
+    \ganttgroup{EP Estudio Previo (72 h)}{1}{14}\\
+    \ganttbar[bar/.append style={fill=purple!58,draw=purple}]{EP01 Estado del arte}{1}{5}\\
+    \ganttbar[bar/.append style={fill=purple!58,draw=purple}]{EP02 Datos y requisitos}{1}{3}\\
+    \ganttbar[bar/.append style={fill=purple!58,draw=purple}]{EP03 Protocolo experimental}{2}{3}\\
+    \ganttbar[bar/.append style={fill=purple!58,draw=purple}]{EP04 Alternativas edge}{13}{14}\\
+    \ganttgroup{DT Desarrollo Técnico (300 h)}{1}{17}\\
+    \ganttbar{DT01 Entorno reproducible}{1}{1}\\
+    \ganttbar{DT02 Adquisición y validación}{1}{2}\\
+    \ganttbar{DT03 Flujo de datos}{1}{3}\\
+    \ganttbar{DT04 Particiones y fugas}{3}{3}\\
+    \ganttbar{DT05 Línea base}{3}{3}\\
     \ganttmilestone{M1 MVP}{3}\\
-    \ganttgroup{Modelos y evaluación}{4}{17}\\
-    \ganttbar{T08 CNN: implementación}{4}{4}\\
-    \ganttbar{T09 CNN: entrenamiento}{5}{6}\\
-    \ganttbar{T10 MobileNet: adaptación}{7}{7}\\
-    \ganttbar{T11 MobileNet: entrenamiento}{8}{9}\\
-    \ganttbar{T12 Transformer: adaptación}{10}{10}\\
-    \ganttbar{T13 Transformer: entrenamiento}{11}{12}\\
-    \ganttbar{T14 Evaluación común}{6}{13}\\
+    \ganttbar{DT06 CNN implementación}{4}{4}\\
+    \ganttbar{DT07 CNN entrenamiento}{5}{6}\\
+    \ganttbar{DT08 MobileNet adaptación}{7}{7}\\
+    \ganttbar{DT09 MobileNet entrenamiento}{8}{9}\\
+    \ganttbar{DT10 Transformer adaptación}{10}{10}\\
+    \ganttbar{DT11 Transformer entrenamiento}{11}{12}\\
     \ganttmilestone{M2 Modelos comparados}{13}\\
-    \ganttbar{T15 Coste de inferencia}{14}{14}\\
-    \ganttbar{T16 Conversión y cuantización}{15}{16}\\
-    \ganttbar{T17 Validación edge}{17}{17}\\
-    \ganttbar{T18 Síntesis comparativa}{17}{18}\\
-    \ganttbar{T19 Sostenibilidad y ética}{15}{18}\\
-    \ganttgroup{Gestión y cierre}{1}{20}\\
-    \ganttbar[bar/.append style={fill=green!72,draw=green!85!black}]{T20 Memoria}{1}{19}\\
-    \ganttbar[bar/.append style={fill=green!72,draw=green!85!black}]{T21 Seguimiento}{1}{19}\\
+    \ganttbar{DT12 Conversión y cuantización}{15}{16}\\
+    \ganttbar{DT13 Validación edge}{17}{17}\\
+    \ganttgroup{AR Análisis de Resultados (78 h)}{6}{18}\\
+    \ganttbar[bar/.append style={fill=amber!62,draw=amber}]{AR01 Evaluación común}{6}{13}\\
+    \ganttbar[bar/.append style={fill=amber!62,draw=amber}]{AR02 Errores y robustez}{13}{14}\\
+    \ganttbar[bar/.append style={fill=amber!62,draw=amber}]{AR03 Síntesis comparativa}{17}{18}\\
+    \ganttbar[bar/.append style={fill=amber!62,draw=amber}]{AR04 Sostenibilidad y ética}{15}{18}\\
+    \ganttgroup{GEP Gestión del Proyecto (90 h)}{1}{20}\\
+    \ganttbar[bar/.append style={fill=green!68,draw=green!85!black}]{GEP01 Entrega 1 alcance y objetivos (6 h)}{1}{2}\\
+    \ganttbar[bar/.append style={fill=green!68,draw=green!85!black}]{GEP02 Entrega 2 planificación (6 h)}{2}{3}\\
+    \ganttbar[bar/.append style={fill=green!68,draw=green!85!black}]{GEP03 Entrega 3 presupuesto (5 h)}{4}{5}\\
+    \ganttbar[bar/.append style={fill=green!68,draw=green!85!black}]{GEP04 Seguimiento y control (7 h)}{1}{20}\\
+    \ganttbar[bar/.append style={fill=green!68,draw=green!85!black}]{GEP05 Documentación memoria (60 h)}{1}{19}\\
     \ganttmilestone{M3 Fin técnico}{18}\\
-    \ganttbar{T22 Entrega y trámites}{19}{19}\\
-    \ganttbar{T23 Defensa}{19}{20}\\
+    \ganttbar[bar/.append style={fill=green!68,draw=green!85!black}]{GEP06 Defensa (6 h)}{19}{20}\\
     \ganttmilestone{M4 Fin FIB}{20}
   \end{ganttchart}
-  \caption[Diagrama de Gantt]{Diagrama de Gantt de la planificación temporal.
-  Las semanas se numeran desde el 14/09/2026; la documentación y el seguimiento
-  se ejecutan de forma concurrente. Elaboración propia.}
+  \caption[Diagrama de Gantt]{Diagrama de Gantt clasificado por EP, DT, AR y
+  GEP. Las semanas se numeran desde el 14/09/2026. Elaboración propia.}
   \label{fig:gantt-planificacion}
 \end{figure}
+El tiempo de cómputo desatendido no se contabiliza como trabajo del estudiante.
+Las 540 horas corresponden a dedicación activa y la concurrencia del Gantt no
+implica duplicar horas.
 \end{landscape}
 
 \clearpage
 \section{Recursos}
 \label{sec:planificacion-recursos}
 
-\textbf{Recursos humanos.} El estudiante (R1) asume los roles de jefe de
-proyecto, investigador, desarrollador y analista: planifica, implementa,
-documenta y evalúa. El director y el codirector (R2) supervisan el alcance,
-revisan los hitos y orientan las decisiones; no sustituyen el trabajo asignado
-al estudiante.
+\subsection{Recursos humanos}
+
+El TFG lo realiza una única persona. Por tanto, el estudiante constituye el
+recurso humano R1 y asume cuatro roles, identificados mediante las opciones
+R1-A--R1-D. Esta distinción permite indicar en cada tarea qué responsabilidad
+desempeña, aunque todas recaigan sobre la misma persona.
 
 \begin{table}[H]
   \centering
-  \scriptsize
-  \renewcommand{\arraystretch}{0.92}
+  \small
+  \begin{tabularx}{\textwidth}{C{1.25cm}L{3.0cm}Y}
+    \toprule
+    \textbf{Cód.} & \textbf{Rol} & \textbf{Responsabilidad en el TFG} \\
+    \midrule
+    R1-A & Jefe de proyecto & Planifica y realiza el seguimiento del trabajo, asigna el tiempo y los recursos, coordina las reuniones con la dirección y controla el cumplimiento de los objetivos e hitos. \\
+    R1-B & Investigador & Revisa el estado del arte, estudia la viabilidad, analiza Nutrition5k y define el protocolo experimental sobre fundamentos científicos contrastados. \\
+    R1-C & Desarrollador & Implementa el flujo de datos y los modelos de estimación nutricional, realiza las pruebas y prepara la conversión y la evaluación en el entorno \emph{edge}. \\
+    R1-D & Analista de resultados & Interpreta las métricas de precisión y coste computacional, analiza errores y limitaciones y fundamenta las conclusiones de la comparación. \\
+    R2 & Director y codirector & Supervisan el alcance, revisan los hitos y orientan las decisiones. Sus horas no se incluyen en las 540 horas de dedicación del estudiante. \\
+    \bottomrule
+  \end{tabularx}
+  \caption[Recursos humanos]{Roles asumidos por el estudiante y supervisión
+  académica. Elaboración propia.}
+  \label{tab:planificacion-recursos-humanos}
+\end{table}
+
+\subsection{Recursos materiales y digitales}
+
+\begin{table}[H]
+  \centering
+  \small
   \begin{tabularx}{\textwidth}{C{0.9cm}L{3.0cm}Y}
     \toprule
     \textbf{Cód.} & \textbf{Recurso} & \textbf{Uso previsto} \\
     \midrule
-    R3 & Ordenador portátil & Gestión, programación, documentación, control de versiones y pruebas ligeras con Python y TensorFlow/Keras. \\
-    R4 & PC de sobremesa y almacenamiento local & Preparación de Nutrition5k y entrenamientos que excedan la capacidad práctica del portátil. \\
-    R5 & Cómputo externo opcional & Google Colab como primera alternativa y alquiler puntual de GPU si el cómputo local resulta insuficiente; coste y proveedor, TBD. \\
-    R6 & Entorno \emph{edge} y LiteRT & Conversión, cuantización y medición en el dispositivo final, todavía por concretar (TBD). \\
-    R7 & Git, LaTeX, Notion y herramientas FIB & Reproducibilidad, memoria, seguimiento, depósito y preparación de la defensa. \\
+    R3 & Ordenador portátil & Único equipo de desarrollo local: gestión, programación, preparación de datos, documentación, control de versiones, pruebas y los experimentos que permita su capacidad. \\
+    R4 & Cómputo externo bajo demanda & Servicios en la nube o de proveedores de cómputo para los entrenamientos que excedan la capacidad del portátil. \\
+    R5 & Entorno \emph{edge} y LiteRT & Conversión, cuantización y medición en el dispositivo final, todavía por concretar (TBD). \\
+    R6 & Git, LaTeX, Notion, VS Code, Python & Reproducibilidad, memoria, seguimiento, depósito y preparación de la defensa. \\
     \bottomrule
   \end{tabularx}
   \caption[Recursos materiales y digitales]{Recursos materiales y digitales
@@ -253,34 +433,51 @@ al estudiante.
   \label{tab:planificacion-recursos}
 \end{table}
 
-\section{Seguimiento, obstáculos y planes alternativos}
+\clearpage
+\section{Seguimiento y gestión de riesgos}
+\label{sec:gestion-riesgos}
 
-Cada viernes se compararán horas, tareas terminadas y riesgos. Una desviación
-superior al 15\,\% en horas o a una semana activa una revisión con la dirección;
-las tareas opcionales nunca desplazan el alcance mínimo.
+\begingroup
+\small
 
-\begin{description}[leftmargin=0.45cm,labelindent=0cm,style=nextline]
-  \footnotesize
-  \item[\textbf{Riesgo 1. Cómputo insuficiente.}]
-  Si un entrenamiento excede una iteración, B1 reduce búsqueda, resolución o
-  lote; después usa Google Colab y, solo si hace falta, una GPU alquilada (R5,
-  coste TBD). Consume hasta 18 h de margen sin mover M3.
-  \item[\textbf{Riesgo 2. Datos o espacio.}]
-  Ante una descarga incompleta, B2 avanza con el piloto y la caché mientras se
-  recupera y verifica la copia en R4. Consume hasta 12 h; no cierra los modelos.
-  \item[\textbf{Riesgo 3. Incompatibilidad \emph{edge}.}]
-  Si T16 falla, B3 prueba operadores o el siguiente modelo compatible y mide
-  LiteRT en CPU. Consume hasta 16 h y puede reducir T17; equipo alternativo, TBD.
-  \item[\textbf{Riesgo 4. Retraso o error elevado.}]
-  Al agotarse el margen o fallar dos hitos, B4 audita datos y pérdidas y elimina
-  extensiones. Recupera hasta 60 h y conserva la comparación y un candidato
-  \emph{edge}, protegiendo M3 y M4.
+Todo proyecto presenta riesgos que pueden alterar su desarrollo. Por ello, cada
+semana se comparará el avance real con la planificación y se revisará si alguno
+de los siguientes riesgos se ha materializado. Las probabilidades indicadas son
+estimaciones de planificación, no frecuencias observadas. Estas probabilidades
+describen la posibilidad de que ocurra un problema y no deben confundirse con
+el margen ya incluido en la planificación de las horas. Si fuera necesario
+reducir el alcance, se conservarán la comparación experimental, la memoria y la
+validación de al menos un modelo en un entorno \emph{edge}; las extensiones
+opcionales serán las primeras en descartarse.
+
+\begin{description}[leftmargin=0.45cm,labelindent=0cm,style=nextline,
+  itemsep=0.2\baselineskip]
+  \item[\textbf{Dificultades técnicas inesperadas.}]
+  Se estima una probabilidad del 30\,\% y un impacto medio. Se trabajará de
+  forma incremental y con pruebas tempranas. Si aparece un problema, se usará el
+  margen incluido en la tarea y después se reducirá el trabajo opcional.
+
+  \item[\textbf{Recursos de cómputo insuficientes.}]
+  Se estima una probabilidad del 20\,\% y un impacto medio. Primero se reducirá
+  la búsqueda de hiperparámetros, la resolución o el tamaño de lote. Si no basta,
+  se recurrirá a cómputo externo bajo demanda para aumentar la capacidad de
+  cómputo disponible.
+
+  \item[\textbf{Generalización pobre o error elevado.}]
+  Se estima una probabilidad del 20\,\% y un impacto alto. Se usarán particiones
+  comunes, controles de fuga y técnicas de regularización. Si el error sigue
+  siendo alto, se analizará y se presentará como una limitación del estudio.
+
+  \item[\textbf{Problemas con los datos, el almacenamiento o el equipo.}]
+  Se estima una probabilidad del 10\,\% y un impacto alto. Se comprobará la
+  integridad de los datos, se conservará una versión piloto y se harán copias de
+  seguridad del código, las configuraciones y los resultados.
+
+  \item[\textbf{Incompatibilidad con el entorno \emph{edge}.}]
+  Se estima una probabilidad del 15\,\% y un impacto alto. La conversión se
+  probará con antelación. Si algún modelo no resulta viable, se intentará
+  cuantizarlo o se probará otro modelo eficiente y se documentará la limitación.
 \end{description}
-
-Las 60 horas aproximadas de capacidad no asignada absorben festivos, esperas y
-planes alternativos; no aumentan las 540 horas. M3 marca el cierre técnico y M4
-el académico. Si Racó cambia la fecha, solo se desplazan T22 y T23. El demostrador,
-la multimodalidad y una búsqueda extensa de hiperparámetros siguen siendo
-opcionales y se eliminan antes de afectar a la comparación principal.
+\endgroup
 
 \endgroup
