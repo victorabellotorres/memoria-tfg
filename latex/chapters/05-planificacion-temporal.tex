@@ -18,7 +18,9 @@ La planificación cubre el proyecto completo, desde la definición del protocolo
 experimental hasta la defensa. Se adopta un enfoque iterativo e incremental:
 el trabajo se divide en tareas verificables, cada una con un objetivo,
 predecesoras, recursos y una estimación de horas. El progreso se revisará
-semanalmente mediante el diagrama de Gantt y el tablero Kanban. En cada revisión
+semanalmente mediante el diagrama de Gantt y el tablero Kanban, herramientas
+previstas para la planificación temporal de la entrega de GEP\citep{GuiaGEP}.
+En cada revisión
 se actualizará el esfuerzo restante y, cuando un imprevisto o riesgo afecte a la planificación
 o al cumplimiento de un hito, se revisará el plan y se valorarán cambios.
 
@@ -33,7 +35,7 @@ A continuación, se especifican los datos globales de la planificación temporal
     Fin técnico del proyecto & 15/01/2027 \\
     Hito de seguimiento & 17/12/2026 (Fecha límite) \\
     Lectura prevista del TFG & 19/01/2027-25/01/2027 \\
-    Entrega de la memoria & Una semana antes de la defensa \\
+    Entrega de la memoria & Una semana antes de la defensa\citep{TrabajoFinGrado} \\
     Esfuerzo total & 540 horas (90h GEP / 450h proyecto técnico) \\
     Ritmo aproximado & 4 h/día, de lunes a viernes; dedicación variable los fines de semana \\
     Horizonte temporal & 20 semanas naturales, 18 antes del cierre técnico \\
@@ -64,49 +66,51 @@ El código de cada tarea indica su tipo:
 
 % En las descripciones se prioriza el nombre legible de la tarea; el código
 % queda como identificador secundario y la tabla posterior lo usa para resumir.
-\newcommand{\taskdescription}[3]{%
-  \item \textbf{#2}\hfill{\small\texttt{#1}}\par\smallskip
-  #3%
+\newcommand{\taskdescription}[4]{%
+  \item \textbf{#3}\hfill{\small\texttt{#1}\enspace (#2\,h)}\par\smallskip
+  #4%
 }
 
 \medskip
 \noindent\textbf{Estudio previo}\par\nobreak\smallskip
 \begin{description}[leftmargin=0pt,labelwidth=0pt,labelsep=0pt,
   itemsep=0.35\baselineskip]
-  \taskdescription{EP01}{Revisar el estado del arte}{Revisar la bibliografía relevante sobre estimación nutricional a
+  \taskdescription{EP01}{28}{Revisar el estado del arte}{Revisar la bibliografía relevante sobre estimación nutricional a
   partir de imágenes y comparar los modelos, conjuntos de datos, métricas y
   limitaciones descritos en trabajos anteriores.}
-  \taskdescription{EP02}{Analizar los datos y requisitos}{Examinar Nutrition5k y las demás fuentes consideradas para conocer
-  su estructura, calidad, variables objetivo, restricciones de uso y adecuación
-  a los objetivos del proyecto.}
-  \taskdescription{EP03}{Definir el protocolo experimental}{Definir antes de los experimentos las particiones, las métricas,
+  \taskdescription{EP02}{20}{Analizar los datos y requisitos}{Examinar la documentación y la estructura de Nutrition5k y de las
+  demás fuentes consideradas; identificar las entradas, las variables objetivo,
+  los posibles problemas de calidad y las restricciones que deberá satisfacer
+  el flujo experimental.}
+  \taskdescription{EP03}{14}{Definir el protocolo experimental}{Definir antes de los experimentos las particiones, las métricas,
   las comparaciones y los controles necesarios para evaluar todos los modelos
   bajo las mismas condiciones.}
-  \taskdescription{EP04}{Estudiar alternativas de despliegue}{Estudiar las opciones de conversión y ejecución en un entorno
-  \emph{edge}, incluidas las restricciones de LiteRT, los operadores compatibles
-  y los límites del dispositivo final.}
+  \taskdescription{EP04}{10}{Estudiar alternativas de despliegue}{Comparar las opciones de conversión, cuantización y ejecución
+  en un entorno \emph{edge}; identificar las restricciones de LiteRT, los
+  operadores compatibles y el procedimiento con el que se medirá el modelo en
+  el dispositivo que finalmente se seleccione.}
 \end{description}
 
 \medskip
 \noindent\textbf{Gestión del proyecto}\par\nobreak\smallskip
 \begin{description}[leftmargin=0pt,labelwidth=0pt,labelsep=0pt,
   itemsep=0.35\baselineskip]
-  \taskdescription{GEP01}{Preparar la entrega 1}{Preparar la primera entrega de GEP, centrada en el contexto, el
+  \taskdescription{GEP01}{6}{Preparar la entrega 1}{Preparar la primera entrega de GEP, centrada en el contexto, el
   alcance, los objetivos y la justificación del proyecto, e incorporar las
   observaciones recibidas.}
-  \taskdescription{GEP02}{Preparar la entrega 2}{Elaborar la segunda entrega de GEP con la planificación temporal,
+  \taskdescription{GEP02}{6}{Preparar la entrega 2}{Elaborar la segunda entrega de GEP con la planificación temporal,
   la estimación del esfuerzo, las dependencias, los recursos, el Gantt y la
   gestión de riesgos.}
-  \taskdescription{GEP03}{Preparar la entrega 3}{Preparar la tercera entrega de GEP mediante un presupuesto y un
+  \taskdescription{GEP03}{5}{Preparar la entrega 3}{Preparar la tercera entrega de GEP mediante un presupuesto y un
   análisis económico coherentes con los recursos realmente previstos.
   }
-  \taskdescription{GEP04}{Realizar el seguimiento y control}{Revisar periódicamente el avance, las horas empleadas, los riesgos
+  \taskdescription{GEP04}{7}{Realizar el seguimiento y control}{Revisar periódicamente el avance, las horas empleadas, los riesgos
   y los acuerdos con la dirección, y actualizar la planificación cuando aparezca
   una desviación relevante.}
-  \taskdescription{GEP05}{Redactar la memoria}{Redactar la memoria de forma continua, manteniendo alineados el
-  texto, las figuras, las tablas, las referencias y la trazabilidad de las
+  \taskdescription{GEP05}{60}{Redactar la memoria}{Redactar la memoria de forma continua, cumpliendo con la estructura y el contenido
+  esperado, explicando el proceso y los resultados obtenidos,  manteniendo las referencias y la trazabilidad de las
   decisiones y los experimentos.}
-  \taskdescription{GEP06}{Preparar y realizar la defensa}{Preparar el material de la defensa, ensayar la presentación,
+  \taskdescription{GEP06}{6}{Preparar y realizar la defensa}{Preparar el material de la defensa, ensayar la presentación,
   completar los trámites académicos y realizar la exposición final; el
   demostrador solo se incluirá si el alcance principal ya está cubierto.}
 \end{description}
@@ -115,45 +119,56 @@ El código de cada tarea indica su tipo:
 \noindent\textbf{Desarrollo técnico}\par\nobreak\smallskip
 \begin{description}[leftmargin=0pt,labelwidth=0pt,labelsep=0pt,
   itemsep=0.35\baselineskip]
-  \taskdescription{DT01}{Preparar el entorno reproducible}{Configurar en el portátil los repositorios, las dependencias, las
+  \taskdescription{DT01}{12}{Preparar el entorno reproducible}{Configurar en el portátil los repositorios, las dependencias, las
   pruebas y la estructura de experimentos necesarios para reproducir el trabajo.
   }
-  \taskdescription{DT02}{Adquirir y validar los datos}{Descargar los datos de forma controlada y comprobar su integridad,
-  su organización y una muestra representativa antes de procesarlos.
+  \taskdescription{DT02}{18}{Adquirir y validar los datos}{Descargar los datos de forma controlada y comprobar la integridad de
+  los archivos, la correspondencia entre imágenes y metadatos y la validez de
+  las variables objetivo; registrar las exclusiones necesarias antes del
+  procesamiento.
   }
-  \taskdescription{DT03}{Construir el flujo de datos}{Construir un flujo reproducible que extraiga los fotogramas,
-  cargue los ejemplos, aplique las transformaciones y gestione la caché.
+  \taskdescription{DT03}{28}{Construir el flujo de datos}{Construir un flujo reproducible que extraiga los fotogramas según
+  una configuración explícita, los vincule con sus variables objetivo y aplique
+  de forma consistente las transformaciones, el almacenamiento intermedio y la
+  carga por lotes.
   }
-  \taskdescription{DT04}{Implementar particiones y controles de fuga}{Implementar las particiones por plato y controles automáticos que
-  eviten que información del mismo plato aparezca en conjuntos distintos.
+  \taskdescription{DT04}{14}{Implementar particiones y unificar datos}{Implementar las particiones por plato y controles automáticos que
+  eviten que información del mismo plato aparezca en conjuntos distintos. Plantear e implementar la unión de diferentes datasets,
+  de forma que se puedan entrenar y evaluar los modelos con más datos y diversidad.
   }
-  \taskdescription{DT05}{Implementar y ejecutar la línea base}{Implementar y ejecutar el predictor basado en la media del conjunto
-  de entrenamiento para obtener una referencia sencilla con el protocolo común.
+  \taskdescription{DT05}{14}{Implementar y ejecutar la línea base}{Implementar y ejecutar el predictor basado en la media del conjunto
+  de entrenamiento para obtener una referencia sencilla con el protocolo común, definiendo de esta manera un protocolo de ejecución, entrenamiento, testeo y evaluación
+  predefinidos sobre los que desarrollar los siguientes pasos.
   }
-  \taskdescription{DT06}{Implementar la CNN}{Implementar una CNN con una salida conjunta para masa, calorías,
-  grasas, carbohidratos y proteínas, integrada en el flujo experimental común.
+  \taskdescription{DT06}{24}{Implementar la CNN}{Definir e implementar una CNN con una salida conjunta para masa,
+  calorías, grasas, carbohidratos y proteínas; integrarla en la interfaz común
+  y verificar su funcionamiento con una prueba mínima antes de entrenarla.
   }
-  \taskdescription{DT07}{Entrenar y ajustar la CNN}{Entrenar la CNN, ajustar un conjunto acotado de configuraciones y
+  \taskdescription{DT07}{34}{Entrenar y ajustar la CNN}{Entrenar la CNN, ajustar un conjunto acotado de configuraciones y
   conservar los registros y el punto de control necesarios para evaluarla.
   }
-  \taskdescription{DT08}{Adaptar MobileNet}{Adaptar MobileNet mediante una cabeza de regresión multisalida y
-  definir una estrategia de ajuste comparable con el resto de modelos.
+  \taskdescription{DT08}{24}{Adaptar MobileNet}{Sustituir la salida de MobileNet por una cabeza de regresión para las
+  cinco variables objetivo, incorporar el preprocesamiento requerido e integrar
+  el modelo en la misma interfaz de entrenamiento y evaluación que la CNN.
   }
-  \taskdescription{DT09}{Entrenar y ajustar MobileNet}{Entrenar y ajustar MobileNet con el protocolo común, registrando
+  \taskdescription{DT09}{34}{Entrenar y ajustar MobileNet}{Entrenar y ajustar MobileNet con el protocolo común, registrando
   las configuraciones, los puntos de control y el coste del proceso.
   }
-  \taskdescription{DT10}{Adaptar un transformador visual}{Adaptar un transformador visual a la regresión de las cinco
-  variables nutricionales sin alterar las condiciones comunes de evaluación.
+  \taskdescription{DT10}{26}{Adaptar un transformador visual}{Configurar un transformador visual para aceptar las imágenes del
+  flujo común y predecir conjuntamente las cinco variables objetivo; integrarlo
+  sin modificar las particiones ni las condiciones comunes de evaluación.
   }
-  \taskdescription{DT11}{Entrenar y ajustar el transformador}{Entrenar y ajustar el transformador con una búsqueda acotada y
+  \taskdescription{DT11}{36}{Entrenar y ajustar el transformador}{Entrenar y ajustar el transformador con una búsqueda acotada y
   conservar los artefactos necesarios para reproducir el modelo seleccionado.
   }
-  \taskdescription{DT12}{Convertir y cuantizar los modelos}{Convertir a LiteRT los modelos candidatos y estudiar una
-  cuantización compatible, comprobando que la salida se mantiene dentro de la
-  tolerancia que se defina en el protocolo.}
-  \newpage
-  \taskdescription{DT13}{Validar la ejecución \emph{edge}}{Ejecutar al menos un modelo en el entorno \emph{edge} seleccionado
-  y medir su latencia, memoria disponible y limitaciones prácticas.
+  \taskdescription{DT12}{20}{Convertir y cuantizar los modelos}{Exportar a LiteRT los modelos candidatos y aplicar las opciones
+  de cuantización que resulten compatibles; comparar sus predicciones con las
+  del modelo original y registrar el tamaño, la compatibilidad y cualquier
+  degradación observada.}
+  \taskdescription{DT13}{16}{Validar la ejecución \emph{edge}}{Desplegar y ejecutar al menos un modelo convertido en el entorno
+  \emph{edge} seleccionado; comprobar la inferencia de extremo a extremo y medir
+  la latencia y, cuando sea posible, el consumo de memoria bajo condiciones
+  documentadas.
   }
 \end{description}
 
@@ -161,34 +176,38 @@ El código de cada tarea indica su tipo:
 \noindent\textbf{Análisis de resultados}\par\nobreak\smallskip
 \begin{description}[leftmargin=0pt,labelwidth=0pt,labelsep=0pt,
   itemsep=0.35\baselineskip]
-  \taskdescription{AR01}{Aplicar la evaluación común}{Aplicar a la línea base y a todos los modelos las mismas
-  particiones y métricas, conservando las predicciones por variable objetivo.
+  \taskdescription{AR01}{28}{Aplicar la evaluación común}{Generar las predicciones de la línea base y de todos los modelos
+  sobre las mismas particiones, calcular por variable las métricas definidas en
+  el protocolo y conservar las predicciones y configuraciones que permitan
+  reproducir la comparación.
   }
-  \taskdescription{AR02}{Analizar errores y robustez}{Examinar los errores, los casos difíciles y los posibles sesgos
+  \taskdescription{AR02}{18}{Analizar errores y robustez}{Examinar los errores, los casos difíciles y los posibles sesgos
   observables para identificar límites de generalización y causas plausibles.
   }
-  \taskdescription{AR03}{Sintetizar la comparación}{Comparar precisión y coste computacional, sintetizar los resultados
+  \taskdescription{AR03}{20}{Sintetizar la comparación}{Comparar precisión y coste computacional, sintetizar los resultados
   en tablas y gráficos y responder a la pregunta de investigación con la
   evidencia obtenida.}
-  \taskdescription{AR04}{Analizar sostenibilidad y ética}{Analizar las implicaciones de privacidad, sesgo, seguridad,
+  \taskdescription{AR04}{12}{Analizar sostenibilidad y ética}{Analizar las implicaciones de privacidad, sesgo, seguridad,
   consumo de recursos, explicabilidad y posible uso indebido del sistema.
   }
 \end{description}
 
 \subsection{Resumen de horas, dependencias y recursos}
 
-En la tabla, ``Pred.'' identifica las tareas predecesoras. Los recursos
+En la tabla, ``Pred.'' identifica las tareas que deben finalizar antes de que
+comience la actividad indicada. Cuando no se indica una predecesora, la tarea
+puede iniciarse en paralelo con las demás actividades iniciales. Los recursos
 R1-A--R1-D y R2--R6 se describen en la
 sección~\ref{sec:planificacion-recursos}.
 
 \newpage
 \begingroup
-  \small
+  \footnotesize
   \setlength{\tabcolsep}{3pt}
   \renewcommand{\arraystretch}{0.96}
   \setlength{\LTleft}{0pt}
   \setlength{\LTright}{0pt}
-  \begin{longtable}{C{1.0cm}L{6.35cm}C{0.5cm}L{3.4cm}L{2.85cm}}
+  \begin{longtable}{C{1.12cm}L{6.11cm}C{0.62cm}L{3.4cm}L{2.85cm}}
     \toprule
     \textbf{Cód.} & \textbf{Tarea} & \textbf{h} &
     \textbf{Pred.} & \textbf{Recursos} \\
@@ -204,10 +223,12 @@ sección~\ref{sec:planificacion-recursos}.
     \multicolumn{5}{r}{\small Continúa en la página siguiente} \\
     \endfoot
     \bottomrule
+    \caption[Tareas del proyecto]{Tareas del proyecto con horas, dependencias y
+    recursos. Elaboración propia.}\label{tab:tareas-proyecto}\\
     \endlastfoot
     EP01 & Revisar el estado del arte & 28 & -- & R1-B, R3, R6 \\
-    EP02 & Analizar los datos y requisitos & 20 & EP01 & R1-B, R3 \\
-    EP03 & Definir el protocolo experimental & 14 & EP01, EP02 & R1-A, R1-B, R1-D, R2, R6 \\
+    EP02 & Analizar los datos y requisitos & 20 & -- & R1-B, R3 \\
+    EP03 & Definir el protocolo experimental & 14 & -- & R1-A, R1-B, R1-D, R2, R6 \\
     EP04 & Estudiar alternativas de despliegue & 10 & EP03 & R1-B, R1-C, R3, R5 \\
     \midrule
     & \textbf{Subtotal Estudio Previo} & \textbf{72} & & \\
@@ -215,17 +236,17 @@ sección~\ref{sec:planificacion-recursos}.
     GEP01 & Preparar la entrega 1 & 6 & -- & R1-A, R2, R6 \\
     GEP02 & Preparar la entrega 2 & 6 & GEP01 & R1-A, R2, R6 \\
     GEP03 & Preparar la entrega 3 & 5 & GEP02 & R1-A, R2, R6 \\
-    GEP04 & Realizar el seguimiento y control & 7 & GEP01 & R1-A, R2, R6 \\
-    GEP05 & Redactar la memoria & 60 & EP03; cierre tras AR04 & R1-A--R1-D, R2, R6 \\
+    GEP04 & Realizar el seguimiento y control & 7 & -- & R1-A, R2, R6 \\
+    GEP05 & Redactar la memoria & 60 & -- & R1-A--R1-D, R2, R6 \\
     GEP06 & Preparar y realizar la defensa & 6 & GEP05, AR04 & R1-A, R1-D, R2, R3, R6 \\
     \midrule
     & \textbf{Subtotal Gestión del Proyecto} & \textbf{90} & & \\
     \midrule
-    DT01 & Preparar el entorno reproducible & 12 & EP03 & R1-C, R3, R6 \\
-    DT02 & Adquirir y validar los datos & 18 & EP02, DT01 & R1-B, R1-C, R3 \\
-    DT03 & Construir el flujo de datos & 28 & DT02 & R1-C, R3 \\
-    DT04 & Implementar particiones y controles de fuga & 14 & DT03, EP03 & R1-B, R1-C, R3 \\
-    DT05 & Implementar y ejecutar la línea base & 14 & DT04 & R1-C, R3 \\
+    DT01 & Preparar el entorno reproducible & 12 & -- & R1-C, R3, R6 \\
+    DT02 & Adquirir y validar los datos & 18 & -- & R1-B, R1-C, R3 \\
+    DT03 & Construir el flujo de datos & 28 & -- & R1-C, R3 \\
+    DT04 & Implementar particiones, controles de fuga y unión de datos & 14 & -- & R1-B, R1-C, R3 \\
+    DT05 & Implementar y ejecutar la línea base & 14 & -- & R1-C, R3 \\
     DT06 & Implementar la CNN & 24 & DT05 & R1-C, R3 \\
     DT07 & Entrenar y ajustar la CNN & 34 & DT06 & R1-C, R3, R4 \\
     DT08 & Adaptar MobileNet & 24 & DT05 & R1-C, R3 \\
@@ -245,8 +266,6 @@ sección~\ref{sec:planificacion-recursos}.
     & \textbf{Subtotal Análisis de Resultados} & \textbf{78} & & \\
     \midrule
     & \textbf{Total del proyecto} & \textbf{540} & & \\
-    \caption[Tareas del proyecto]{Tareas del proyecto con horas, dependencias y
-    recursos. Elaboración propia.}\label{tab:tareas-proyecto}\\
   \end{longtable}
 \endgroup
 
@@ -295,7 +314,7 @@ las horas reales y una nueva estimación del trabajo restante.
     M1 & 02/10/2026 & MVP reproducible: datos, particiones, línea base y métricas. \\
     M2 & 11/12/2026 & Tres familias entrenadas y evaluadas con el mismo protocolo. \\
     M3 & 15/01/2027 & Comparación final, validación \emph{edge} y memoria técnicamente cerrada. \\
-    M4 & 29/01/2027 & Depósito y defensa completados; fecha oficial pendiente de Racó. \\
+    M4 & 29/01/2027 & Depósito y defensa completados; fecha oficial pendiente de definir. \\
     \bottomrule
   \end{tabularx}
   \caption[Hitos de control]{Hitos y criterios utilizados para controlar el
@@ -347,7 +366,7 @@ GEP05 representan actividad periódica, no una dedicación diaria continua.
     \ganttbar{DT01 Entorno reproducible}{1}{1}\\
     \ganttbar{DT02 Adquisición y validación}{1}{2}\\
     \ganttbar{DT03 Flujo de datos}{1}{3}\\
-    \ganttbar{DT04 Particiones y fugas}{3}{3}\\
+    \ganttbar{DT04 Particiones, fugas y unión de datos}{3}{3}\\
     \ganttbar{DT05 Línea base}{3}{3}\\
     \ganttmilestone{M1 MVP}{3}\\
     \ganttbar{DT06 CNN implementación}{4}{4}\\
@@ -361,15 +380,15 @@ GEP05 representan actividad periódica, no una dedicación diaria continua.
     \ganttbar{DT13 Validación edge}{17}{17}\\
     \ganttgroup{AR Análisis de Resultados (78 h)}{6}{18}\\
     \ganttbar[bar/.append style={fill=amber!62,draw=amber}]{AR01 Evaluación común}{6}{13}\\
-    \ganttbar[bar/.append style={fill=amber!62,draw=amber}]{AR02 Errores y robustez}{13}{14}\\
-    \ganttbar[bar/.append style={fill=amber!62,draw=amber}]{AR03 Síntesis comparativa}{17}{18}\\
+    \ganttbar[bar/.append style={fill=amber!62,draw=amber}]{AR02 Errores y robustez}{14}{15}\\
+    \ganttbar[bar/.append style={fill=amber!62,draw=amber}]{AR03 Síntesis comparativa}{18}{18}\\
     \ganttbar[bar/.append style={fill=amber!62,draw=amber}]{AR04 Sostenibilidad y ética}{15}{18}\\
     \ganttgroup{GEP Gestión del Proyecto (90 h)}{1}{20}\\
-    \ganttbar[bar/.append style={fill=green!68,draw=green!85!black}]{GEP01 Entrega 1 alcance y objetivos (6 h)}{1}{2}\\
-    \ganttbar[bar/.append style={fill=green!68,draw=green!85!black}]{GEP02 Entrega 2 planificación (6 h)}{2}{3}\\
-    \ganttbar[bar/.append style={fill=green!68,draw=green!85!black}]{GEP03 Entrega 3 presupuesto (5 h)}{4}{5}\\
+    \ganttbar[bar/.append style={fill=green!68,draw=green!85!black}]{GEP01 Entrega 1 alcance y objetivos (6 h)}{1}{1}\\
+    \ganttbar[bar/.append style={fill=green!68,draw=green!85!black}]{GEP02 Entrega 2 planificación (6 h)}{2}{2}\\
+    \ganttbar[bar/.append style={fill=green!68,draw=green!85!black}]{GEP03 Entrega 3 presupuesto (5 h)}{3}{3}\\
     \ganttbar[bar/.append style={fill=green!68,draw=green!85!black}]{GEP04 Seguimiento y control (7 h)}{1}{20}\\
-    \ganttbar[bar/.append style={fill=green!68,draw=green!85!black}]{GEP05 Documentación memoria (60 h)}{1}{19}\\
+    \ganttbar[bar/.append style={fill=green!68,draw=green!85!black}]{GEP05 Documentación memoria (60 h)}{1}{18}\\
     \ganttmilestone{M3 Fin técnico}{18}\\
     \ganttbar[bar/.append style={fill=green!68,draw=green!85!black}]{GEP06 Defensa (6 h)}{19}{20}\\
     \ganttmilestone{M4 Fin FIB}{20}
