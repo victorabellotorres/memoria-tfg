@@ -32,13 +32,13 @@ A continuación, se especifican los datos globales de la planificación temporal
   \begin{tabularx}{\textwidth}{>{\bfseries}L{4.2cm}Y}
     \toprule
     Inicio del trabajo & 14/09/2026 \\
-    Fin técnico del proyecto & 15/01/2027 \\
+    Fin técnico del proyecto & 08/01/2027 \\
     Hito de seguimiento & 17/12/2026 (Fecha límite) \\
-    Lectura prevista del TFG & 19/01/2027-25/01/2027 \\
-    Entrega de la memoria & Una semana antes de la defensa\citep{TrabajoFinGrado} \\
+    Entrega de la memoria & Entre el 12/01/2027 y el 18/01/2027, una semana antes de la defensa\citep{TrabajoFinGrado} \\
+    Defensa del TFG & Entre el 19/01/2027 y el 25/01/2027 (día exacto a concretar) \\
     Esfuerzo total & 540 horas (90h GEP / 450h proyecto técnico) \\
-    Ritmo aproximado & 4 h/día, de lunes a viernes; dedicación variable los fines de semana \\
-    Horizonte temporal & 20 semanas naturales, 18 antes del cierre técnico \\
+    Ritmo aproximado & $\approx$20 h entre semana (4 h/día, de lunes a viernes) y $\approx$12 h en fin de semana (dedicación variable): $\approx$32 h/semana de media \\
+    Horizonte temporal & 20 semanas naturales, 17 hasta el fin técnico \\
     Responsable & Estudiante, con supervisión del director y codirector \\
     \bottomrule
   \end{tabularx}
@@ -77,18 +77,22 @@ El código de cada tarea indica su tipo:
   itemsep=0.35\baselineskip]
   \taskdescription{EP01}{28}{Revisar el estado del arte}{Revisar la bibliografía relevante sobre estimación nutricional a
   partir de imágenes y comparar los modelos, conjuntos de datos, métricas y
-  limitaciones descritos en trabajos anteriores.}
+  limitaciones descritos en trabajos anteriores.
+  \emph{Estimación:} $\approx$10 trabajos clave a $\approx$2 h de lectura, notas y análisis por cada uno, más $\approx$8 h de síntesis comparativa.}
   \taskdescription{EP02}{20}{Analizar los datos y requisitos}{Examinar la documentación y la estructura de Nutrition5k y de las
   demás fuentes consideradas; identificar las entradas, las variables objetivo,
   los posibles problemas de calidad y las restricciones que deberá satisfacer
-  el flujo experimental.}
+  el flujo experimental.
+  \emph{Estimación:} $\approx$12 h para la documentación y la estructura de Nutrition5k y $\approx$8 h para las demás fuentes y los requisitos.}
   \taskdescription{EP03}{14}{Definir el protocolo experimental}{Definir antes de los experimentos las particiones, las métricas,
   las comparaciones y los controles necesarios para evaluar todos los modelos
-  bajo las mismas condiciones.}
+  bajo las mismas condiciones.
+  \emph{Estimación:} $\approx$6 h para particiones y métricas, $\approx$4 h para comparaciones y controles y $\approx$4 h de revisión con la dirección.}
   \taskdescription{EP04}{10}{Estudiar alternativas de despliegue}{Comparar las opciones de conversión, cuantización y ejecución
   en un entorno \emph{edge}; identificar las restricciones de LiteRT, los
   operadores compatibles y el procedimiento con el que se medirá el modelo en
-  el dispositivo que finalmente se seleccione.}
+  el dispositivo que finalmente se seleccione.
+  \emph{Estimación:} $\approx$5 h para LiteRT y cuantización, $\approx$3 h para operadores compatibles y $\approx$2 h para el procedimiento de medición.}
 \end{description}
 
 \medskip
@@ -97,22 +101,27 @@ El código de cada tarea indica su tipo:
   itemsep=0.35\baselineskip]
   \taskdescription{GEP01}{6}{Preparar la entrega 1}{Preparar la primera entrega de GEP, centrada en el contexto, el
   alcance, los objetivos y la justificación del proyecto, e incorporar las
-  observaciones recibidas.}
+  observaciones recibidas.
+  \emph{Estimación:} $\approx$5 h de redacción y decisiones, $\approx$1 h para incorporar las observaciones.}
   \taskdescription{GEP02}{6}{Preparar la entrega 2}{Elaborar la segunda entrega de GEP con la planificación temporal,
   la estimación del esfuerzo, las dependencias, los recursos, el Gantt y la
-  gestión de riesgos.}
+  gestión de riesgos.
+  \emph{Estimación:} $\approx$4 h de redacción y $\approx$1 h para el Gantt y $\approx$1 h para incorporar las observaciones.}
   \taskdescription{GEP03}{5}{Preparar la entrega 3}{Preparar la tercera entrega de GEP mediante un presupuesto y un
   análisis económico coherentes con los recursos realmente previstos.
-  }
+  \emph{Estimación:} $\approx$2 h para el presupuesto, $\approx$1 h de redacción y $\approx$1 h para incorporar las observaciones.}
   \taskdescription{GEP04}{7}{Realizar el seguimiento y control}{Revisar periódicamente el avance, las horas empleadas, los riesgos
   y los acuerdos con la dirección, y actualizar la planificación cuando aparezca
-  una desviación relevante.}
+  una desviación relevante.
+  \emph{Estimación:} $\approx$25 min semanales durante 17 semanas.}
   \taskdescription{GEP05}{60}{Redactar la memoria}{Redactar la memoria de forma continua, cumpliendo con la estructura y el contenido
   esperado, explicando el proceso y los resultados obtenidos,  manteniendo las referencias y la trazabilidad de las
-  decisiones y los experimentos.}
+  decisiones y los experimentos.
+  \emph{Estimación:} $\approx$3,5 h semanales de media durante 17 semanas.}
   \taskdescription{GEP06}{6}{Preparar y realizar la defensa}{Preparar el material de la defensa, ensayar la presentación,
   completar los trámites académicos y realizar la exposición final; el
-  demostrador solo se incluirá si el alcance principal ya está cubierto.}
+  demostrador solo se incluirá si el alcance principal ya está cubierto.
+  \emph{Estimación:} $\approx$3 h de material, $\approx$2 h de ensayo y $\approx$1 h de trámites y exposición.}
 \end{description}
 
 \medskip
@@ -121,55 +130,56 @@ El código de cada tarea indica su tipo:
   itemsep=0.35\baselineskip]
   \taskdescription{DT01}{12}{Preparar el entorno reproducible}{Configurar en el portátil los repositorios, las dependencias, las
   pruebas y la estructura de experimentos necesarios para reproducir el trabajo.
-  }
+  \emph{Estimación:} $\approx$6 h para repositorios y dependencias y $\approx$6 h para pruebas y estructura de experimentos.}
   \taskdescription{DT02}{18}{Adquirir y validar los datos}{Descargar los datos de forma controlada y comprobar la integridad de
   los archivos, la correspondencia entre imágenes y metadatos y la validez de
   las variables objetivo; registrar las exclusiones necesarias antes del
   procesamiento.
-  }
+  \emph{Estimación:} $\approx$8 h de descarga controlada y $\approx$10 h de comprobaciones de integridad y correspondencia; parte ya realizada.}
   \taskdescription{DT03}{28}{Construir el flujo de datos}{Construir un flujo reproducible que extraiga los fotogramas según
   una configuración explícita, los vincule con sus variables objetivo y aplique
   de forma consistente las transformaciones, el almacenamiento intermedio y la
   carga por lotes.
-  }
+  \emph{Estimación:} $\approx$12 h para la extracción configurable de fotogramas, $\approx$8 h para vincularlos con las variables objetivo y $\approx$8 h para transformaciones y carga por lotes; parte ya realizada.}
   \taskdescription{DT04}{14}{Implementar particiones y unificar datos}{Implementar las particiones por plato y controles automáticos que
   eviten que información del mismo plato aparezca en conjuntos distintos. Plantear e implementar la unión de diferentes datasets,
   de forma que se puedan entrenar y evaluar los modelos con más datos y diversidad.
-  }
+  \emph{Estimación:} $\approx$8 h para particiones y controles de fuga y $\approx$6 h para la unión de datasets.}
   \taskdescription{DT05}{14}{Implementar y ejecutar la línea base}{Implementar y ejecutar el predictor basado en la media del conjunto
   de entrenamiento para obtener una referencia sencilla con el protocolo común, definiendo de esta manera un protocolo de ejecución, entrenamiento, testeo y evaluación
   predefinidos sobre los que desarrollar los siguientes pasos.
-  }
+  \emph{Estimación:} $\approx$6 h de implementación y $\approx$8 h para fijar el protocolo de ejecución y evaluación; parte ya realizada.}
   \taskdescription{DT06}{24}{Implementar la CNN}{Definir e implementar una CNN con una salida conjunta para masa,
   calorías, grasas, carbohidratos y proteínas; integrarla en la interfaz común
   y verificar su funcionamiento con una prueba mínima antes de entrenarla.
-  }
+  \emph{Estimación:} $\approx$14 h de diseño e implementación y $\approx$10 h de integración y prueba mínima.}
   \taskdescription{DT07}{34}{Entrenar y ajustar la CNN}{Entrenar la CNN, ajustar un conjunto acotado de configuraciones y
   conservar los registros y el punto de control necesarios para evaluarla.
-  }
+  \emph{Estimación:} $\approx$6 configuraciones a $\approx$5 h de preparación, lanzamiento y registro cada una, más $\approx$4 h de margen.}
   \taskdescription{DT08}{24}{Adaptar MobileNet}{Sustituir la salida de MobileNet por una cabeza de regresión para las
   cinco variables objetivo, incorporar el preprocesamiento requerido e integrar
   el modelo en la misma interfaz de entrenamiento y evaluación que la CNN.
-  }
+  \emph{Estimación:} $\approx$10 h para la cabeza de regresión, $\approx$6 h de preprocesamiento y $\approx$8 h de integración y pruebas.}
   \taskdescription{DT09}{34}{Entrenar y ajustar MobileNet}{Entrenar y ajustar MobileNet con el protocolo común, registrando
   las configuraciones, los puntos de control y el coste del proceso.
-  }
+  \emph{Estimación:} $\approx$6 configuraciones a $\approx$5 h de preparación, lanzamiento y registro cada una, más $\approx$4 h de margen.}
   \taskdescription{DT10}{26}{Adaptar un transformador visual}{Configurar un transformador visual para aceptar las imágenes del
   flujo común y predecir conjuntamente las cinco variables objetivo; integrarlo
   sin modificar las particiones ni las condiciones comunes de evaluación.
-  }
+  \emph{Estimación:} $\approx$10 h de configuración, $\approx$8 h para adaptar la entrada y $\approx$8 h de integración y pruebas; mayor incertidumbre por memoria.}
   \taskdescription{DT11}{36}{Entrenar y ajustar el transformador}{Entrenar y ajustar el transformador con una búsqueda acotada y
   conservar los artefactos necesarios para reproducir el modelo seleccionado.
-  }
+  \emph{Estimación:} $\approx$6 configuraciones a $\approx$5 h cada una, más $\approx$6 h de margen por su mayor coste.}
   \taskdescription{DT12}{20}{Convertir y cuantizar los modelos}{Exportar a LiteRT los modelos candidatos y aplicar las opciones
   de cuantización que resulten compatibles; comparar sus predicciones con las
   del modelo original y registrar el tamaño, la compatibilidad y cualquier
-  degradación observada.}
+  degradación observada.
+  \emph{Estimación:} $\approx$10 h de exportación, $\approx$6 h de cuantización y $\approx$4 h de comparación con el modelo original.}
   \taskdescription{DT13}{16}{Validar la ejecución \emph{edge}}{Desplegar y ejecutar al menos un modelo convertido en el entorno
   \emph{edge} seleccionado; comprobar la inferencia de extremo a extremo y medir
   la latencia y, cuando sea posible, el consumo de memoria bajo condiciones
   documentadas.
-  }
+  \emph{Estimación:} $\approx$6 h de despliegue, $\approx$6 h de medición y $\approx$4 h de margen por la incertidumbre del dispositivo.}
 \end{description}
 
 \medskip
@@ -180,16 +190,17 @@ El código de cada tarea indica su tipo:
   sobre las mismas particiones, calcular por variable las métricas definidas en
   el protocolo y conservar las predicciones y configuraciones que permitan
   reproducir la comparación.
-  }
+  \emph{Estimación:} $\approx$10 h de scripts de evaluación, $\approx$10 h de ejecución y registro y $\approx$8 h de reproducibilidad.}
   \taskdescription{AR02}{18}{Analizar errores y robustez}{Examinar los errores, los casos difíciles y los posibles sesgos
   observables para identificar límites de generalización y causas plausibles.
-  }
+  \emph{Estimación:} $\approx$8 h de errores por variable, $\approx$6 h de casos difíciles y $\approx$4 h de sesgos.}
   \taskdescription{AR03}{20}{Sintetizar la comparación}{Comparar precisión y coste computacional, sintetizar los resultados
   en tablas y gráficos y responder a la pregunta de investigación con la
-  evidencia obtenida.}
+  evidencia obtenida.
+  \emph{Estimación:} $\approx$8 h de tablas y gráficos, $\approx$8 h de comparación precisión-coste y $\approx$4 h para responder a la pregunta.}
   \taskdescription{AR04}{12}{Analizar sostenibilidad y ética}{Analizar las implicaciones de privacidad, sesgo, seguridad,
   consumo de recursos, explicabilidad y posible uso indebido del sistema.
-  }
+  \emph{Estimación:} $\approx$2 h por cada dimensión: privacidad, sesgo, seguridad, recursos, explicabilidad y uso indebido.}
 \end{description}
 
 \subsection{Resumen de horas, dependencias y recursos}
@@ -295,7 +306,7 @@ planificación.
 \section{Control de seguimiento}
 \label{sec:control-seguimiento}
 
-Los hitos M1--M4 se utilizarán como puntos formales de control del seguimiento.
+Los hitos M1--M5 se utilizarán como puntos formales de control del seguimiento.
 En cada fecha objetivo se comparará el criterio observable con el estado real,
 las horas consumidas y los riesgos abiertos. Si un criterio no se cumple, se
 registrará la desviación y se activará una replanificación o el plan alternativo
@@ -311,10 +322,11 @@ las horas reales y una nueva estimación del trabajo restante.
     \toprule
     \textbf{Hito} & \textbf{Fecha objetivo} & \textbf{Criterio observable} \\
     \midrule
-    M1 & 02/10/2026 & MVP reproducible: datos, particiones, línea base y métricas. \\
+    M1 & 23/10/2026 & MVP reproducible: datos, particiones, línea base y métricas. \\
     M2 & 11/12/2026 & Tres familias entrenadas y evaluadas con el mismo protocolo. \\
-    M3 & 15/01/2027 & Comparación final, validación \emph{edge} y memoria técnicamente cerrada. \\
-    M4 & 29/01/2027 & Depósito y defensa completados; fecha oficial pendiente de definir. \\
+    M3 & 08/01/2027 & Comparación final, validación \emph{edge} y memoria técnicamente cerrada. \\
+    M4 & 12/01/2027-18/01/2027 & Memoria entregada, una semana antes de la defensa.. \\
+    M5 & 19/01/2027-25/01/2027 & Defensa realizada, día exacto a concretar. \\
     \bottomrule
   \end{tabularx}
   \caption[Hitos de control]{Hitos y criterios utilizados para controlar el
@@ -329,7 +341,11 @@ las horas reales y una nueva estimación del trabajo restante.
 
 Cada columna de la figura~\ref{fig:gantt-planificacion} representa una semana.
 Los códigos y colores muestran el tipo de tarea. Las barras largas de GEP04 y
-GEP05 representan actividad periódica, no una dedicación diaria continua.
+GEP05 representan actividad periódica, no una dedicación diaria continua. Repartiendo cada tarea de forma
+uniforme entre sus semanas, la carga semanal resultante oscila entre $\approx$17 y
+$\approx$35\,h, con $\approx$102\,h en las tres primeras semanas. El cómputo desatendido
+no se contabiliza y la concurrencia de tareas no duplica horas: las 540 h son
+dedicación activa.
 
 \begin{figure}[H]
   \centering
@@ -358,48 +374,46 @@ GEP05 representan actividad periódica, no una dedicación diaria continua.
     \gantttitle{Sep.}{3}\gantttitle{Oct.}{4}\gantttitle{Nov.}{4}\gantttitle{Dic.}{5}\gantttitle{Ene.}{4}\\
     \gantttitlelist{1,...,20}{1}\\
     \ganttgroup{EP Estudio Previo (72 h)}{1}{14}\\
-    \ganttbar[bar/.append style={fill=purple!58,draw=purple}]{EP01 Estado del arte}{1}{5}\\
-    \ganttbar[bar/.append style={fill=purple!58,draw=purple}]{EP02 Datos y requisitos}{1}{3}\\
-    \ganttbar[bar/.append style={fill=purple!58,draw=purple}]{EP03 Protocolo experimental}{2}{3}\\
+    \ganttbar[bar/.append style={fill=purple!58,draw=purple}]{EP01 Estado del arte}{1}{6}\\
+    \ganttbar[bar/.append style={fill=purple!58,draw=purple}]{EP02 Datos y requisitos}{1}{4}\\
+    \ganttbar[bar/.append style={fill=purple!58,draw=purple}]{EP03 Protocolo experimental}{3}{5}\\
     \ganttbar[bar/.append style={fill=purple!58,draw=purple}]{EP04 Alternativas edge}{13}{14}\\
-    \ganttgroup{DT Desarrollo Técnico (300 h)}{1}{17}\\
+    \ganttgroup{DT Desarrollo Técnico (300 h)}{1}{16}\\
     \ganttbar{DT01 Entorno reproducible}{1}{1}\\
-    \ganttbar{DT02 Adquisición y validación}{1}{2}\\
-    \ganttbar{DT03 Flujo de datos}{1}{3}\\
-    \ganttbar{DT04 Particiones, fugas y unión de datos}{3}{3}\\
-    \ganttbar{DT05 Línea base}{3}{3}\\
-    \ganttmilestone{M1 MVP}{3}\\
-    \ganttbar{DT06 CNN implementación}{4}{4}\\
-    \ganttbar{DT07 CNN entrenamiento}{5}{6}\\
-    \ganttbar{DT08 MobileNet adaptación}{7}{7}\\
-    \ganttbar{DT09 MobileNet entrenamiento}{8}{9}\\
-    \ganttbar{DT10 Transformer adaptación}{10}{10}\\
-    \ganttbar{DT11 Transformer entrenamiento}{11}{12}\\
+    \ganttbar{DT02 Adquisición y validación}{1}{4}\\
+    \ganttbar{DT03 Flujo de datos}{1}{6}\\
+    \ganttbar{DT04 Particiones, fugas y unión de datos}{4}{6}\\
+    \ganttbar{DT05 Línea base}{5}{6}\\
+    \ganttmilestone{M1 MVP}{6}\\
+    \ganttbar{DT06 CNN implementación}{6}{9}\\
+    \ganttbar{DT07 CNN entrenamiento}{7}{9}\\
+    \ganttbar{DT08 MobileNet adaptación}{7}{9}\\
+    \ganttbar{DT09 MobileNet entrenamiento}{10}{12}\\
+    \ganttbar{DT10 Transformer adaptación}{10}{13}\\
+    \ganttbar{DT11 Transformer entrenamiento}{10}{13}\\
     \ganttmilestone{M2 Modelos comparados}{13}\\
-    \ganttbar{DT12 Conversión y cuantización}{15}{16}\\
-    \ganttbar{DT13 Validación edge}{17}{17}\\
-    \ganttgroup{AR Análisis de Resultados (78 h)}{6}{18}\\
-    \ganttbar[bar/.append style={fill=amber!62,draw=amber}]{AR01 Evaluación común}{6}{13}\\
-    \ganttbar[bar/.append style={fill=amber!62,draw=amber}]{AR02 Errores y robustez}{14}{15}\\
-    \ganttbar[bar/.append style={fill=amber!62,draw=amber}]{AR03 Síntesis comparativa}{18}{18}\\
-    \ganttbar[bar/.append style={fill=amber!62,draw=amber}]{AR04 Sostenibilidad y ética}{15}{18}\\
+    \ganttbar{DT12 Conversión y cuantización}{14}{15}\\
+    \ganttbar{DT13 Validación edge}{16}{16}\\
+    \ganttgroup{AR Análisis de Resultados (78 h)}{7}{17}\\
+    \ganttbar[bar/.append style={fill=amber!62,draw=amber}]{AR01 Evaluación común}{7}{15}\\
+    \ganttbar[bar/.append style={fill=amber!62,draw=amber}]{AR02 Errores y robustez}{15}{16}\\
+    \ganttbar[bar/.append style={fill=amber!62,draw=amber}]{AR03 Síntesis comparativa}{17}{17}\\
+    \ganttbar[bar/.append style={fill=amber!62,draw=amber}]{AR04 Sostenibilidad y ética}{15}{17}\\
     \ganttgroup{GEP Gestión del Proyecto (90 h)}{1}{20}\\
     \ganttbar[bar/.append style={fill=green!68,draw=green!85!black}]{GEP01 Entrega 1 alcance y objetivos (6 h)}{1}{1}\\
     \ganttbar[bar/.append style={fill=green!68,draw=green!85!black}]{GEP02 Entrega 2 planificación (6 h)}{2}{2}\\
     \ganttbar[bar/.append style={fill=green!68,draw=green!85!black}]{GEP03 Entrega 3 presupuesto (5 h)}{3}{3}\\
-    \ganttbar[bar/.append style={fill=green!68,draw=green!85!black}]{GEP04 Seguimiento y control (7 h)}{1}{20}\\
-    \ganttbar[bar/.append style={fill=green!68,draw=green!85!black}]{GEP05 Documentación memoria (60 h)}{1}{18}\\
-    \ganttmilestone{M3 Fin técnico}{18}\\
-    \ganttbar[bar/.append style={fill=green!68,draw=green!85!black}]{GEP06 Defensa (6 h)}{19}{20}\\
-    \ganttmilestone{M4 Fin FIB}{20}
+    \ganttbar[bar/.append style={fill=green!68,draw=green!85!black}]{GEP04 Seguimiento y control (7 h)}{1}{17}\\
+    \ganttbar[bar/.append style={fill=green!68,draw=green!85!black}]{GEP05 Documentación memoria (60 h)}{1}{17}\\
+    \ganttmilestone{M3 Fin técnico}{17}\\
+    \ganttbar[bar/.append style={fill=green!68,draw=green!85!black}]{GEP06 Defensa (6 h)}{18}{20}\\
+    \ganttmilestone{M4 Entrega memoria}{18}\\
+    \ganttmilestone{M5 Defensa}{19}
   \end{ganttchart}
   \caption[Diagrama de Gantt]{Diagrama de Gantt clasificado por EP, DT, AR y
-  GEP. Las semanas se numeran desde el 14/09/2026. Elaboración propia.}
+  GEP. Las semanas se numeran desde el 14/09/2026; la defensa se sitúa entre las semanas 19 y 20. Elaboración propia.}
   \label{fig:gantt-planificacion}
 \end{figure}
-El tiempo de cómputo desatendido no se contabiliza como trabajo del estudiante.
-Las 540 horas corresponden a dedicación activa y la concurrencia del Gantt no
-implica duplicar horas.
 \end{landscape}
 
 \clearpage
@@ -443,7 +457,7 @@ desempeña, aunque todas recaigan sobre la misma persona.
     \midrule
     R3 & Ordenador portátil & Único equipo de desarrollo local: gestión, programación, preparación de datos, documentación, control de versiones, pruebas y los experimentos que permita su capacidad. \\
     R4 & Cómputo externo bajo demanda & Servicios en la nube o de proveedores de cómputo para los entrenamientos que excedan la capacidad del portátil. \\
-    R5 & Entorno \emph{edge} y LiteRT & Conversión, cuantización y medición en el dispositivo final, todavía por concretar (TBD). \\
+    R5 & Entorno \emph{edge} y LiteRT & Conversión, cuantización y medición en el dispositivo final, todavía por concretar. \\
     R6 & Git, LaTeX, Notion, VS Code, Python & Reproducibilidad, memoria, seguimiento, depósito y preparación de la defensa. \\
     \bottomrule
   \end{tabularx}
