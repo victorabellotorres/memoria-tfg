@@ -1,0 +1,264 @@
+\chapter{Gestión económica}
+\label{chap:gestion-economica}
+
+\begingroup
+\normalsize
+\setstretch{1.05}
+\setlength{\parskip}{0.3\baselineskip}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+El presupuesto parte de la planificación temporal: 540 horas repartidas en las
+tareas del diagrama de Gantt y los recursos R1--R6. Sigue la estructura
+propuesta en GEP: costes de personal por actividad (CPA), costes genéricos
+(CG), contingencia e imprevistos. Todos los importes se expresan en euros.
+
+\section{Costes de personal por actividad}
+\label{sec:cpa}
+
+El estudiante asume los cuatro roles de la planificación. El coste horario de
+cada rol corresponde a un perfil de recién graduado, ya que el TFG lo realiza una
+persona que se incorpora al mercado laboral. Por ello, se toma el mínimo del
+rango salarial habitual que publica Indeed España (septiembre de 2026) para el
+perfil más próximo, en lugar de la media. El salario bruto anual se divide entre 1\,760 horas
+anuales (220 días laborables de 8 horas) y se multiplica por 1,3 para incluir
+la cotización a la Seguridad Social.
+
+\begin{table}[H]
+  \centering
+  \small
+  \begin{tabularx}{\textwidth}{L{2.9cm}YR{1.6cm}R{1.3cm}R{1.5cm}}
+    \toprule
+    \textbf{Rol} & \textbf{Perfil de referencia} & \textbf{Bruto anual (mín.)} &
+    \textbf{Bruto/h} & \textbf{Coste/h (×1,3)} \\
+    \midrule
+    R1-A Jefe de proyecto & Jefe de proyecto \citep{SalarioJefeProyecto} & 25\,284\,€ & 14,37\,€ & 18,68\,€ \\
+    R1-B Investigador & Científico de datos \citep{SalarioDataScientist} & 27\,671\,€ & 15,72\,€ & 20,44\,€ \\
+    R1-C Desarrollador & Desarrollador de software \citep{SalarioDesarrolladorSoftware} & 22\,262\,€ & 12,65\,€ & 16,44\,€ \\
+    R1-D Analista de resultados & Analista de datos \citep{SalarioAnalistasDatos} & 21\,903\,€ & 12,44\,€ & 16,18\,€ \\
+    \bottomrule
+  \end{tabularx}
+  \caption[Coste horario por rol]{Coste horario por rol, incluida la Seguridad
+  Social, para un perfil recién graduado. Elaboración propia a partir de Indeed España.}
+  \label{tab:coste-roles}
+\end{table}
+
+La tabla~\ref{tab:cpa} asigna las horas de cada tarea a los roles indicados en
+la planificación. Cuando una tarea combina roles, las horas se reparten según
+la parte del trabajo que corresponde a cada uno. La redacción de la memoria
+(GEP05) se imputa al investigador, porque consiste en documentar el método,
+los experimentos y sus resultados. Las horas del director y
+del codirector no se presupuestan, porque no forman parte de las 540 horas del
+estudiante.
+
+\begingroup
+  \footnotesize
+  \setlength{\tabcolsep}{3pt}
+  \renewcommand{\arraystretch}{0.95}
+  \setlength{\LTleft}{0pt}
+  \setlength{\LTright}{0pt}
+  \begin{longtable}{L{1.1cm}L{5.5cm}R{0.7cm}R{0.7cm}R{0.7cm}R{0.7cm}R{0.7cm}R{2.0cm}}
+    \toprule
+    \textbf{Cód.} & \textbf{Tarea} & \textbf{A} & \textbf{B} & \textbf{C} &
+    \textbf{D} & \textbf{h} & \textbf{Coste} \\
+    \midrule
+    \endfirsthead
+    \multicolumn{8}{c}{\tablename\ \thetable\ (continuación)} \\
+    \toprule
+    \textbf{Cód.} & \textbf{Tarea} & \textbf{A} & \textbf{B} & \textbf{C} &
+    \textbf{D} & \textbf{h} & \textbf{Coste} \\
+    \midrule
+    \endhead
+    \midrule
+    \multicolumn{8}{r}{\small Continúa en la página siguiente} \\
+    \endfoot
+    \bottomrule
+    \caption[Costes de personal por actividad]{Costes de personal por actividad
+    del Gantt. A--D son las horas de los roles R1-A--R1-D. Elaboración
+    propia.}\label{tab:cpa}\\
+    \endlastfoot
+    EP01 & Revisar el estado del arte & & 28 & & & 28 & 572,32\,€ \\
+    EP02 & Analizar los datos y requisitos & & 20 & & & 20 & 408,80\,€ \\
+    EP03 & Definir el protocolo experimental & 2 & 8 & & 4 & 14 & 265,60\,€ \\
+    EP04 & Estudiar alternativas de despliegue & & 6 & 4 & & 10 & 188,40\,€ \\
+    \midrule
+    & \textbf{Subtotal Estudio Previo} & 2 & 62 & 4 & 4 & 72 & \textbf{1\,435,12\,€} \\
+    \midrule
+    GEP01 & Preparar la entrega 1 & 6 & & & & 6 & 112,08\,€ \\
+    GEP02 & Preparar la entrega 2 & 6 & & & & 6 & 112,08\,€ \\
+    GEP03 & Preparar la entrega 3 & 5 & & & & 5 & 93,40\,€ \\
+    GEP04 & Realizar el seguimiento y control & 7 & & & & 7 & 130,76\,€ \\
+    GEP05 & Redactar la memoria & & 60 & & & 60 & 1\,226,40\,€ \\
+    GEP06 & Preparar y realizar la defensa & 4 & & & 2 & 6 & 107,08\,€ \\
+    \midrule
+    & \textbf{Subtotal Gestión del Proyecto} & 28 & 60 & & 2 & 90 & \textbf{1\,781,80\,€} \\
+    \midrule
+    DT01 & Preparar el entorno reproducible & & & 12 & & 12 & 197,28\,€ \\
+    DT02 & Adquirir y validar los datos & & 4 & 14 & & 18 & 311,92\,€ \\
+    DT03 & Construir el flujo de datos & & & 28 & & 28 & 460,32\,€ \\
+    DT04 & Implementar particiones y unificar datos & & 4 & 10 & & 14 & 246,16\,€ \\
+    DT05 & Implementar y ejecutar la línea base & & & 14 & & 14 & 230,16\,€ \\
+    DT06 & Implementar la CNN & & & 24 & & 24 & 394,56\,€ \\
+    DT07 & Entrenar y ajustar la CNN & & & 34 & & 34 & 558,96\,€ \\
+    DT08 & Adaptar MobileNet & & & 24 & & 24 & 394,56\,€ \\
+    DT09 & Entrenar y ajustar MobileNet & & & 34 & & 34 & 558,96\,€ \\
+    DT10 & Adaptar un transformador visual & & & 26 & & 26 & 427,44\,€ \\
+    DT11 & Entrenar y ajustar el transformador & & & 36 & & 36 & 591,84\,€ \\
+    DT12 & Convertir y cuantizar los modelos & & & 20 & & 20 & 328,80\,€ \\
+    DT13 & Validar la ejecución \emph{edge} & & & 12 & 4 & 16 & 262,00\,€ \\
+    \midrule
+    & \textbf{Subtotal Desarrollo Técnico} & & 8 & 288 & 4 & 300 & \textbf{4\,962,96\,€} \\
+    \midrule
+    AR01 & Aplicar la evaluación común & & & 14 & 14 & 28 & 456,68\,€ \\
+    AR02 & Analizar errores y robustez & & & & 18 & 18 & 291,24\,€ \\
+    AR03 & Sintetizar la comparación & & & & 20 & 20 & 323,60\,€ \\
+    AR04 & Analizar sostenibilidad y ética & 4 & & & 8 & 12 & 204,16\,€ \\
+    \midrule
+    & \textbf{Subtotal Análisis de Resultados} & 4 & & 14 & 60 & 78 & \textbf{1\,275,68\,€} \\
+    \midrule
+    & \textbf{Total CPA} & 34 & 130 & 306 & 70 & 540 & \textbf{9\,455,56\,€} \\
+  \end{longtable}
+\endgroup
+
+\section{Costes genéricos}
+\label{sec:cg}
+
+Los costes genéricos no se asignan a una tarea concreta.
+
+\begin{description}[leftmargin=0.45cm,labelindent=0cm,style=nextline,
+  itemsep=0.2\baselineskip]
+  \item[Amortización del portátil (R3).] MSI Modern B7M de 750\,€,
+  amortizado en 4 años de 1\,760 horas de uso:
+  $750 / (4 \times 1\,760) = 0{,}1065$\,€/h. Durante las 540 horas del
+  proyecto, $0{,}1065 \times 540 = 57{,}53$\,€.
+  \item[Software (R5, R6).] Python, PyTorch, timm, LiteRT, Git, LaTeX y
+  VS Code son gratuitos, y Notion se usa con su plan gratuito: 0\,€.
+  \item[Cómputo externo (R4).] Suscripción a Google Colab Pro durante cuatro
+  meses, a $\approx$10\,€/mes: 40,00\,€. El importe exacto se confirmará al cerrar el proyecto.
+  \item[Espacio de trabajo.] Se imputa el coste de un puesto en un
+  \emph{coworking} de Barcelona. El pase de día tiene una mediana de 20\,€
+  \citep{OnecoworkingcomCitiesBarcelona}; con una jornada de 8 horas, 2,50\,€/h.
+  Para las 540 horas del proyecto, $2{,}50 \times 540 = 1\,350{,}00$\,€. El
+  pase incluye conexión a internet y electricidad, por lo que estos conceptos
+  no se imputan por separado.
+  \item[Dispositivo \emph{edge} (R5).] Está por concretar: puede ser un teléfono
+  móvil o una placa como una Raspberry Pi. Se estima un coste de 350\,€ y se imputa
+  completo, ya que se adquiere solo para la validación \emph{edge} del proyecto.
+\end{description}
+
+\begin{table}[H]
+  \centering
+  \small
+  \begin{tabular}{lr}
+    \toprule
+    \textbf{Concepto} & \textbf{Coste} \\
+    \midrule
+    Amortización del portátil & 57,53\,€ \\
+    Software & 0,00\,€ \\
+    Google Colab Pro & 40,00\,€ \\
+    Espacio de trabajo (\emph{coworking}) & 1\,350,00\,€ \\
+    Dispositivo \emph{edge} (estimación) & 350,00\,€ \\
+    \midrule
+    \textbf{Total CG} & \textbf{1\,797,53\,€} \\
+    \bottomrule
+  \end{tabular}
+  \caption[Costes genéricos]{Costes genéricos. Elaboración propia.}
+  \label{tab:cg}
+\end{table}
+
+\section{Contingencia}
+
+Se aplica una contingencia del 15\,\%, dentro del rango habitual del 10--20\,\%
+para proyectos informáticos. Las horas de la planificación ya incluyen un
+margen por tarea y el presupuesto está detallado por actividad, por lo que no
+se justifica el extremo superior:
+$(9\,455{,}56 + 1\,797{,}53) \times 0{,}15 = 1\,687{,}96$\,€.
+
+\section{Imprevistos}
+
+Los imprevistos proceden de los riesgos identificados en la planificación. Cada
+uno se imputa según su probabilidad estimada.
+
+\begin{table}[H]
+  \centering
+  \small
+  \begin{tabularx}{\textwidth}{YR{1.5cm}R{1.2cm}R{1.7cm}}
+    \toprule
+    \textbf{Imprevisto y plan alternativo} & \textbf{Coste} &
+    \textbf{Prob.} & \textbf{Imputado} \\
+    \midrule
+    Cómputo insuficiente en Colab Pro: migrar los entrenamientos a RunPod.
+    $\approx$150\,h de GPU (18 configuraciones a $\approx$8\,h) a 0,74\,\$/h
+    (RTX 4090, \emph{Secure Cloud}) \citep{GPUCloudPricing}, con
+    1\,\$\,$\approx$\,0,90\,€. & 99,90\,€ & 30\,\% & 29,97\,€ \\
+    Avería del portátil: sustituirlo por un equipo equivalente. & 750,00\,€ &
+    5\,\% & 37,50\,€ \\
+    \midrule
+    \textbf{Total imprevistos} & & & \textbf{67,47\,€} \\
+    \bottomrule
+  \end{tabularx}
+  \caption[Imprevistos]{Imprevistos imputados según su probabilidad.
+  Elaboración propia.}
+  \label{tab:imprevistos}
+\end{table}
+
+Los demás riesgos de la planificación (dificultades técnicas, error elevado e
+incompatibilidad \emph{edge}) no añaden coste: su exceso de horas se compensa
+reduciendo el alcance opcional, sin superar las 540 horas.
+
+\section{Presupuesto total}
+
+\begin{table}[H]
+  \centering
+  \small
+  \begin{tabular}{lr}
+    \toprule
+    \textbf{Concepto} & \textbf{Coste} \\
+    \midrule
+    Costes de personal por actividad (CPA) & 9\,455,56\,€ \\
+    Costes genéricos (CG) & 1\,797,53\,€ \\
+    Contingencia (15\,\%) & 1\,687,96\,€ \\
+    Imprevistos & 67,47\,€ \\
+    \midrule
+    \textbf{Total} & \textbf{13\,008,52\,€} \\
+    \bottomrule
+  \end{tabular}
+  \caption[Presupuesto total]{Presupuesto total del proyecto. Elaboración
+  propia.}
+  \label{tab:presupuesto-total}
+\end{table}
+
+El personal representa el 73\,\% del total, un porcentaje habitual en
+proyectos centrados en software.
+
+\section{Control de gestión}
+\label{sec:control-gestion}
+
+El control reutiliza el registro semanal de la planificación: horas reales y
+horas restantes por tarea. Además, se registrarán las horas de cómputo
+consumidas por los entrenamientos de los modelos y se guardarán las facturas de
+Colab o de cualquier otro proveedor de cómputo en la nube. Con estos datos se
+calculan los siguientes indicadores al cerrar cada tarea y en cada hito:
+
+\begin{itemize}
+  \item \textbf{Desviación por horas}: (horas estimadas $-$ horas reales)
+  $\times$ coste por hora estimado. Indica si una tarea ha requerido más o
+  menos horas de las previstas.
+  \item \textbf{Desviación por precio}: (coste por hora estimado $-$ coste por
+  hora real) $\times$ horas reales. En el personal es siempre cero, porque el
+  coste por hora es fijo; se aplica al cómputo, cuyo precio por hora de GPU
+  puede cambiar.
+  \item \textbf{Desviación total}: coste presupuestado $-$ coste real, tanto de
+  los costes de personal como de los costes genéricos.
+  \item \textbf{Uso de las reservas}: porcentaje gastado de la contingencia y
+  de la partida de imprevistos.
+\end{itemize}
+
+Un valor negativo significa que se ha gastado más de lo previsto. Si una tarea
+se desvía más del 15\,\% o el sobrecoste acumulado supera la mitad de la
+contingencia, se revisan la planificación y el alcance con la dirección. Si el
+sobrecoste se debe a uno de los imprevistos presupuestados, se cubre con su partida; en otro
+caso, con la contingencia.
+
+\endgroup

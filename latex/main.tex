@@ -18,7 +18,7 @@
 \usepackage{xcolor}
 \usepackage{pdflscape}
 \usepackage{pgfgantt}
-\usepackage[numbers,sort&compress]{natbib}
+\usepackage[numbers,compress]{natbib}
 \usepackage[hidelinks]{hyperref}
 
 \geometry{margin=2.8cm}
@@ -39,7 +39,7 @@
 \newcommand{\thesisdirector}{Sergi Ramírez Mitjans}
 \newcommand{\thesiscodirector}{Dante Conti}
 \newcommand{\geptutor}{Yadira Alejandra Salazar}
-\newcommand{\deliverydate}{28/09/2026}
+\newcommand{\deliverydate}{TBD}
 
 \hypersetup{
   pdftitle={\thesistitle},
@@ -49,7 +49,7 @@
 \begin{document}
 \pagenumbering{gobble}
 
-% Portada específica de la segunda entrega de GEP. La memoria final utilizará
+% Portada específica de la tercera entrega de GEP. La memoria final utilizará
 % la portada oficial de la FIB disponible en assets/portada.pdf.
 \begin{titlepage}
   \centering
@@ -58,7 +58,7 @@
   {\Large\bfseries \thesistitle\par}
   \vspace{1.2cm}
   {\large Trabajo de Fin de Grado\par}
-  {\large Entrega 2 de GEP: planificación temporal\par}
+  {\large Entrega 3 de GEP: presupuesto y sostenibilidad\par}
   \vfill
   {\large\thesisauthor\par}
   \vspace{1cm}
@@ -89,11 +89,12 @@
 \clearpage
 \pagenumbering{arabic}
 % Los capítulos de la primera entrega se conservan en chapters/, pero esta
-% compilación carga únicamente el contenido correspondiente a la entrega 2.
-\input{chapters/05-planificacion-temporal}
+% compilación carga únicamente el contenido correspondiente a la entrega 3.
+\input{chapters/06-gestion-economica}
+\input{chapters/06-sostenibilidad-etica}
 
 \clearpage
-\bibliographystyle{plainnat}
+\bibliographystyle{unsrtnat}
 \bibliography{Tesis}
 
 \end{document}

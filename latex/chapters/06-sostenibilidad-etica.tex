@@ -1,4 +1,100 @@
-\chapter{Sostenibilidad e implicaciones éticas}
-\label{chap:sostenibilidad-etica}
+\chapter{Sostenibilidad}
+\label{chap:sostenibilidad}
 
-TBD
+\begingroup
+\normalsize
+\setstretch{1.05}
+\setlength{\parskip}{0.3\baselineskip}
+
+Este capítulo corresponde al hito inicial del informe de sostenibilidad. Se
+completará en el hito final con el análisis ético y los consumos medidos.
+
+\section{Autoevaluación}
+
+Tras realizar la encuesta del proyecto EDINSOST, he podido identificar mis
+puntos fuertes y débiles en las competencias medidas.
+
+Mi punto más fuerte es el uso eficiente de los recursos. Este TFG trata
+precisamente el compromiso entre precisión y coste computacional, y durante el
+grado he aprendido a razonar sobre complejidad, memoria y tiempo de ejecución.
+Sé reutilizar modelos preentrenados y datos públicos, y soy consciente del
+coste energético de entrenar modelos grandes. También sé situar un problema
+técnico en su contexto social: en este caso, la dificultad de registrar la dieta y su
+relación con la salud pública.
+
+Mis puntos débiles están en la cuantificación y en la práctica. Identifico de
+forma cualitativa los impactos ambientales y sociales, pero no domino métodos
+para medirlos, como la huella de carbono del entrenamiento, porque no he
+participado en proyectos reales que lo requirieran. Del mismo modo, reconozco
+los riesgos éticos de un sistema de estimación nutricional (privacidad, sesgo
+de los datos y uso como consejo médico), pero no los he gestionado con
+usuarios reales, ya que este proyecto investiga modelos y no crea un producto.
+
+En este TFG mediré el cómputo empleado para estimar el impacto ambiental del
+entrenamiento y documentaré los límites y riesgos del modelo, para evitar que
+se use como herramienta clínica. Así trabajaré mis puntos débiles en
+sostenibilidad.
+
+\section{Dimensión económica}
+
+El presupuesto del proyecto (capítulo~\ref{chap:gestion-economica}) asciende a
+13\,008,52\,€, y el 73\,\% corresponde a mis horas de trabajo. Considero que es
+un coste adecuado, ya que los recursos materiales se limitan a mi portátil,
+software gratuito, cómputo alquilado solo cuando hace falta y un espacio de
+trabajo. Si hubiera que reducirlo, el ahorro vendría sobre todo de las horas:
+una búsqueda de hiperparámetros más acotada o probar menos modelos reduciría
+tanto mi tiempo como el gasto en cómputo.
+
+Al revisar el estado del arte, he visto que las aplicaciones que estiman
+nutrientes a partir de fotografías no publican su coste de ejecución, aunque su
+arquitectura lo condiciona. Cal AI usa modelos de Anthropic y OpenAI
+\citep{PhotoCalorieApp}, por lo que cada fotografía implica una
+inferencia en servidores externos. MyFitnessPal, en cambio, se basa en el kit de
+Passio \citep{MyFitnessPalNutritionAI}, que puede ejecutar los modelos en el
+propio dispositivo \citep{PassioConfigurationClassNutrition_ai} o en un servidor. Creo
+que ejecutar un modelo ligero en el móvil es la opción más sostenible
+económicamente: elimina el coste por predicción y el de mantener un servidor
+de inferencia, que es elevado con los modelos grandes accesibles por API.
+Además, el coste deja de crecer con el número de usuarios. A cambio, el modelo
+puede perder precisión, y es justamente lo que este trabajo quiere cuantificar.
+
+\section{Dimensión ambiental}
+
+Considero que la realización de este proyecto tiene un impacto ambiental
+reducido. El consumo de mi portátil está acotado a un máximo de 35,1\,kWh
+durante las 540 horas, y el impacto principal será el de las GPU en la nube,
+que calcularé al final a partir de las horas de GPU consumidas y de la potencia
+de la GPU utilizada. Para minimizarlo reutilizo recursos que ya existen: un
+conjunto de datos público (Nutrition5k), pesos preentrenados en ImageNet en
+lugar de entrenar desde cero y el portátil que ya tenía. Además, pruebo cada
+experimento con una pequeña parte de los datos antes de lanzarlo completo, no
+repito ejecuciones ya terminadas y acoto la búsqueda de configuraciones.
+
+Indirectamente, el proyecto también podría beneficiar al medio ambiente. Un
+modelo ligero ejecutado en el dispositivo no necesita enviar cada imagen a un
+servidor, por lo que espero que consuma bastante menos energía que la
+inferencia en un centro de datos, sobre todo frente a modelos grandes. No
+mediré el consumo de esas alternativas, pero sí el tamaño, la latencia y la
+memoria de los modelos, que dan una idea de su coste energético.
+
+\section{Dimensión social}
+
+En el plano personal, este TFG me permite aprender a diseñar un protocolo
+experimental riguroso, a entrenar y comparar modelos de visión entendiendo sus
+arquitecturas y a desplegarlos en entornos con recursos limitados. También me
+permite planificar y documentar un proyecto de investigación de principio a
+fin, algo que considero muy valioso para mi futuro profesional.
+
+En cuanto a la sociedad, la prevalencia de la obesidad en adultos se ha más que
+duplicado desde 1990 \citep{ObesityOverweight}, y registrar la dieta a mano es
+costoso y propenso a omisiones y errores de porción
+\citep{whittonSystematicReviewExamining2022}. Estimar los nutrientes a partir
+de una fotografía podría facilitar ese seguimiento y, si la inferencia es
+local, evitaría enviar imágenes de las comidas a terceros. Considero que existe
+una necesidad real: hay interés por la alimentación saludable
+y aplicaciones comerciales que ofrecen esta
+función \citep{HowUseMeal2026,Healthify,CalAIFood}, pero su exactitud no es
+pública. Una comparación abierta como la de este trabajo aporta evidencia sobre
+el compromiso entre error y coste.
+
+\endgroup
