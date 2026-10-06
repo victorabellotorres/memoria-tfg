@@ -184,15 +184,18 @@ las siguientes herramientas, cuya incorporación se ajustará a los modelos y al
 dispositivo finalmente seleccionados:
 
 \begin{itemize}
-  \item \textbf{TensorFlow y Keras} para implementar, adaptar y entrenar los
-  modelos visuales. Keras simplifica la definición de arquitecturas y el uso de
-  rutinas de entrenamiento sobre TensorFlow.
+  \item \textbf{PyTorch} para implementar, adaptar y entrenar los modelos
+  visuales, junto con \textbf{timm}, que ofrece las arquitecturas MobileNet con
+  pesos preentrenados en ImageNet-1k bajo una misma interfaz, y
+  \textbf{torchvision} para las transformaciones de imagen y los conjuntos de
+  datos auxiliares.
   \item \textbf{pandas y Matplotlib} para organizar predicciones y métricas en
   tablas, analizar errores y generar los gráficos comparativos de la memoria.
   \item \textbf{TensorBoard} para seguir las pérdidas y métricas durante el
   entrenamiento. El evaluador común del proyecto calculará las métricas
   nutricionales finales.
-  \item \textbf{LiteRT} para convertir los modelos compatibles y ensayar
+  \item \textbf{LiteRT}, mediante su exportador para PyTorch
+  (\texttt{litert-torch}), para convertir los modelos compatibles y ensayar
   cuantización posterior al entrenamiento. Se compararán el tamaño, el error y
   la latencia antes y después de la conversión en el entorno \emph{edge}
   definido para el proyecto.
