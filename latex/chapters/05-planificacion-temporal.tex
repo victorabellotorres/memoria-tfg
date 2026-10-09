@@ -19,7 +19,7 @@ experimental hasta la defensa. Se adopta un enfoque iterativo e incremental:
 el trabajo se divide en tareas verificables, cada una con un objetivo,
 predecesoras, recursos y una estimación de horas. El progreso se revisará
 semanalmente mediante el diagrama de Gantt y el tablero Kanban, herramientas
-previstas para la planificación temporal de la entrega de GEP\citep{GuiaGEP}.
+previstas para la planificación temporal de la entrega de GEP~\citep{GuiaGEP}.
 En cada revisión
 se actualizará el esfuerzo restante y, cuando un imprevisto o riesgo afecte a la planificación
 o al cumplimiento de un hito, se revisará el plan y se valorarán cambios.
@@ -33,10 +33,10 @@ A continuación, se especifican los datos globales de la planificación temporal
     \toprule
     Inicio del trabajo & 14/09/2026 \\
     Fin técnico del proyecto & 08/01/2027 \\
-    Hito de seguimiento & 17/12/2026 (Fecha límite) \\
-    Entrega de la memoria & Entre el 12/01/2027 y el 18/01/2027, una semana antes de la defensa\citep{TrabajoFinGrado} \\
+    Hito de seguimiento & 17/12/2026 (fecha límite) \\
+    Entrega de la memoria & Entre el 12/01/2027 y el 18/01/2027, una semana antes de la defensa~\citep{TrabajoFinGrado} \\
     Defensa del TFG & Entre el 19/01/2027 y el 25/01/2027 (día exacto a concretar) \\
-    Esfuerzo total & 540 horas (90h GEP / 450h proyecto técnico) \\
+    Esfuerzo total & 540 horas (90 h GEP / 450 h proyecto técnico) \\
     Ritmo aproximado & $\approx$20 h entre semana (4 h/día, de lunes a viernes) y $\approx$12 h en fin de semana (dedicación variable): $\approx$32 h/semana de media \\
     Horizonte temporal & 20 semanas naturales, 17 hasta el fin técnico \\
     Responsable & Estudiante, con supervisión del director y codirector \\
@@ -106,16 +106,16 @@ El código de cada tarea indica su tipo:
   \taskdescription{GEP02}{6}{Preparar la entrega 2}{Elaborar la segunda entrega de GEP con la planificación temporal,
   la estimación del esfuerzo, las dependencias, los recursos, el Gantt y la
   gestión de riesgos.
-  \emph{Estimación:} $\approx$4 h de redacción y $\approx$1 h para el Gantt y $\approx$1 h para incorporar las observaciones.}
+  \emph{Estimación:} $\approx$4 h de redacción, $\approx$1 h para el Gantt y $\approx$1 h para incorporar las observaciones.}
   \taskdescription{GEP03}{5}{Preparar la entrega 3}{Preparar la tercera entrega de GEP mediante un presupuesto y un
   análisis económico coherentes con los recursos realmente previstos.
-  \emph{Estimación:} $\approx$2 h para el presupuesto, $\approx$1 h de redacción y $\approx$1 h para incorporar las observaciones.}
+  \emph{Estimación:} $\approx$2 h para el presupuesto, $\approx$2 h de redacción y $\approx$1 h para incorporar las observaciones.}
   \taskdescription{GEP04}{7}{Realizar el seguimiento y control}{Revisar periódicamente el avance, las horas empleadas, los riesgos
   y los acuerdos con la dirección, y actualizar la planificación cuando aparezca
   una desviación relevante.
   \emph{Estimación:} $\approx$25 min semanales durante 17 semanas.}
   \taskdescription{GEP05}{60}{Redactar la memoria}{Redactar la memoria de forma continua, cumpliendo con la estructura y el contenido
-  esperado, explicando el proceso y los resultados obtenidos,  manteniendo las referencias y la trazabilidad de las
+  esperados, explicando el proceso y los resultados obtenidos, manteniendo las referencias y la trazabilidad de las
   decisiones y los experimentos.
   \emph{Estimación:} $\approx$3,5 h semanales de media durante 17 semanas.}
   \taskdescription{GEP06}{6}{Preparar y realizar la defensa}{Preparar el material de la defensa, ensayar la presentación,
@@ -142,12 +142,12 @@ El código de cada tarea indica su tipo:
   carga por lotes.
   \emph{Estimación:} $\approx$12 h para la extracción configurable de fotogramas, $\approx$8 h para vincularlos con las variables objetivo y $\approx$8 h para transformaciones y carga por lotes; parte ya realizada.}
   \taskdescription{DT04}{14}{Implementar particiones y unificar datos}{Implementar las particiones por plato y controles automáticos que
-  eviten que información del mismo plato aparezca en conjuntos distintos. Plantear e implementar la unión de diferentes datasets,
+  eviten que información del mismo plato aparezca en conjuntos distintos. Plantear e implementar la unión de diferentes conjuntos de datos,
   de forma que se puedan entrenar y evaluar los modelos con más datos y diversidad.
-  \emph{Estimación:} $\approx$8 h para particiones y controles de fuga y $\approx$6 h para la unión de datasets.}
+  \emph{Estimación:} $\approx$8 h para particiones y controles de fuga y $\approx$6 h para la unión de conjuntos de datos.}
   \taskdescription{DT05}{14}{Implementar y ejecutar la línea base}{Implementar y ejecutar el predictor basado en la media del conjunto
-  de entrenamiento para obtener una referencia sencilla con el protocolo común, definiendo de esta manera un protocolo de ejecución, entrenamiento, testeo y evaluación
-  predefinidos sobre los que desarrollar los siguientes pasos.
+  de entrenamiento para obtener una referencia sencilla con el protocolo común, definiendo de esta manera un protocolo predefinido de ejecución, entrenamiento, prueba y evaluación
+  sobre el que desarrollar los siguientes pasos.
   \emph{Estimación:} $\approx$6 h de implementación y $\approx$8 h para fijar el protocolo de ejecución y evaluación; parte ya realizada.}
   \taskdescription{DT06}{24}{Implementar la CNN}{Definir e implementar una CNN con una salida conjunta para masa,
   calorías, grasas, carbohidratos y proteínas; integrarla en la interfaz común
@@ -325,8 +325,8 @@ las horas reales y una nueva estimación del trabajo restante.
     M1 & 23/10/2026 & MVP reproducible: datos, particiones, línea base y métricas. \\
     M2 & 11/12/2026 & Tres familias entrenadas y evaluadas con el mismo protocolo. \\
     M3 & 08/01/2027 & Comparación final, validación \emph{edge} y memoria técnicamente cerrada. \\
-    M4 & 12/01/2027-18/01/2027 & Memoria entregada, una semana antes de la defensa.. \\
-    M5 & 19/01/2027-25/01/2027 & Defensa realizada, día exacto a concretar. \\
+    M4 & 12/01/2027--18/01/2027 & Memoria entregada, una semana antes de la defensa. \\
+    M5 & 19/01/2027--25/01/2027 & Defensa realizada, día exacto a concretar. \\
     \bottomrule
   \end{tabularx}
   \caption[Hitos de control]{Hitos y criterios utilizados para controlar el

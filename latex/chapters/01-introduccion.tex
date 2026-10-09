@@ -10,7 +10,7 @@ artificial y la visión por computador.
 
 Su tema principal es el estudio de modelos de visión por computador
 capaces de estimar las propiedades nutricionales a partir de imágenes de platos de comida, evaluando el error, la complejidad,
-latencia y diversos factores.
+la latencia y otros factores.
 
 El resultado del modelo debe interpretarse como una estimación experimental, no como un consejo médico.
 
@@ -27,8 +27,8 @@ introducir errores. Una revisión sistemática identificó las omisiones y la
 estimación imprecisa del tamaño de las porciones entre las fuentes de error más
 frecuentes del autorregistro \citep{whittonSystematicReviewExamining2022}. Un
 estudio realizado en un subgrupo clínico seleccionado de diez personas observó
-una subestimación media del 47\% de la ingesta alimentaria real y una
-sobreestimación media del 51\% de la actividad física declarada. Sus resultados
+una subestimación media del 47\,\% de la ingesta alimentaria real y una
+sobreestimación media del 51\,\% de la actividad física declarada. Sus resultados
 no son generalizables, pero ilustran esta limitación
 \citep{lichtmanDiscrepancySelfReportedActual1992}.
 
@@ -55,7 +55,7 @@ El problema que se aborda es estimar a partir de una imagen RGB de un plato de c
 nutricionales de ese plato. Como propiedades nutricionales se consideran la masa total, las calorías y 
 los principales macronutrientes (grasas, carbohidratos y proteínas).
 
-Sin embargo, una fotografía tampoco muestra directamente toda la información necesaria. La cantidad de cada
+Sin embargo, una fotografía no muestra directamente toda la información necesaria. La cantidad de cada
 ingrediente, la forma del plato o la presencia de ingredientes poco visibles
 pueden producir errores importantes. Además, otra dificultad presente es el sesgo, tanto cultural como geográfico, de los datos de entrenamiento.
 Por tanto, el proyecto no parte de la
@@ -75,7 +75,7 @@ nutricional \citep{thamesNutrition5kAutomaticNutritional2021}.
 
 \subsection{Redes convolucionales y extractores visuales}
 
-Una CNN aplica filtros
+Una red neuronal convolucional (CNN, por sus siglas en inglés) aplica filtros
 aprendidos a regiones locales de la imagen y combina progresivamente las
 características obtenidas. La parte del modelo que transforma la imagen en una
 representación visual se denomina \emph{backbone} o extractor de características.
@@ -93,8 +93,8 @@ salida original es el grosor de un tejido, no una propiedad nutricional.
   \includegraphics[width=\textwidth]{Proposed-CNN-architecture-it-consists-of-six-convolution-layers-and-three-fully.png}
   \caption[Ejemplo de arquitectura CNN para regresión]{Ejemplo de arquitectura
   CNN para regresión. En el trabajo original, la salida corresponde al grosor
-  de un tejido. Fuente: Manit, Schweikard y Ernst (2017), figura 2,
-  \url{https://doi.org/10.1515/cdbme-2017-0022}.}
+  de un tejido. Imagen reproducida de Manit et al. (2017), figura 2
+  \citep{manitDeepConvolutionalNeural2017}.}
   \label{fig:ejemplo-cnn-regresion}
 \end{figure}
 

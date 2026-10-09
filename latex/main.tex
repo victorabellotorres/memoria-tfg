@@ -101,7 +101,9 @@
 \renewcommand{\bibname}{Referencias bibliográficas}
 \addcontentsline{toc}{chapter}{\bibname}
 % Numeración de las referencias según su primera aparición en el texto.
-\bibliographystyle{unsrtnat}
+% DOI como enlace; unsrtnat-doi añade el DOI también a las entradas @misc.
+\newcommand*{\doi}[1]{doi: \href{https://doi.org/#1}{\nolinkurl{#1}}}
+\bibliographystyle{unsrtnat-doi}
 \bibliography{Tesis}
 
 \end{document}
